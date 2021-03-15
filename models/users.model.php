@@ -12,7 +12,7 @@ class ModelUsers{
 
         if($item != null){
 
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY id");
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item or  ORDER BY id");
 
             $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 

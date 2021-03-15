@@ -3,8 +3,8 @@
 /*=============================
     CONTROLLERS
 ===============================*/
-require_once "controller/users.controller.php";
-require_once "controller/template.controller.php";
+require_once "controllers/users.controller.php";
+require_once "controllers/template.controller.php";
 
 
 /*=============================
