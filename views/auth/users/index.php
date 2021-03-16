@@ -8,7 +8,7 @@ $answer = ModelsConfig::mdlConfig();
 
 $rutas = explode("/", $_GET["ruta"]);
 $method = str_replace("-","",$rutas[3]);
-
+//$_SERVER['REQUEST_METHOD'] == 'POST' validar el metodo de envio dependiendo del tipo de consulta
 
 switch ($method){
 
@@ -24,6 +24,13 @@ switch ($method){
         echo $respuesta;
 
         break;
+
+    case "userregister":
+
+        $respuesta = ControllerUsers::ctrUserRegister($obj);
+
+        echo $respuesta;
+
 
     default:
         echo json_encode(

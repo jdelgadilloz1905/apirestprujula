@@ -41,13 +41,13 @@ class ModelUsers{
 	ACTUALIZAR USUARIO
 	=============================================*/
 
-    static public function mdlUpdateUser($tabla, $item1, $valor1, $item2, $valor2, $dispositivo){
+    static public function mdlUpdateUser($tabla, $item1, $valor1, $item2, $valor2){
 
-        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1, dispositivo = :dispositivo WHERE $item2 = :$item2");
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1 WHERE $item2 = :$item2");
 
         $stmt -> bindParam(":".$item1, $valor1, PDO::PARAM_STR);
         $stmt -> bindParam(":".$item2, $valor2, PDO::PARAM_STR);
-        $stmt -> bindParam(":dispositivo", $dispositivo, PDO::PARAM_STR);
+
 
         if($stmt -> execute()){
 
@@ -62,6 +62,15 @@ class ModelUsers{
         $stmt -> close();
 
         $stmt = null;
+
+    }
+
+    /*=============================================
+	REGISTRAR USUARIOS
+	=============================================*/
+
+    static public function mdlUserRegister($tabla, $datos){
+
 
     }
 }

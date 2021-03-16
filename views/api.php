@@ -12,7 +12,7 @@ if(isset($_GET["ruta"])){
     $rutas = explode("/", $_GET["ruta"]);
 
     if($rutas[2] == "users" ){
-        //se llama la carpeta y funcion
+        //estructura CARPETA / FUNCION O METODO / PARAMETRO O ID
         include "".$rutas[1]."/".$rutas[2]."/index.php";
     }else{
         //No existe el metodo
