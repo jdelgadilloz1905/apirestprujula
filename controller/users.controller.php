@@ -30,10 +30,7 @@ class ControllerUsers{
                                 "nombre" =>$answer["nombre"],
                                 "modo" =>"directo",
                                 "email" =>$answer["email"],
-                                "foto" =>$answer["foto"],
-                                "perfil" =>$answer["perfil"],
-                                "error" => false,
-                                "statusCode" => "200",
+                                "foto" =>$answer["foto"]
                             );
 
                             /*=============================================
@@ -45,7 +42,8 @@ class ControllerUsers{
                             echo json_encode(array(
                                 "statusCode" => "200",
                                 "error" => false,
-                                "data" =>$resultado
+                                "data" =>$resultado,
+                                "mensaje" =>""
                             ));
 
                         }else{
@@ -56,7 +54,6 @@ class ControllerUsers{
                                 "isLogged" => false,
                                 "mensaje" =>"El email aún no está activado"
                             ));
-
 
                         }
 
