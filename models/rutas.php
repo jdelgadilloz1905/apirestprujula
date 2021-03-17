@@ -8,7 +8,7 @@ class Ruta{
 	static public function ctrRutaEnvioEmail(){
 
 		//return "https://www.prujula.pr/";
-		return "http://localhost/apirestprujula/";
+		return "http://estudio57.net/apirestprujula/";
 
 	}
 
