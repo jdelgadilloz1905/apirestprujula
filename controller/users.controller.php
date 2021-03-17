@@ -5,18 +5,18 @@ class ControllerUsers{
     =============================================*/
     static public function ctrLoginUser($data){
 
-        if(isset($data["ingEmail"])){
-            if($data["ingModo"] == "directo"){
-                if(preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $data["ingEmail"]) &&
-                    preg_match('/^[a-zA-Z0-9.,]+$/', $data["ingPassword"])){
+        if(isset($data["conEmail"])){
+            if($data["conModo"] == "directo"){
+                if(preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $data["conEmail"]) &&
+                    preg_match('/^[a-zA-Z0-9.,]+$/', $data["conPassword"])){
 
-                    $encrypt = crypt($data["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+                    $encrypt = crypt($data["conPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
                     $table = "users";
 
                     $item = "email";
 
-                    $value = $data["ingEmail"];
+                    $value = $data["conEmail"];
 
                     $answer = ModelUsers::mdlShowUsers($table,$item,$value);
 
@@ -25,7 +25,6 @@ class ControllerUsers{
                         if($answer["estado"] == 1){
 
                             $resultado = array(
-                                "isLogged" => true,
                                 "id" =>$answer["id"],
                                 "nombre" =>$answer["nombre"],
                                 "modo" =>"directo",
@@ -51,7 +50,6 @@ class ControllerUsers{
                             echo json_encode(array(
                                 "statusCode" => "400",
                                 "error" => true,
-                                "isLogged" => false,
                                 "mensaje" =>"El email aún no está activado"
                             ));
 
@@ -69,20 +67,19 @@ class ControllerUsers{
 
                 }
             }else{
-                if(preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $data["ingEmail"])){
+                if(preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $data["conEmail"])){
 
                     $table = "users";
 
                     $item = "email";
 
-                    $value = $data["ingEmail"];
+                    $value = $data["conEmail"];
 
                     $answer = ModelUsers::mdlShowUsers($table,$item,$value);
 
                     if($answer["email"] == $value){
 
                         $resultado = array(
-                            "isLogged" => true,
                             "id" =>$answer["id"],
                             "nombre" =>$answer["nombre"],
                             "modo" =>"directo",
@@ -114,9 +111,9 @@ class ControllerUsers{
 
     static public function ctrRecoverPassword($data){
 
-        if(isset($data["passEmail"])){
+        if(isset($data["conEmail"])){
 
-            if(preg_match('/^[^0-9][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[@][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[.][a-zA-Z]{2,4}$/', $data["passEmail"])){
+            if(preg_match('/^[^0-9][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[@][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[.][a-zA-Z]{2,4}$/', $data["conEmail"])){
 
                 /*=============================================
                 GENERAR CONTRASEÑA ALEATORIA
@@ -146,17 +143,17 @@ class ControllerUsers{
                 $tabla = "users";
 
                 $item1 = "email";
-                $valor1 = $data["passEmail"];
+                $valor1 = $data["conEmail"];
 
                 $respuesta1 = ModelUsers::mdlShowUsers($tabla,$item1,$valor1);
 
                 if($respuesta1){
 
-                    $id = $respuesta1["id"];
+                    $valor = $respuesta1["id"];
                     $item2 = "password";
                     $valor2 = $encriptar;
 
-                    $respuesta2 = ModelUsers::mdlUpdateUser($tabla, $id, $item2, $valor2);
+                    $respuesta2 = ModelUsers::mdlUpdateUser($tabla, $item2, $valor2, "id", $valor );
 
                     if($respuesta2  == "ok"){
 
@@ -180,7 +177,7 @@ class ControllerUsers{
 
                         $mail->Subject = "¿Olvidaste tu contraseña?";
 
-                        $mail->addAddress($data["passEmail"]);
+                        $mail->addAddress($data["conEmail"]);
 
                         $mail->msgHTML('<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
 
@@ -227,13 +224,15 @@ class ControllerUsers{
                             echo json_encode(array(
                                 "statusCode" => "400",
                                 "error" => true,
-                                "mensaje" =>"¡Ha ocurrido un problema enviando cambio de contraseña a ".$data["passEmail"].$mail->ErrorInfo."!",
+                                "NuevoPassword"=>$nuevaPassword,
+                                "mensaje" =>"¡Ha ocurrido un problema enviando cambio de contraseña a ".$data["conEmail"].$mail->ErrorInfo."!",
                             ));
 
                         }else{
 
                             echo json_encode(array(
                                 "statusCode" => "200",
+                                "NuevoPassword"=>$nuevaPassword,
                                 "error" => false,
                                 "mensaje" =>"",
                             ));
@@ -266,6 +265,76 @@ class ControllerUsers{
 
 
     }
+    /*=============================================
+    CAMBIAR CLAVE
+    =============================================*/
+
+    static public function ctrUpdatePassword($data){
+
+        if(isset($data["actEmailEncriptado"])){
+
+            if( preg_match('/^[a-zA-Z0-9]+$/.,*', $_POST["actPassClave"]) &&  preg_match('/^[a-zA-Z0-9]+$/.,*', $_POST["actPassClave"])){
+
+                $passwordNuevo = crypt($_POST["actPassClave"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+
+                $emailEncriptado= $_POST["actEmailEncriptado"];
+
+                $tabla = "users";
+                $item = "emailEncriptado";
+                $valor = $emailEncriptado;
+
+                $respuesta = ModelUsers::mdlShowUsers($tabla, $item, $valor);
+
+                if($respuesta["emailEncriptado"] == $emailEncriptado ){
+
+                    $datos = array(
+                        "id"=>$respuesta["id"],
+                        "password"=>$passwordNuevo
+                    );
+                    $resp = ModelUsers::mdlUpdatePassword($tabla, $datos);
+
+                    if($resp == "ok"){
+
+                        echo json_encode(array(
+                            "statusCode" => "200",
+                            "error" => false,
+                            "mensaje" =>"Tu contraseña ha sido cambiada exitosamente."
+                        ));
+
+                    }else{
+
+                        echo json_encode(array(
+                            "statusCode" => "500",
+                            "error" => true,
+                            "mensaje" =>"¡Error al cambiar su contraseña, contacte con el administrador!"
+                        ));
+
+                    }
+
+                }else{
+
+                    echo json_encode(array(
+                        "statusCode" => "500",
+                        "error" => true,
+                        "mensaje" =>"¡Error al cambiar su contraseña, contacte con el administrador!"
+                    ));
+
+                }
+
+            }else{
+
+                echo json_encode(array(
+                    "statusCode" => "500",
+                    "error" => true,
+                    "mensaje" =>"¡Error al cambiar la contraseña, no se permiten caracteres especiales!"
+                ));
+
+
+            }
+
+        }
+
+    }
 
     /*=============================================
     REGISTRO DE CUENTA DIRECTA
@@ -277,8 +346,7 @@ class ControllerUsers{
 
             if (isset($data["regEmail"])) {
 
-                if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $data["regUser"]) &&
-                    preg_match('/^[^0-9][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[@][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[.][a-zA-Z]{2,4}$/', $data["regEmail"]) &&
+                if (preg_match('/^[^0-9][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[@][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[.][a-zA-Z]{2,4}$/', $data["regEmail"]) &&
                     preg_match('/^[a-zA-Z0-9.,*]+$/', $data["regPassword"])
                 ) {
 
@@ -293,7 +361,6 @@ class ControllerUsers{
                         "email" => $data["regEmail"],
                         "foto" => "",
                         "modo" => "directo",
-                        "verificacion" => 0,
                         "emailEncriptado" => $encriptarEmail);
 
                     //ANTES REALIZO UNA VALIDACION SI EL USUARIO EXISTE NUEVAMENTE PARA EVITAR DUPLICIDAD
@@ -312,6 +379,7 @@ class ControllerUsers{
                         $tabla = "users";
 
                         $respuesta = ModelUsers::mdlUserRegister($tabla, $datos);
+
 
                         if ($respuesta == "ok") {
 
@@ -390,7 +458,6 @@ class ControllerUsers{
                                 echo json_encode(array(
                                     "statusCode" => "200",
                                     "error" => true,
-                                    "isLogged" => false,
                                     "mensaje" =>"¡Excelente trabajo " . $data["regName"] . ", ahora podras disfrutar de nuestras promociones!",
                                 ));
 
@@ -425,7 +492,7 @@ class ControllerUsers{
 
             if($respuesta0){
 
-                if($respuesta0["modo"] != $data["modo"]){
+                if($respuesta0["modo"] != $data["regModo"]){
 
                     echo json_encode(array(
                         "statusCode" => "400",
@@ -450,7 +517,6 @@ class ControllerUsers{
                 $respuesta2 = ModelUsers::mdlShowUsers($tabla, $item, $valor);
 
                 $answer = array(
-                    "isLogged" => true,
                     "id" =>$respuesta2["id"],
                     "nombre" =>$respuesta2["nombre"],
                     "email" =>$respuesta2["email"],
@@ -484,6 +550,56 @@ class ControllerUsers{
 
         return $respuesta;
     }
+
+    /*=============================================
+    VERIFICACION DE EMAIL DE CUENTA DIRECTA
+    =============================================*/
+
+    static public function ctrVerifyUser($data){
+
+
+        $item = "email_encriptado";
+
+        $valor = $data["conVerifyUser"];
+
+        $respuesta = self::ctrShowUsers($item, $valor);
+
+        if(isset($respuesta["email_encriptado"])){
+
+            $tabla = "users";
+
+            $item2 = "id";
+
+            $valor2 = $respuesta["id"];
+
+            $item1 = "verificacion";
+
+            $valor1 = 0;
+
+            $respuesta2 = ModelUsers::mdlUpdateUser($tabla, $item1, $valor1, $item2, $valor2);
+
+            if($respuesta2 == "ok"){
+
+                echo json_encode(array(
+                    "statusCode" => "200",
+                    "error" => false,
+                    "mensaje" =>"Usuario verificado"
+                ));
+
+            }
+
+        }else{
+            echo json_encode(array(
+                "statusCode" => "500",
+                "error" => true,
+                "mensaje" =>"¡Error verificando el usuario, contacte con el administrador!"
+            ));
+        }
+    }
+
+    /*=============================================
+        FUNCIONES
+    =============================================*/
 
     /*=============================================
         REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN

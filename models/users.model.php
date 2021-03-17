@@ -69,8 +69,65 @@ class ModelUsers{
 	REGISTRAR USUARIOS
 	=============================================*/
 
-    static public function mdlUserRegister($tabla, $datos){
+    static public function mdlUserRegister($tabla, $datos)
+    {
 
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(email, nombre, apellido, password, foto, modo, email_encriptado) VALUES (:email, :nombre, :apellido, :password, :foto, :modo, :email_encriptado)");
+
+
+        $stmt->bindParam(":email", $datos["email"], PDO::PARAM_STR);
+
+        $stmt->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
+
+        $stmt->bindParam(":apellido", $datos["apellido"], PDO::PARAM_STR);
+
+        $stmt->bindParam(":password", $datos["password"], PDO::PARAM_STR);
+
+        $stmt->bindParam(":foto", $datos["foto"], PDO::PARAM_STR);
+
+        $stmt->bindParam(":modo", $datos["modo"], PDO::PARAM_STR);
+
+        $stmt->bindParam(":email_encriptado", $datos["emailEncriptado"], PDO::PARAM_STR);
+
+        if($stmt->execute()){
+
+            return "ok";
+
+        }else{
+
+            return "error";
+
+        }
+
+        $stmt->close();
+
+        $stmt = null;
+    }
+
+    /*============================================
+		ACTUALIZAR PASSWORD
+	==============================================*/
+
+    static public function mdlUpdatePassword($tabla, $datos){
+
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET password = :password WHERE id = :id");
+
+        $stmt -> bindParam(":id", $datos["id"], PDO::PARAM_INT);
+        $stmt -> bindParam(":password", $datos["password"], PDO::PARAM_STR);
+
+        if($stmt -> execute()){
+
+            return "ok";
+
+        }else{
+
+            return "error";
+
+        }
+
+        $stmt-> close();
+
+        $stmt = null;
 
     }
 }

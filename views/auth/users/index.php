@@ -31,12 +31,23 @@ switch ($method){
 
         echo $respuesta;
 
+        break;
+
+    case "verifyaccount":
+
+        $respuesta = ControllerUsers::ctrVerifyUser($obj);
+
+        echo $respuesta;
+
+        break;
+
 
     default:
         echo json_encode(
             array(
-                "error" => true,
-                "statusCode"=>"400"
+                "error11" => true,
+                "statusCode"=>"400",
+                "metodo" =>$method
             ));
 }
 
