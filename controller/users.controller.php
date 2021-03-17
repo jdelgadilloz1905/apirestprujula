@@ -82,7 +82,7 @@ class ControllerUsers{
                         $resultado = array(
                             "id" =>$answer["id"],
                             "nombre" =>$answer["nombre"],
-                            "modo" =>"directo",
+                            "modo" =>$answer["conModo"],
                             "email" =>$answer["email"],
                             "foto" =>$answer["foto"],
                             "perfil" =>$answer["perfil"],
