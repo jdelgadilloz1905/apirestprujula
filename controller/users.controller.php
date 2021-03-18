@@ -12,7 +12,7 @@ class ControllerUsers{
 
                     $encrypt = crypt($data["conPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
-                    $table = "users";
+                    $table = "usuarios";
 
                     $item = "email";
 
@@ -29,7 +29,8 @@ class ControllerUsers{
                                 "nombre" =>$answer["nombre"],
                                 "modo" =>"directo",
                                 "email" =>$answer["email"],
-                                "foto" =>$answer["foto"]
+                                "foto" =>$answer["foto"],
+                                "profesion" =>$answer["profesion"],
                             );
 
                             /*=============================================
@@ -44,6 +45,7 @@ class ControllerUsers{
                                 "data" =>$resultado,
                                 "mensaje" =>""
                             ));
+
 
                         }else{
 
@@ -69,7 +71,7 @@ class ControllerUsers{
             }else{
                 if(preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $data["conEmail"])){
 
-                    $table = "users";
+                    $table = "usuarios";
 
                     $item = "email";
 
@@ -140,7 +142,7 @@ class ControllerUsers{
 
                 $encriptar = crypt($nuevaPassword, '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
-                $tabla = "users";
+                $tabla = "usuarios";
 
                 $item1 = "email";
                 $valor1 = $data["conEmail"];
@@ -279,7 +281,7 @@ class ControllerUsers{
 
                 $emailEncriptado= $_POST["actEmailEncriptado"];
 
-                $tabla = "users";
+                $tabla = "usuarios";
                 $item = "emailEncriptado";
                 $valor = $emailEncriptado;
 
@@ -376,7 +378,7 @@ class ControllerUsers{
 
                     }else{
 
-                        $tabla = "users";
+                        $tabla = "usuarios";
 
                         $respuesta = ModelUsers::mdlUserRegister($tabla, $datos);
 
@@ -483,7 +485,7 @@ class ControllerUsers{
         }else{
             //REGISTRO DE GOOGLE O FACEBOOK
 
-            $tabla = "users";
+            $tabla = "usuarios";
             $item = "email";
             $valor = $data["regEmail"];
             $emailRepetido = false;
@@ -544,7 +546,7 @@ class ControllerUsers{
     =============================================*/
     static public function ctrShowUsers($item,$valor){
 
-        $tabla = "users";
+        $tabla = "usuarios";
 
         $respuesta = ModelUsers::mdlShowUsers($tabla,$item,$valor);
 
@@ -566,7 +568,7 @@ class ControllerUsers{
 
         if(isset($respuesta["email_encriptado"])){
 
-            $tabla = "users";
+            $tabla = "usuarios";
 
             $item2 = "id";
 
