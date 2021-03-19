@@ -7,7 +7,7 @@ $answer = ModelsConfig::mdlConfig();
 //echo $answer["API_KEY"];
 
 $rutas = explode("/", $_GET["ruta"]);
-$method = str_replace("-","",$rutas[3]);
+$method = str_replace("-","",$rutas[2]);
 //$_SERVER['REQUEST_METHOD'] == 'POST' validar el metodo de envio dependiendo del tipo de consulta
 
 switch ($method){
