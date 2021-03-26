@@ -14,12 +14,10 @@
 
 
 -- Volcando estructura de base de datos para prujuladb
-DROP DATABASE IF EXISTS `prujuladb`;
 CREATE DATABASE IF NOT EXISTS `prujuladb` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish2_ci */;
 USE `prujuladb`;
 
 -- Volcando estructura para tabla prujuladb.anuncios
-DROP TABLE IF EXISTS `anuncios`;
 CREATE TABLE IF NOT EXISTS `anuncios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` text COLLATE utf8_spanish2_ci NOT NULL,
@@ -40,7 +38,6 @@ CREATE TABLE IF NOT EXISTS `anuncios` (
 /*!40000 ALTER TABLE `anuncios` ENABLE KEYS */;
 
 -- Volcando estructura para tabla prujuladb.categoria
-DROP TABLE IF EXISTS `categoria`;
 CREATE TABLE IF NOT EXISTS `categoria` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` text COLLATE utf8_spanish2_ci NOT NULL,
@@ -54,7 +51,6 @@ CREATE TABLE IF NOT EXISTS `categoria` (
 /*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 
 -- Volcando estructura para tabla prujuladb.config
-DROP TABLE IF EXISTS `config`;
 CREATE TABLE IF NOT EXISTS `config` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `logo` text COLLATE utf8_spanish2_ci NOT NULL,
@@ -62,14 +58,13 @@ CREATE TABLE IF NOT EXISTS `config` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla prujuladb.config: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla prujuladb.config: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `config` DISABLE KEYS */;
 REPLACE INTO `config` (`id`, `logo`, `API_KEY`) VALUES
 	(1, '', '43832e1f69258ca2ef5f2f2ee640133d');
 /*!40000 ALTER TABLE `config` ENABLE KEYS */;
 
 -- Volcando estructura para tabla prujuladb.localidad
-DROP TABLE IF EXISTS `localidad`;
 CREATE TABLE IF NOT EXISTS `localidad` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` text COLLATE utf8_spanish2_ci DEFAULT NULL,
@@ -83,7 +78,6 @@ CREATE TABLE IF NOT EXISTS `localidad` (
 /*!40000 ALTER TABLE `localidad` ENABLE KEYS */;
 
 -- Volcando estructura para tabla prujuladb.reservaciones
-DROP TABLE IF EXISTS `reservaciones`;
 CREATE TABLE IF NOT EXISTS `reservaciones` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_anuncio` int(11) NOT NULL,
@@ -99,9 +93,8 @@ CREATE TABLE IF NOT EXISTS `reservaciones` (
 /*!40000 ALTER TABLE `reservaciones` DISABLE KEYS */;
 /*!40000 ALTER TABLE `reservaciones` ENABLE KEYS */;
 
--- Volcando estructura para tabla prujuladb.users
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
+-- Volcando estructura para tabla prujuladb.usuarios
+CREATE TABLE IF NOT EXISTS `usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` text CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
   `nombre` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
@@ -119,12 +112,12 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla prujuladb.users: ~2 rows (aproximadamente)
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-REPLACE INTO `users` (`id`, `email`, `nombre`, `apellido`, `password`, `foto`, `estado`, `ultimo_login`, `fecha_creacion`, `telefono`, `idioma`, `modo`, `email_encriptado`, `verificacion`) VALUES
+-- Volcando datos para la tabla prujuladb.usuarios: ~2 rows (aproximadamente)
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+REPLACE INTO `usuarios` (`id`, `email`, `nombre`, `apellido`, `password`, `foto`, `estado`, `ultimo_login`, `fecha_creacion`, `telefono`, `idioma`, `modo`, `email_encriptado`, `verificacion`) VALUES
 	(1, 'admin@admin.com', 'Administrador', '', '$2a$07$asxx54ahjppf45sd87a5auHhDisdvuSxcDBsaoZYMwJrghJ3jkICW', '', 1, '2021-03-15 13:07:34', '2021-03-15 15:07:34', '04142517231', 'es', 'directo', '', 0),
 	(2, 'jdelgadilloz1905@gmail.com', 'Jorge', 'Delgadillo', '$2a$07$asxx54ahjppf45sd87a5auuklDRcFTAh0cefIL69V.yBnbZZ0MbGm', '', 1, '2021-03-17 15:05:05', '2021-03-17 16:05:05', NULL, 'en', 'directo', '8fb14cb673a4608b7efd4e5d35e84c84', 0);
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

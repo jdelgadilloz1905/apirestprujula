@@ -27,10 +27,10 @@ class ControllerUsers{
                             $resultado = array(
                                 "id" =>$answer["id"],
                                 "nombre" =>$answer["nombre"],
+                                "apellido" =>$answer["apellido"],
                                 "modo" =>"directo",
                                 "email" =>$answer["email"],
-                                "foto" =>$answer["foto"],
-                                "profesion" =>$answer["profesion"],
+                                "foto" =>$answer["foto"]
                             );
 
                             /*=============================================
