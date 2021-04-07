@@ -165,8 +165,6 @@ class ControllerUsers{
 
                         date_default_timezone_set("America/Bogota");
 
-                        $url = Ruta::ctrRutaEnvioEmail();
-
                         $mail = new PHPMailer;
 
                         $mail->CharSet = 'UTF-8';
@@ -220,6 +218,7 @@ class ControllerUsers{
 							</div>');
 
                         $envio = $mail->Send();
+
 
                         if(!$envio){
 
@@ -382,7 +381,11 @@ class ControllerUsers{
 
                         $respuesta = ModelUsers::mdlUserRegister($tabla, $datos);
 
-
+                        echo json_encode(array(
+                            "statusCode" => "200",
+                            "error" => true,
+                            "mensaje" =>"¡Excelente trabajo " . $data["regName"] . ", ahora podras disfrutar de nuestras promociones!",
+                        ));
                         if ($respuesta == "ok") {
 
                             /*=============================================
