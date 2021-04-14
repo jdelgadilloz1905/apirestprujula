@@ -40,9 +40,9 @@ class ControllerUsers{
                             self::ctrUpdateLastLogin($table,$answer["id"]);
 
                             echo json_encode(array(
-                                "statusCode" => "200",
+                                "statusCode" => 200,
                                 "error" => false,
-                                "data" =>$resultado,
+                                "userInfo" =>$resultado,
                                 "mensaje" =>""
                             ));
 
@@ -50,7 +50,7 @@ class ControllerUsers{
                         }else{
 
                             echo json_encode(array(
-                                "statusCode" => "400",
+                                "statusCode" => 400,
                                 "error" => true,
                                 "mensaje" =>"El email aún no está activado"
                             ));
@@ -60,7 +60,7 @@ class ControllerUsers{
                     }else{
 
                         echo json_encode(array(
-                            "statusCode" => "400",
+                            "statusCode" => 400,
                             "error" => true,
                             "mensaje" =>"Error al ingresar, vuelve a intentarlo"
                         ));
@@ -89,13 +89,13 @@ class ControllerUsers{
                             "foto" =>$answer["foto"],
                             "perfil" =>$answer["perfil"],
                             "error" => false,
-                            "statusCode" => "200",
+                            "statusCode" => 200,
                         );
 
                         echo json_encode(array(
-                            "statusCode" => "200",
+                            "statusCode" => 200,
                             "error" => false,
-                            "data" =>$resultado
+                            "userInfo" =>$resultado
                         ));
 
                     }
@@ -130,7 +130,7 @@ class ControllerUsers{
 
                     for($i = 0; $i < $longitud; $i++){
 
-                        $key .= $pattern{mt_rand(0,$max)};
+                        $key .= $pattern[mt_rand(0,$max)];
 
                     }
 
@@ -162,6 +162,8 @@ class ControllerUsers{
                         /*=============================================
                         CAMBIO DE CONTRASEÑA
                         =============================================*/
+
+                        $url = Ruta::ctrRutaEnvioEmail();
 
                         date_default_timezone_set("America/Bogota");
 
@@ -223,7 +225,7 @@ class ControllerUsers{
                         if(!$envio){
 
                             echo json_encode(array(
-                                "statusCode" => "400",
+                                "statusCode" => 400,
                                 "error" => true,
                                 "NuevoPassword"=>$nuevaPassword,
                                 "mensaje" =>"¡Ha ocurrido un problema enviando cambio de contraseña a ".$data["conEmail"].$mail->ErrorInfo."!",
@@ -232,7 +234,7 @@ class ControllerUsers{
                         }else{
 
                             echo json_encode(array(
-                                "statusCode" => "200",
+                                "statusCode" => 200,
                                 "NuevoPassword"=>$nuevaPassword,
                                 "error" => false,
                                 "mensaje" =>"",
@@ -245,7 +247,7 @@ class ControllerUsers{
                 }else{
 
                     echo json_encode(array(
-                        "statusCode" => "400",
+                        "statusCode" => 400,
                         "error" => true,
                         "mensaje" =>"¡El correo electrónico no existe en el sistema!",
                     ));
@@ -254,7 +256,7 @@ class ControllerUsers{
             }else{
 
                 echo json_encode(array(
-                    "statusCode" => "400",
+                    "statusCode" => 400,
                     "error" => true,
                     "mensaje" =>"¡Error al enviar el correo electrónico, está mal escrito!",
                 ));
@@ -297,7 +299,7 @@ class ControllerUsers{
                     if($resp == "ok"){
 
                         echo json_encode(array(
-                            "statusCode" => "200",
+                            "statusCode" => 200,
                             "error" => false,
                             "mensaje" =>"Tu contraseña ha sido cambiada exitosamente."
                         ));
@@ -370,7 +372,7 @@ class ControllerUsers{
                     if(isset($result["email"])){
 
                         echo json_encode(array(
-                            "statusCode" => "400",
+                            "statusCode" => 400,
                             "error" => true,
                             "mensaje" =>"¡El correo electrónico ya existe en la base de datos, por favor ingrese otro diferente!",
                         ));
@@ -382,7 +384,7 @@ class ControllerUsers{
                         $respuesta = ModelUsers::mdlUserRegister($tabla, $datos);
 
                         echo json_encode(array(
-                            "statusCode" => "200",
+                            "statusCode" => 200,
                             "error" => true,
                             "mensaje" =>"¡Excelente trabajo " . $data["regName"] . ", ahora podras disfrutar de nuestras promociones!",
                         ));
@@ -453,7 +455,7 @@ class ControllerUsers{
                             if (!$envio) {
 
                                 echo json_encode(array(
-                                    "statusCode" => "400",
+                                    "statusCode" => 400,
                                     "error" => false,
                                     "mensaje" =>"¡Ha ocurrido un problema enviando verificación de correo electrónico a " . $data["regEmail"] . $mail->ErrorInfo . "!"
                                 ));
@@ -461,7 +463,7 @@ class ControllerUsers{
                             } else {
 
                                 echo json_encode(array(
-                                    "statusCode" => "200",
+                                    "statusCode" => 200,
                                     "error" => true,
                                     "mensaje" =>"¡Excelente trabajo " . $data["regName"] . ", ahora podras disfrutar de nuestras promociones!",
                                 ));
@@ -475,7 +477,7 @@ class ControllerUsers{
                 } else {
 
                     echo json_encode(array(
-                        "statusCode" => "400",
+                        "statusCode" => 400,
                         "error" => true,
                         "mensaje" =>"¡Error al registrar el usuario, no se permiten caracteres especiales!",
                     ));
@@ -500,7 +502,7 @@ class ControllerUsers{
                 if($respuesta0["modo"] != $data["regModo"]){
 
                     echo json_encode(array(
-                        "statusCode" => "400",
+                        "statusCode" => 400,
                         "error" => true,
                         "mensaje" =>"¡El correo electrónico ".$data["regEmail"].", ya está registrado en el sistema!"
                     ));
@@ -528,13 +530,13 @@ class ControllerUsers{
                     "foto" =>$respuesta2["foto"],
                     "perfil" =>$respuesta2["perfil"],
                     "error" => false,
-                    "statusCode" => "200",
+                    "statusCode" => 200,
                 );
 
                 echo json_encode(array(
-                    "statusCode" => "200",
+                    "statusCode" => 200,
                     "error" => false,
-                    "data" =>$answer,
+                    "userInfo" =>$answer,
                     "mensaje" =>""
                 ));
 
@@ -586,7 +588,7 @@ class ControllerUsers{
             if($respuesta2 == "ok"){
 
                 echo json_encode(array(
-                    "statusCode" => "200",
+                    "statusCode" => 200,
                     "error" => false,
                     "mensaje" =>"Usuario verificado"
                 ));
@@ -595,7 +597,7 @@ class ControllerUsers{
 
         }else{
             echo json_encode(array(
-                "statusCode" => "500",
+                "statusCode" => 500,
                 "error" => true,
                 "mensaje" =>"¡Error verificando el usuario, contacte con el administrador!"
             ));
