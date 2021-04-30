@@ -170,10 +170,34 @@ class ControllerAds{
                 "image_portada_oferta" => $value["image_portada_oferta"],
                 "fin_oferta" => $value["fin_oferta"],
                 "oferta" => $value["oferta"],
-                "fechas_desactivada" => $value["fechas_desactivada"]
+                "fechas_desactivada" => $value["fechas_desactivada"],
+                "categoria"=>ControllerCategory::ctrShowCategory("id",$value["id_categoria"])
             );
         }
 
         return $resultado;
+    }
+
+    /*============================================
+    BUSCAR ANUNCIOS DEL HOME
+    ==============================================*/
+    static public function ctrShowSearchAds($obj){
+
+        $tabla  = "anuncios";
+        $valor  = $obj["conLocalidad"];
+        //$valor2 = $obj["conFechaDesde"];
+        //$valor3 = $obj["conFechaHast"];
+        //$valor2 = $obj["conCategoria"];
+
+        $respuesta = ModelsAds::mdlShowSearchAds("anuncios",$valor);
+
+        $result = self::ctrPrepararMatrizJson($respuesta);
+
+        echo json_encode(array(
+            "statusCode" => 200,
+            "adsInfo"=>$result,
+            "error" => false,
+            "mensaje" =>""
+        ));
     }
 }

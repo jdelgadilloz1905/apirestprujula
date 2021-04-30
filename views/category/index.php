@@ -11,7 +11,10 @@ $method = str_replace("-","",$rutas[2]);
 switch ($method){
 
     case  "all":
-        $respuesta = ControllerCategory::ctrShowCategory();
+        $item = null;
+        $valor = null;
+
+        $respuesta = ControllerCategory::ctrShowCategory($item, $valor);
         echo $respuesta;
 
         break;

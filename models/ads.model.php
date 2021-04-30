@@ -101,7 +101,7 @@ class ModelsAds{
 
         $fechaActual = date("Y-m-d");
 
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE oferta = 1 ORDER BY id $modo LIMIT $base, $tope");
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE oferta = 1 and estado = 1 ORDER BY id $modo LIMIT $base, $tope");
 
         $stmt -> execute();
 
@@ -120,6 +120,21 @@ class ModelsAds{
         $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item AND (oferta = 0 or fin_oferta is null ) ORDER BY $ordenar $modo LIMIT $base, $tope");
 
         $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+        $stmt -> execute();
+
+        return $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt -> close();
+
+        $stmt = null;
+    }
+
+    static public function mdlShowSearchAds($tabla,$valor){
+
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla 
+                                                            WHERE estado = 1 
+                                                            and (titulo LIKE '%$valor%' or descripcion LIKE '%$valor%') ORDER BY id DESC ");
 
         $stmt -> execute();
 

@@ -63,6 +63,14 @@ switch ($method){
 
         break;
 
+    case "allShowSearchAds":
+
+        $respuesta = ControllerAds::ctrShowSearchAds($obj);
+
+        echo $respuesta;
+
+        break;
+
     default:
         echo json_encode(
             array(

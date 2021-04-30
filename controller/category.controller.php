@@ -1,11 +1,11 @@
 <?php
 class ControllerCategory{
 
-    static public function ctrShowCategory(){
+    static public function ctrShowCategory($item, $valor){
 
         $tabla = "categorias";
 
-        $respuesta = ModelsCategory::mdlShowCategory($tabla);
+        $respuesta = ModelsCategory::mdlShowCategory($tabla,$item, $valor);
 
         echo json_encode(array(
             "statusCode" => 200,
