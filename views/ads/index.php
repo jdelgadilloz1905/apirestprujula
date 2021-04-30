@@ -13,7 +13,13 @@ $method = str_replace("-","",$rutas[2]);
 switch ($method){
 
     case  "createad":
-        $respuesta = ControllerAds::ctrCreateAd(($obj));
+        $respuesta = ControllerAds::ctrCreateAd($obj);
+        echo $respuesta;
+
+        break;
+
+    case  "all":
+        $respuesta = ControllerAds::ctrshowAllAds($obj);
         echo $respuesta;
 
         break;
@@ -33,7 +39,7 @@ switch ($method){
 
         break;
 
-    case "deletead": //el anuncio se eliminara si no tiene algun movimiento historico 
+    case "deletead": //el anuncio se eliminara si no tiene algun movimiento historico
 
         $respuesta = "";
 
@@ -41,12 +47,27 @@ switch ($method){
 
         break;
 
+    case "Increasequantity":
+
+        $respuesta = ControllerAds::ctrIncreaseQuantity($obj);
+
+        echo $respuesta;
+
+        break;
+
+    case "allShowFeaturedAds":
+
+        $respuesta = ControllerAds::ctrShowFeaturedAds();
+
+        echo $respuesta;
+
+        break;
 
     default:
         echo json_encode(
             array(
                 "error11" => true,
-                "statusCode"=>"400",
+                "statusCode"=>400,
                 "metodo" =>$method
             ));
 }

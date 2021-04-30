@@ -1,4 +1,5 @@
 <?php
+
 $json = file_get_contents('php://input');
 $obj = json_decode($json,true);
 //busco las consultas segun el metodo de l URL
@@ -37,15 +38,15 @@ switch ($method){
 
         $respuesta = ControllerUsers::ctrVerifyUser($obj);
 
-        echo $respuesta;
-
+       echo $respuesta;
+        
         break;
 
 
     default:
         echo json_encode(
             array(
-                "error11" => true,
+                "error" => true,
                 "statusCode"=>"400",
                 "metodo" =>$method
             ));

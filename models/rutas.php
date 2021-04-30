@@ -8,8 +8,15 @@ class Ruta{
 	static public function ctrRutaEnvioEmail(){
 
 		//return "https://www.prujula.pr/";
-		return "http://estudio57.net/apirestprujula/";
+		return "https://prujula-site.herokuapp.com/register/success/";
 
 	}
+
+    static public function ctrRutaBackend(){
+
+        //return "http://localhost/apirestprujula/";
+        return "https://www.estudio57.net/apirestprujula/";
+
+    }
 
 }
