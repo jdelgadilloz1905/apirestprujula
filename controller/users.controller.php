@@ -163,7 +163,7 @@ class ControllerUsers{
                         CAMBIO DE CONTRASEÑA
                         =============================================*/
 
-                        $url = Ruta::ctrRutaEnvioEmail();
+                        $url = Ruta::ctrRutaFront();
 
                         date_default_timezone_set("America/Bogota");
 
@@ -383,11 +383,7 @@ class ControllerUsers{
 
                         $respuesta = ModelUsers::mdlUserRegister($tabla, $datos);
 
-                        echo json_encode(array(
-                            "statusCode" => 200,
-                            "error" => true,
-                            "mensaje" =>"¡Excelente trabajo " . $data["regName"] . ", ahora podras disfrutar de nuestras promociones!",
-                        ));
+
                         if ($respuesta == "ok") {
 
                             /*=============================================
@@ -396,7 +392,7 @@ class ControllerUsers{
 
                             date_default_timezone_set("America/Bogota");
 
-                            $url = Ruta::ctrRuta();
+                            $url = Ruta::ctrRutaEnvioEmailAuth();
 
                             $mail = new PHPMailer;
 
@@ -412,43 +408,38 @@ class ControllerUsers{
 
                             $mail->addAddress($data["regEmail"]);
 
-                            $mail->msgHTML('<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
+                            $mail->msgHTML('
+                                    <div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
 
-						<center>
-
-							<img style="padding:20px; width:10%" src="">
-
-						</center>
-
-						<div style="position:relative; margin:auto; width:600px; background:white; padding:20px">
-
-							<center>
-
-							<img style="padding:20px; width:15%" src="http://tutorialesatualcance.com/tienda/icon-email.png">
-
-							<h3 style="font-weight:100; color:#999">VERIFIQUE SU DIRECCIÓN DE CORREO ELECTRÓNICO</h3>
-
-							<hr style="border:1px solid #ccc; width:80%">
-
-							<h4 style="font-weight:100; color:#999; padding:0 20px">Para comenzar a usar su cuenta de Prujula, debe confirmar su dirección de correo electrónico</h4>
-
-							<a href="' . $url . 'check/' . $encriptarEmail . '" target="_blank" style="text-decoration:none">
-
-							<div style="line-height:60px; background:#450E10; width:60%; color:white">Verifique su dirección de correo electrónico</div>
-
-							</a>
-
-							<br>
-
-							<hr style="border:1px solid #ccc; width:80%">
-
-							<h5 style="font-weight:100; color:#999">Si no se inscribió en esta cuenta, puede ignorar este correo electrónico y la cuenta se eliminará.</h5>
-
-							</center>
-
-						</div>
-
-					</div>');
+                                        <div style="position:relative; margin:auto; width:600px; background:white; padding:20px">
+                
+                                            <center>
+                
+                                                <img style="padding:20px; width:15%" src="http://tutorialesatualcance.com/tienda/icon-email.png">
+                    
+                                                <h3 style="font-weight:100; color:#999">VERIFIQUE SU DIRECCIÓN DE CORREO ELECTRÓNICO</h3>
+                    
+                                                <hr style="border:1px solid #ccc; width:80%">
+                    
+                                                <h4 style="font-weight:100; color:#999; padding:0 20px">Para comenzar a usar su cuenta de Prujula, debe confirmar su dirección de correo electrónico</h4>
+                    
+                                                <a href="' . $url . 'register-sucess/' . $encriptarEmail . '" target="_blank" style="text-decoration:none">
+                    
+                                                <div style="line-height:60px; background:#450E10; width:60%; color:white">Verifique su dirección de correo electrónico</div>
+                    
+                                                </a>
+                    
+                                                <br>
+                    
+                                                <hr style="border:1px solid #ccc; width:80%">
+                    
+                                                <h5 style="font-weight:100; color:#999">Si no se inscribió en esta cuenta, puede ignorar este correo electrónico y la cuenta se eliminará.</h5>
+                
+                                            </center>
+                
+                                        </div>
+                                    </div>'
+                            );
 
                             $envio = $mail->Send();
 
@@ -568,6 +559,7 @@ class ControllerUsers{
         $item = "email_encriptado";
 
         $valor = $data["conVerifyUser"];
+        //$valor = $data;
 
         $respuesta = self::ctrShowUsers($item, $valor);
 
@@ -597,7 +589,7 @@ class ControllerUsers{
 
         }else{
             echo json_encode(array(
-                "statusCode" => 500,
+                "statusCode" => 400,
                 "error" => true,
                 "mensaje" =>"¡Error verificando el usuario, contacte con el administrador!"
             ));

@@ -3,17 +3,32 @@ require_once "conexion.php";
 
 class ModelsCategory{
 
-    static public function mdlShowCategory($tabla){
+    static public function mdlShowCategory($tabla, $item, $valor){
 
-        $stmt = Conexion::conectar()->query("SELECT  * from $tabla where estado =1 order by id desc  ");
+        if($item != null){
 
-        $stmt -> execute();
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ");
 
-        return $stmt -> fetchAll(PDO::FETCH_ASSOC);
+            $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+            $stmt -> execute();
+
+            return $stmt -> fetch(PDO::FETCH_ASSOC);
+
+        }else{
+
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE estado = 1 ORDER BY id DESC");
+
+            $stmt -> execute();
+
+            return $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+        }
 
         $stmt -> close();
 
         $stmt = null;
+
     }
 
     /*=============================================
