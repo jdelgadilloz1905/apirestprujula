@@ -8,7 +8,7 @@ class Ruta{
 	static public function ctrRutaEnvioEmail(){
 
 		//return "https://www.prujula.pr/";
-		return "https://prujula-site.herokuapp.com/register/success/";
+		return "https://prujula-site.herokuapp.com/register-sucess";
 
 	}
 

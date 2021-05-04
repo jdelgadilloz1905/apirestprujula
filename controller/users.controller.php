@@ -392,7 +392,7 @@ class ControllerUsers{
 
                             date_default_timezone_set("America/Bogota");
 
-                            $url = Ruta::ctrRutaBackend();
+                            $url = Ruta::ctrRutaEnvioEmail();
 
                             $mail = new PHPMailer;
 

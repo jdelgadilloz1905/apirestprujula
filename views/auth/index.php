@@ -34,7 +34,7 @@ switch ($method){
 
         break;
 
-    case "verifyaccount":
+    case "registersucess":
 
         $respuesta = ControllerUsers::ctrVerifyUser($obj);
 
