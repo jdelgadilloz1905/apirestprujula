@@ -7,17 +7,50 @@ class ControllerAds{
             //insertar los registros y posteriormente insertar las imagenes
             $datos = array(
                 "titulo"=>$data["regTitulo"],
-                "descripcion"=>$data["regDescripcion"],
-                "id_categoria"=>$data["regIdCategoria"],
-                "image_portada"=>$data["regImagePortada"],
-                "image_portada_oferta"=>$data["regImagePortadaOferta"],
-                "latitud"=>$data["regLatitud"],
-                "longitud"=>$data["regLongitud"],
-                "habitaciones"=>$data["regHabitaciones"],
                 "precio"=>$data["regPrecio"],
-                "precio_oferta"=>$data["regPrecioOferta"],
-                "descuento"=>$data["regDescuento"],
-                "fechas_desactivada"=>$data["regFechaDesactivada"],
+                "descripcion"=>$data["regDescripcion"],
+                "media"=>$data["regMedia"],
+                "personas"=>$data["regPersonas"],
+                "oferta"=>$data["regOferta"],
+                "monto_descuento"=>$data["regMontoDescuento"],
+                "id_categoria"=>$data["regIdCategoria"],
+                "direccion"=>$data["regAddress"]["completeAddress"],
+                "ciudad"=>$data["regAddress"]["country"],
+                "lat"=>$data["regAddress"]["lat"],
+                "lng"=>$data["regAddress"]["lng"],
+                "direccion_referencia"=>$data["regAddressDescription"],
+                "telefono"=>$data["regPhone"],
+                "imagen_principal"=>json_encode($data["regMainImage"]),
+                "imagen_oferta"=>json_encode($data["regDealImage"]),
+                "imagen_galeria"=>json_encode($data["regImageGallery"]),
+                "camping_mochila"=>$data["camping_mochila"],
+                "camping_baul"=>$data["camping_baul"],
+                "agua"=>$data["agua"],
+                "luz"=>$data["luz"],
+                "tocador"=>$data["tocador"],
+                "cocinas"=>$data["cocinas"],
+                "bbq"=>$data["bbq"],
+                "fogata"=>$data["fogata"],
+                "historico"=>$data["historico"],
+                "ecologia"=>$data["ecologia"],
+                "agricola"=>$data["agricola"],
+                "reactivo_pasivo"=>$data["reactivo_pasivo"],
+                "reactivo_activo"=>$data["reactivo_activo"],
+                "recreacion_piscinas"=>$data["recreacion_piscinas"],
+                "recreacion_acuaticas"=>$data["recreacion_acuaticas"],
+                "recreacion_veredas"=>$data["recreacion_veredas"],
+                "recreacion_espeleologia"=>$data["recreacion_espeleologia"],
+                "recreacion_kayac_paddle_balsas"=>$data["recreacion_kayac_paddle_balsas"],
+                "recreacion_cocina"=>$data["recreacion_cocina"],
+                "recreacion_pajaros"=>$data["recreacion_pajaros"],
+                "recreacion_alpinismo"=>$data["recreacion_alpinismo"],
+                "recreacion_zipline"=>$data["recreacion_zipline"],
+                "paracaidas"=>$data["paracaidas"],
+                "recreacion_areas"=>$data["recreacion_areas"],
+                "recreacion_animales"=>$data["recreacion_animales"],
+                "equipos_mesas"=>$data["equipos_mesas"],
+                "equipos_sillas"=>$data["equipos_sillas"],
+                "equipos_estufas"=>$data["equipos_estufas"]
             );
 
             $resultado = ModelsAds::mdlCreateAd("anuncios",$datos);
@@ -30,7 +63,7 @@ class ControllerAds{
                     "statusCode" => 200,
                     "adsInfo"=>$idInsertado["id"],
                     "error" => false,
-                    "mensaje" =>"Genial orden # ".$idInsertado["id"]." creada con exito",
+                    "mensaje" =>"Genial orden # ".$idInsertado["id"]." creada con exito"
                 ));
             }else{
 
@@ -52,38 +85,81 @@ class ControllerAds{
         }
     }
 
+    static public function ctrShowAdsId($datos){
+
+        $data = ModelsAds::mdlShowAdsId("anuncios","id",$datos["conId"]);
+
+
+        $resultado = array(
+            "titulo"=>$data["titulo"],
+            "precio"=>$data["precio"],
+            "descripcion"=>$data["descripcion"],
+            "media"=>$data["media"],
+            "personas"=>$data["personas"],
+            "oferta"=>$data["oferta"],
+            "monto_descuento"=>$data["monto_descuento"],
+            "id_categoria"=>$data["id_categoria"],
+            "nombre_categoria"=>$data["nombre_categoria"],
+            "direccion"=>$data["direccion"],
+            "ciudad"=>$data["ciudad"],
+            "lat"=>$data["lat"],
+            "lng"=>$data["lng"],
+            "direccion_referencia"=>$data["direccion_referencia"],
+            "telefono"=>$data["telefono"],
+            "imagen_principal"=>json_decode($data["imagen_principal"] , true),
+            "imagen_oferta"=>json_decode($data["imagen_oferta"] , true),
+            "imagen_galeria"=>json_decode($data["imagen_galeria"], true),
+            "camping_mochila"=>$data["camping_mochila"],
+            "camping_baul"=>$data["camping_baul"],
+            "agua"=>$data["agua"],
+            "luz"=>$data["luz"],
+            "tocador"=>$data["tocador"],
+            "cocinas"=>$data["cocinas"],
+            "bbq"=>$data["bbq"],
+            "fogata"=>$data["fogata"],
+            "historico"=>$data["historico"],
+            "ecologia"=>$data["ecologia"],
+            "agricola"=>$data["agricola"],
+            "reactivo_pasivo"=>$data["reactivo_pasivo"],
+            "reactivo_activo"=>$data["reactivo_activo"],
+            "recreacion_piscinas"=>$data["recreacion_piscinas"],
+            "recreacion_acuaticas"=>$data["recreacion_acuaticas"],
+            "recreacion_veredas"=>$data["recreacion_veredas"],
+            "recreacion_espeleologia"=>$data["recreacion_espeleologia"],
+            "recreacion_kayac_paddle_balsas"=>$data["recreacion_kayac_paddle_balsas"],
+            "recreacion_cocina"=>$data["recreacion_cocina"],
+            "recreacion_pajaros"=>$data["recreacion_pajaros"],
+            "recreacion_alpinismo"=>$data["recreacion_alpinismo"],
+            "recreacion_zipline"=>$data["recreacion_zipline"],
+            "paracaidas"=>$data["paracaidas"],
+            "recreacion_areas"=>$data["recreacion_areas"],
+            "recreacion_animales"=>$data["recreacion_animales"],
+            "equipos_mesas"=>$data["equipos_mesas"],
+            "equipos_sillas"=>$data["equipos_sillas"],
+            "equipos_estufas"=>$data["equipos_estufas"],
+            "calificacion"=>$data["calificacion"],
+            "estado"=>$data["estado"],
+            "fecha_creacion"=>$data["fecha_creacion"],
+            "vistas"=>$data["vistas"],
+            "reservaciones"=>$data["reservaciones"],
+            "fin_oferta"=>$data["fin_oferta"]
+        );
+
+        echo json_encode(array(
+            "statusCode" => 200,
+            "adsInfo"=>$resultado,
+            "error" => false,
+            "mensaje" =>"",
+        ));
+
+    }
+
     static public function ctrShowAllAds(){
 
         $respuesta = ModelsAds::mdlShowAllAds("anuncios");
 
 
-        foreach ($respuesta as $key => $value){
-
-            $resultado[$key] = array(
-                "id"=> $value["id"],
-                "titulo" => $value["titulo"],
-                "descripcion" => $value["descripcion"],
-                "id_categoria" => $value["id_categoria"],
-                "image_url" =>json_decode($value["image_url"], true),
-                "image_url_oferta" =>json_decode($value["image_url_oferta"], true),
-                "calificacion" => $value["calificacion"],
-                "latitud" => $value["latitud"],
-                "longitud" => $value["longitud"],
-                "habitaciones" => $value["habitaciones"],
-                "precio" => $value["precio"],
-                "oferta" => $value["oferta"],
-                "descuento" => $value["descuento"],
-                "estado" => $value["estado"],
-                "fecha_creacion" => $value["fecha_creacion"],
-                "vistas" => $value["vistas"],
-                "reservaciones" => $value["reservaciones"],
-                "image_portada" => $value["image_portada"],
-                "image_portada_oferta" => $value["image_portada_oferta"],
-                "fin_oferta" => $value["fin_oferta"],
-                "fechas_desactivada" => $value["fechas_desactivada"]
-
-            );
-        }
+        $resultado = self::ctrPrepararMatrizJson($respuesta);
 
 
         echo json_encode(array(
@@ -146,32 +222,61 @@ class ControllerAds{
 
     static public function ctrPrepararMatrizJson($valores){
 
-        foreach ($valores as $key => $value){
+        foreach ($valores as $key => $data){
 
             $resultado[$key] = array(
-                "id"=> $value["id"],
-                "titulo" => $value["titulo"],
-                "descripcion" => $value["descripcion"],
-                "id_categoria" => $value["id_categoria"],
-                "image_url" =>json_decode($value["image_url"], true),
-                "image_url_oferta" =>json_decode($value["image_url_oferta"], true),
-                "calificacion" => $value["calificacion"],
-                "latitud" => $value["latitud"],
-                "longitud" => $value["longitud"],
-                "habitaciones" => $value["habitaciones"],
-                "precio" => $value["precio"],
-                "precio_oferta" => $value["precio_oferta"],
-                "descuento" => $value["descuento"],
-                "estado" => $value["estado"],
-                "fecha_creacion" => $value["fecha_creacion"],
-                "vistas" => $value["vistas"],
-                "reservaciones" => $value["reservaciones"],
-                "image_portada" => $value["image_portada"],
-                "image_portada_oferta" => $value["image_portada_oferta"],
-                "fin_oferta" => $value["fin_oferta"],
-                "oferta" => $value["oferta"],
-                "fechas_desactivada" => $value["fechas_desactivada"],
-                "categoria"=>ControllerCategory::ctrShowCategory("id",$value["id_categoria"])
+                "titulo"=>$data["titulo"],
+                "precio"=>$data["precio"],
+                "descripcion"=>$data["descripcion"],
+                "media"=>$data["media"],
+                "personas"=>$data["personas"],
+                "oferta"=>$data["oferta"],
+                "monto_descuento"=>$data["monto_descuento"],
+                "id_categoria"=>$data["id_categoria"],
+                "nombre_categoria"=>$data["nombre_categoria"],
+                "direccion"=>$data["direccion"],
+                "ciudad"=>$data["ciudad"],
+                "lat"=>$data["lat"],
+                "lng"=>$data["lng"],
+                "direccion_referencia"=>$data["direccion_referencia"],
+                "telefono"=>$data["telefono"],
+                "imagen_principal"=>json_decode($data["imagen_principal"] , true),
+                "imagen_oferta"=>json_decode($data["imagen_oferta"] , true),
+                "imagen_galeria"=>json_decode($data["imagen_galeria"], true),
+                "camping_mochila"=>$data["camping_mochila"],
+                "camping_baul"=>$data["camping_baul"],
+                "agua"=>$data["agua"],
+                "luz"=>$data["luz"],
+                "tocador"=>$data["tocador"],
+                "cocinas"=>$data["cocinas"],
+                "bbq"=>$data["bbq"],
+                "fogata"=>$data["fogata"],
+                "historico"=>$data["historico"],
+                "ecologia"=>$data["ecologia"],
+                "agricola"=>$data["agricola"],
+                "reactivo_pasivo"=>$data["reactivo_pasivo"],
+                "reactivo_activo"=>$data["reactivo_activo"],
+                "recreacion_piscinas"=>$data["recreacion_piscinas"],
+                "recreacion_acuaticas"=>$data["recreacion_acuaticas"],
+                "recreacion_veredas"=>$data["recreacion_veredas"],
+                "recreacion_espeleologia"=>$data["recreacion_espeleologia"],
+                "recreacion_kayac_paddle_balsas"=>$data["recreacion_kayac_paddle_balsas"],
+                "recreacion_cocina"=>$data["recreacion_cocina"],
+                "recreacion_pajaros"=>$data["recreacion_pajaros"],
+                "recreacion_alpinismo"=>$data["recreacion_alpinismo"],
+                "recreacion_zipline"=>$data["recreacion_zipline"],
+                "paracaidas"=>$data["paracaidas"],
+                "recreacion_areas"=>$data["recreacion_areas"],
+                "recreacion_animales"=>$data["recreacion_animales"],
+                "equipos_mesas"=>$data["equipos_mesas"],
+                "equipos_sillas"=>$data["equipos_sillas"],
+                "equipos_estufas"=>$data["equipos_estufas"],
+                "calificacion"=>$data["calificacion"],
+                "estado"=>$data["estado"],
+                "fecha_creacion"=>$data["fecha_creacion"],
+                "vistas"=>$data["vistas"],
+                "reservaciones"=>$data["reservaciones"],
+                "fin_oferta"=>$data["fin_oferta"]
             );
         }
 

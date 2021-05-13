@@ -11,9 +11,4 @@ class ModelsConfig{
 
         return $stmt -> fetch();
     }
-
-    static public function mdlUploadImage(){
-
-
-    }
 }

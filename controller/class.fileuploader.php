@@ -16,71 +16,71 @@ class FileUploader {
     private $default_options = array(
         'limit' => null,
         'maxSize' => null,
-		'fileMaxSize' => null,
+        'fileMaxSize' => null,
         'extensions' => null,
         'required' => false,
         'uploadDir' => 'views/img/',
         'title' => array('auto', 20),
-		'replace' => false,
-		'editor' => null,
+        'replace' => false,
+        'editor' => null,
         'listInput' => true,
-		'files' => array(),
-		'move_uploaded_file' => null,
-		'validate_file' => null
+        'files' => array(),
+        'move_uploaded_file' => null,
+        'validate_file' => null
     );
-	private $field = null;
-	protected $options = null;
-    
+    private $field = null;
+    protected $options = null;
+
     public static $S3;
-    
-	/**
+
+    /**
      * __construct method
      *
-	 * @public
+     * @public
      * @param $name {$_FILES key}
      * @param $options {null, Array}
      */
-	public function __construct($name, $options = null) {
-		$this->default_options['move_uploaded_file'] = function($tmp, $dest) {
-			return move_uploaded_file($tmp, $dest);
-		};
-		$this->default_options['validate_file'] = function($file, $options) {
-			return true;
-		};
+    public function __construct($name, $options = null) {
+        $this->default_options['move_uploaded_file'] = function($tmp, $dest) {
+            return move_uploaded_file($tmp, $dest);
+        };
+        $this->default_options['validate_file'] = function($file, $options) {
+            return true;
+        };
         return $this->initialize($name, $options);
     }
-    
-	/**
+
+    /**
      * initialize method
      * initialize the plugin
      *
-	 * @private
+     * @private
      * @param $name {String} Input name
      * @param $options {null, Array}
      */
     private function initialize($name, $options) {
-		// merge options
-		$this->options = $this->default_options;
-		if ($options)
-			$this->options = array_merge($this->options, $options);
-		if (!is_array($this->options['files']))
-			$this->options['files'] = array();
-		
+        // merge options
+        $this->options = $this->default_options;
+        if ($options)
+            $this->options = array_merge($this->options, $options);
+        if (!is_array($this->options['files']))
+            $this->options['files'] = array();
+
         // create field array
         $this->field = array(
             'name' => $name,
             'input' => null,
-			'listInput' => $this->getListInputFiles($name)
+            'listInput' => $this->getListInputFiles($name)
         );
-        
+
         if (isset($_FILES[$name])) {
             // set field input
-			$this->field['input'] = $_FILES[$name];
-            
+            $this->field['input'] = $_FILES[$name];
+
             // tranform an no-multiple input to multiple
             // made only to simplify the next uploading steps
             if (!is_array($this->field['input']['name'])) {
-           	    $this->field['input'] = array_merge($this->field['input'], array(
+                $this->field['input'] = array_merge($this->field['input'], array(
                     "name" => array($this->field['input']['name']),
                     "tmp_name" => array($this->field['input']['tmp_name']),
                     "type" => array($this->field['input']['type']),
@@ -88,248 +88,248 @@ class FileUploader {
                     "size" => array($this->field['input']['size'])
                 ));
             }
-            
+
             // remove empty filenames
             // only for addMore option
             foreach($this->field['input']['name'] as $key=>$value){ if (empty($value)) { unset($this->field['input']['name'][$key]); unset($this->field['input']['type'][$key]); unset($this->field['input']['tmp_name'][$key]); unset($this->field['input']['error'][$key]); unset($this->field['input']['size'][$key]); } }
-            
+
             // set field length (files count)
             $this->field['count'] = count($this->field['input']['name']);
-			return true;
+            return true;
         } else {
-			return false;
-		}
+            return false;
+        }
     }
-    
+
     /**
      * getOptions method
      * Returns the options object
      *
-	 * @public
-	 * @return {Array}
+     * @public
+     * @return {Array}
      */
     public function getOptions() {
         return array_filter($this->options, function($var) {
             return gettype($var) != "object";
         });
     }
-	
-	/**
+
+    /**
      * upload method
      * Call the uploadFiles method
      *
-	 * @public
-	 * @return {Array}
+     * @public
+     * @return {Array}
      */
     public function upload() {
 
-    	return $this->uploadFiles();
+        return $this->uploadFiles();
     }
-	
-	/**
+
+    /**
      * getFileList method
      * Get the list of the preloaded and uploaded files
      *
-	 * @public
-	 * @param @customKey {null, String} File attrbite that should be in the list
-	 * @return {null, Array}
+     * @public
+     * @param @customKey {null, String} File attrbite that should be in the list
+     * @return {null, Array}
      */
-	public function getFileList($customKey = null) {
-		$result = array();
-		
-		if ($customKey != null) {
-			$result = array();
-			foreach($this->options['files'] as $key=>$value) {
-				$attribute = $this->getFileAttribute($value, $customKey);
-				$result[] = $attribute ? $attribute : $value['file'];
-			}
-		} else {
-			$result = $this->options['files'];
-		}
-		
-		return $result;
-	}
-    
+    public function getFileList($customKey = null) {
+        $result = array();
+
+        if ($customKey != null) {
+            $result = array();
+            foreach($this->options['files'] as $key=>$value) {
+                $attribute = $this->getFileAttribute($value, $customKey);
+                $result[] = $attribute ? $attribute : $value['file'];
+            }
+        } else {
+            $result = $this->options['files'];
+        }
+
+        return $result;
+    }
+
     /**
      * getUploadedFiles method
      * Get a list with all uploaded files
      *
-	 * @public
-	 * @return {Array}
+     * @public
+     * @return {Array}
      */
     public function getUploadedFiles() {
         $result = array();
-        
+
         foreach($this->getFileList() as $key=>$item) {
             if (isset($item['uploaded']))
                 $result[] = $item;
         }
-        
+
         return $result;
     }
-    
+
     /**
      * getPreloadedFiles method
      * Get a list with all preloaded files
      *
-	 * @public
-	 * @return {Array}
+     * @public
+     * @return {Array}
      */
     public function getPreloadedFiles() {
         $result = array();
-        
+
         foreach($this->getFileList() as $key=>$item) {
             if (!isset($item['uploaded']))
                 $result[] = $item;
         }
-        
+
         return $result;
     }
-	
-	/**
+
+    /**
      * getRemovedFiles method
      * Get removed files as array
      *
-	 * @public
-	 * @param $customKey {String} The file attribute which is also defined in list Input element
-	 * @return {Array}
+     * @public
+     * @param $customKey {String} The file attribute which is also defined in list Input element
+     * @return {Array}
      */
-	public function getRemovedFiles($customKey = 'file') {
-		$removedFiles = array();
-		
-		if (is_array($this->field['listInput']['list']) && is_array($this->options['files'])) {
-			foreach($this->options['files'] as $key=>$value) {
-				if (!in_array($this->getFileAttribute($value, $customKey), $this->field['listInput']['list']) && (!isset($value['uploaded']) || !$value['uploaded'])) {
-					$removedFiles[] = $value;
-					unset($this->options['files'][$key]);
-				}
-			}
-		}
-		
-		if (is_array($this->options['files']))
-			$this->options['files'] = array_values($this->options['files']);
-			
-		return $removedFiles;
-	}
-	
-	/**
+    public function getRemovedFiles($customKey = 'file') {
+        $removedFiles = array();
+
+        if (is_array($this->field['listInput']['list']) && is_array($this->options['files'])) {
+            foreach($this->options['files'] as $key=>$value) {
+                if (!in_array($this->getFileAttribute($value, $customKey), $this->field['listInput']['list']) && (!isset($value['uploaded']) || !$value['uploaded'])) {
+                    $removedFiles[] = $value;
+                    unset($this->options['files'][$key]);
+                }
+            }
+        }
+
+        if (is_array($this->options['files']))
+            $this->options['files'] = array_values($this->options['files']);
+
+        return $removedFiles;
+    }
+
+    /**
      * getListInput method
      * Get the listInput value as null or array
      *
-	 * @public
-	 * @return {null, Array}
+     * @public
+     * @return {null, Array}
      */
-	public function getListInput() {
-		return $this->field['listInput'];
-	}
-	
-	/**
+    public function getListInput() {
+        return $this->field['listInput'];
+    }
+
+    /**
      * generateInput method
      * Generate a string with HTML input
      *
-	 * @public
-	 * @return {String}
+     * @public
+     * @return {String}
      */
-	public function generateInput() {
-		$attributes = array();
-		
-		// process options
-		foreach(array_merge(array('name'=>$this->field['name']), $this->options) as $key=>$value) {
-			if ($value) {
-				switch($key) {
-					case 'limit':
-					case 'maxSize':
-					case 'fileMaxSize':
-						$attributes['data-fileuploader-' . $key] = $value;
-						break;
-					case 'listInput':
-						$attributes['data-fileuploader-' . $key] = is_bool($value) ? var_export($value, true) : $value;
-						break;
-					case 'extensions':
-						$attributes['data-fileuploader-' . $key] = implode(',', $value);
-						break;
-					case 'name':
-						$attributes[$key] = $value;
-						break;
-					case 'required':
-						$attributes[$key] = '';
-						break;
-					case 'files':
-						$value = array_values($value);
-						$attributes['data-fileuploader-' . $key] = json_encode($value);
-						break;
-				}
-			}
-		}
-		
-		// generate input attributes
-		$dataAttributes = array_map(function($value, $key) {
-			return $key . "='" . (str_replace("'", '"', $value)) . "'";
-		}, array_values($attributes), array_keys($attributes));
-		
-		return '<input type="file"' . implode(' ', $dataAttributes) . '>';
-	}
-	
-	/**
+    public function generateInput() {
+        $attributes = array();
+
+        // process options
+        foreach(array_merge(array('name'=>$this->field['name']), $this->options) as $key=>$value) {
+            if ($value) {
+                switch($key) {
+                    case 'limit':
+                    case 'maxSize':
+                    case 'fileMaxSize':
+                        $attributes['data-fileuploader-' . $key] = $value;
+                        break;
+                    case 'listInput':
+                        $attributes['data-fileuploader-' . $key] = is_bool($value) ? var_export($value, true) : $value;
+                        break;
+                    case 'extensions':
+                        $attributes['data-fileuploader-' . $key] = implode(',', $value);
+                        break;
+                    case 'name':
+                        $attributes[$key] = $value;
+                        break;
+                    case 'required':
+                        $attributes[$key] = '';
+                        break;
+                    case 'files':
+                        $value = array_values($value);
+                        $attributes['data-fileuploader-' . $key] = json_encode($value);
+                        break;
+                }
+            }
+        }
+
+        // generate input attributes
+        $dataAttributes = array_map(function($value, $key) {
+            return $key . "='" . (str_replace("'", '"', $value)) . "'";
+        }, array_values($attributes), array_keys($attributes));
+
+        return '<input type="file"' . implode(' ', $dataAttributes) . '>';
+    }
+
+    /**
      * resize method
      * Resize, crop and rotate images
      *
-	 * @public
-	 * @static
-	 * @param $filename {String} file source
-	 * @param $width {Number} new width
-	 * @param $height {Number} new height
-	 * @param $destination {String} file destination
-	 * @param $crop {boolean, Array} crop property
-	 * @param $quality {Number} quality of destination
-	 * @param $rotation {Number} rotation degrees
+     * @public
+     * @static
+     * @param $filename {String} file source
+     * @param $width {Number} new width
+     * @param $height {Number} new height
+     * @param $destination {String} file destination
+     * @param $crop {boolean, Array} crop property
+     * @param $quality {Number} quality of destination
+     * @param $rotation {Number} rotation degrees
      * @return {boolean} resizing was successful
      */
-	public static function resize($filename, $width = null, $height = null, $destination = null, $crop = false, $quality = 90, $rotation = 0) {
-		if (!is_file($filename) || !is_readable($filename))
-			return false;
-		
-		$source = null;
-		$destination = !$destination ? $filename : $destination;
-		if (file_exists($destination) && !is_writable($destination))
-			return false;
-		$imageInfo = getimagesize($filename);
-		if (!$imageInfo)
-			return false;
+    public static function resize($filename, $width = null, $height = null, $destination = null, $crop = false, $quality = 90, $rotation = 0) {
+        if (!is_file($filename) || !is_readable($filename))
+            return false;
+
+        $source = null;
+        $destination = !$destination ? $filename : $destination;
+        if (file_exists($destination) && !is_writable($destination))
+            return false;
+        $imageInfo = getimagesize($filename);
+        if (!$imageInfo)
+            return false;
         $exif = function_exists('exif_read_data') ? @exif_read_data($filename) : array();
-		
-		// detect actions
-		$hasRotation = $rotation || isset($exif['Orientation']);
-		$hasCrop = is_array($crop) || $crop == true;
-		$hasResizing = $width || $height;
-		
-		if (!$hasRotation && !$hasCrop && !$hasResizing)
-			return;
-		
-		// store image information
-		list ($imageWidth, $imageHeight, $imageType) = $imageInfo;
-		$imageRatio = $imageWidth / $imageHeight;
-		
-		// create GD image
-		switch($imageType) {
-			case IMAGETYPE_GIF:
-				$source = imagecreatefromgif($filename);
-				break;
-			case IMAGETYPE_JPEG:
-				$source = imagecreatefromjpeg($filename);
-				break;
-			case IMAGETYPE_PNG:
-				$source = imagecreatefrompng($filename);
-				break;
-			default:
-				return false;
-		}
-        
-		// rotation
-		if ($hasRotation) {
+
+        // detect actions
+        $hasRotation = $rotation || isset($exif['Orientation']);
+        $hasCrop = is_array($crop) || $crop == true;
+        $hasResizing = $width || $height;
+
+        if (!$hasRotation && !$hasCrop && !$hasResizing)
+            return;
+
+        // store image information
+        list ($imageWidth, $imageHeight, $imageType) = $imageInfo;
+        $imageRatio = $imageWidth / $imageHeight;
+
+        // create GD image
+        switch($imageType) {
+            case IMAGETYPE_GIF:
+                $source = imagecreatefromgif($filename);
+                break;
+            case IMAGETYPE_JPEG:
+                $source = imagecreatefromjpeg($filename);
+                break;
+            case IMAGETYPE_PNG:
+                $source = imagecreatefrompng($filename);
+                break;
+            default:
+                return false;
+        }
+
+        // rotation
+        if ($hasRotation) {
             $cacheWidth = $imageWidth;
             $cacheHeight = $imageHeight;
-            
+
             // exif rotation
             if (!empty($exif['Orientation'])) {
                 switch ($exif['Orientation']) {
@@ -349,42 +349,42 @@ class FileUploader {
                         $source = imagerotate($source, 90, 0);
                         break;
                 }
-                
+
                 $cacheWidth = $imageWidth;
                 $cacheHeight = $imageHeight;
             }
-            
+
             // param rotation
-			if ($rotation == 90 || $rotation == 270) {
-				$imageWidth = $cacheHeight;
-				$imageHeight = $cacheWidth;
-			}
-			$rotation = $rotation * -1;
-			$source = imagerotate($source, $rotation, 0);
-		}
-		
-		// crop
-		$crop = array_merge(array(
-			'left' => 0,
-			'top' => 0,
-			'width' => $imageWidth,
-			'height' => $imageHeight,
-			'_paramCrop' => $crop
-		), is_array($crop) ? $crop : array());
-		if (is_array($crop['_paramCrop'])) {
-			$crop['left'] = $crop['_paramCrop']['left'];
-			$crop['top'] = $crop['_paramCrop']['top'];
-			$crop['width'] = $crop['_paramCrop']['width'];
-			$crop['height'] = $crop['_paramCrop']['height'];
-		}
-		
-		// set default $width and $height
-		$width = !$width ? $crop['width'] : $width;
-		$height = !$height ? $crop['height'] : $height;
+            if ($rotation == 90 || $rotation == 270) {
+                $imageWidth = $cacheHeight;
+                $imageHeight = $cacheWidth;
+            }
+            $rotation = $rotation * -1;
+            $source = imagerotate($source, $rotation, 0);
+        }
+
+        // crop
+        $crop = array_merge(array(
+            'left' => 0,
+            'top' => 0,
+            'width' => $imageWidth,
+            'height' => $imageHeight,
+            '_paramCrop' => $crop
+        ), is_array($crop) ? $crop : array());
+        if (is_array($crop['_paramCrop'])) {
+            $crop['left'] = $crop['_paramCrop']['left'];
+            $crop['top'] = $crop['_paramCrop']['top'];
+            $crop['width'] = $crop['_paramCrop']['width'];
+            $crop['height'] = $crop['_paramCrop']['height'];
+        }
+
+        // set default $width and $height
+        $width = !$width ? $crop['width'] : $width;
+        $height = !$height ? $crop['height'] : $height;
         $ratio = $width/$height;
-		
-		// resize
-		if ($crop['_paramCrop'] === true) {
+
+        // resize
+        if ($crop['_paramCrop'] === true) {
             if ($imageRatio >= $ratio) {
                 $crop['newWidth'] = $crop['width'] / ($crop['height'] / $height);
                 $crop['newHeight'] = $height;
@@ -392,10 +392,10 @@ class FileUploader {
                 $crop['newHeight'] = $crop['height'] / ($crop['width'] / $width);
                 $crop['newWidth'] = $width;
             }
-            
+
             $crop['left'] = 0 - ($crop['newWidth'] - $width) / 2;
             $crop['top'] = 0 - ($crop['newHeight'] - $height) / 2;
-            
+
             if ($crop['width'] < $width || $crop['height'] < $height) {
                 $crop['left'] = $crop['width'] < $width ? $width/2 - $crop['width']/2 : 0;
                 $crop['top'] = $crop['height'] < $height ? $height/2 - $crop['height']/2 : 0;
@@ -414,55 +414,55 @@ class FileUploader {
                 $height = $width / $newRatio;
             }
         }
-		
-		// save
-		$dest = null;
-		$destExt = strtolower(substr($destination, strrpos($destination, '.') + 1));
-		if (pathinfo($destination, PATHINFO_EXTENSION)) {
-			if (in_array($destExt, array('gif', 'jpg', 'jpeg', 'png'))) {
-				if ($destExt == 'gif')
-					$imageType = IMAGETYPE_GIF;
-				if ($destExt == 'jpg' || $destExt == 'jpeg')
-					$imageType = IMAGETYPE_JPEG;
-				if ($destExt == 'png')
-					$imageType = IMAGETYPE_PNG;
-			}
-		} else {
-			$imageType = IMAGETYPE_JPEG;
-			$destination .= '.jpg';
-		}
-		switch($imageType) {
-			case IMAGETYPE_GIF:
-				$dest = imagecreatetruecolor($width, $height);
-				$background = imagecolorallocatealpha($dest, 255, 255, 255, 1);
+
+        // save
+        $dest = null;
+        $destExt = strtolower(substr($destination, strrpos($destination, '.') + 1));
+        if (pathinfo($destination, PATHINFO_EXTENSION)) {
+            if (in_array($destExt, array('gif', 'jpg', 'jpeg', 'png'))) {
+                if ($destExt == 'gif')
+                    $imageType = IMAGETYPE_GIF;
+                if ($destExt == 'jpg' || $destExt == 'jpeg')
+                    $imageType = IMAGETYPE_JPEG;
+                if ($destExt == 'png')
+                    $imageType = IMAGETYPE_PNG;
+            }
+        } else {
+            $imageType = IMAGETYPE_JPEG;
+            $destination .= '.jpg';
+        }
+        switch($imageType) {
+            case IMAGETYPE_GIF:
+                $dest = imagecreatetruecolor($width, $height);
+                $background = imagecolorallocatealpha($dest, 255, 255, 255, 1);
                 imagecolortransparent($dest, $background);
                 imagefill($dest, 0, 0 , $background);
                 imagesavealpha($dest, true);
-				break;
-			case IMAGETYPE_JPEG:
-				$dest = imagecreatetruecolor($width, $height);
+                break;
+            case IMAGETYPE_JPEG:
+                $dest = imagecreatetruecolor($width, $height);
                 $background = imagecolorallocate($dest, 255, 255, 255);
                 imagefilledrectangle($dest, 0, 0, $width, $height, $background);
-				break;
-			case IMAGETYPE_PNG:
-				if (!imageistruecolor($source)) {
-					$dest = imagecreate($width, $height);
+                break;
+            case IMAGETYPE_PNG:
+                if (!imageistruecolor($source)) {
+                    $dest = imagecreate($width, $height);
                     $background = imagecolorallocatealpha($dest, 255, 255, 255, 1);
                     imagecolortransparent($dest, $background);
-                    imagefill($dest, 0, 0 , $background);	
-				} else {
-					$dest = imagecreatetruecolor($width, $height);
-				}
-				imagealphablending($dest, false);
+                    imagefill($dest, 0, 0 , $background);
+                } else {
+                    $dest = imagecreatetruecolor($width, $height);
+                }
+                imagealphablending($dest, false);
                 imagesavealpha($dest, true);
-				break;
-			default:
-				return false;
-		}
-		
-		imageinterlace($dest, true);
-		
-		imagecopyresampled(
+                break;
+            default:
+                return false;
+        }
+
+        imageinterlace($dest, true);
+
+        imagecopyresampled(
             $dest,
             $source,
             isset($crop['newWidth']) ? $crop['left'] : 0,
@@ -474,8 +474,8 @@ class FileUploader {
             $crop['width'],
             $crop['height']
         );
-		
-		switch ($imageType) {
+
+        switch ($imageType) {
             case IMAGETYPE_GIF:
                 imagegif($dest, $destination);
                 break;
@@ -486,142 +486,142 @@ class FileUploader {
                 imagepng($dest, $destination, 10-$quality/10);
                 break;
         }
-		
-		imagedestroy($source);
-		imagedestroy($dest);
-		
-		return true;
-	}
-	
-	/**
+
+        imagedestroy($source);
+        imagedestroy($dest);
+
+        return true;
+    }
+
+    /**
      * uploadFiles method
      * Process and upload the files
      *
-	 * @private
+     * @private
      * @return {null, Array}
      */
-	private function uploadFiles() {
+    private function uploadFiles() {
 
-		$data = array(
-			"hasWarnings" => false,
-			"isSuccess" => false,
-			"warnings" => array(),
-			"files" => array()
-		);
+        $data = array(
+            "hasWarnings" => false,
+            "isSuccess" => false,
+            "warnings" => array(),
+            "files" => array()
+        );
         $listInput = $this->field['listInput'];
-		$uploadDir = str_replace(getcwd() . '/', '', $this->options['uploadDir']);
+        $uploadDir = str_replace(getcwd() . '/', '', $this->options['uploadDir']);
 
-		$chunk = isset($_POST['_chunkedd']) && count($this->field['input']['name']) == 1 ? json_decode($_POST['_chunkedd'], true) : false;
-		
-		if ($this->field['input']) {
-			// validate ini settings and some generally options
-			$validate = $this->validate();
-			$data['isSuccess'] = true;
+        $chunk = isset($_POST['_chunkedd']) && count($this->field['input']['name']) == 1 ? json_decode($_POST['_chunkedd'], true) : false;
 
-			if ($validate === true) {
+        if ($this->field['input']) {
+            // validate ini settings and some generally options
+            $validate = $this->validate();
+            $data['isSuccess'] = true;
+
+            if ($validate === true) {
                 // process the files
-				for($i = 0; $i < count($this->field['input']['name']); $i++) {
-					$file = array(
-						'name' => $this->field['input']['name'][$i],
-						'tmp_name' => $this->field['input']['tmp_name'][$i],
-						'type' => $this->field['input']['type'][$i],
-						'error' => $this->field['input']['error'][$i],
-						'size' => $this->field['input']['size'][$i]
-					);
-					
-					// chunk
-					if ($chunk) {
-						if (isset($chunk['isFirst']))
-							$chunk['temp_name'] = $this->random_string(6) . time();
-						
-						$tmp_name = $uploadDir . '.unconfirmed_' . $this->filterFilename($chunk['temp_name']);
-						if (!isset($chunk['isFirst']) && !file_exists($tmp_name))
-							continue;
-						$sp = fopen($file['tmp_name'], 'r');
-						$op = fopen($tmp_name, isset($chunk['isFirst']) ? 'w' : 'a');
-						while (!feof($sp)) {
-						   $buffer = fread($sp, 512);
-						   fwrite($op, $buffer);
-						}
+                for($i = 0; $i < count($this->field['input']['name']); $i++) {
+                    $file = array(
+                        'name' => $this->field['input']['name'][$i],
+                        'tmp_name' => $this->field['input']['tmp_name'][$i],
+                        'type' => $this->field['input']['type'][$i],
+                        'error' => $this->field['input']['error'][$i],
+                        'size' => $this->field['input']['size'][$i]
+                    );
 
-						// close handles
-						fclose($op);
-						fclose($sp);
-                        
-						if (isset($chunk['isLast'])) {
-							$file['tmp_name'] = $tmp_name;
-							$file['name'] = $chunk['name'];
-							$file['type'] = $chunk['type'];
-							$file['size'] = $chunk['size'];
-						} else {
-							echo json_encode(array(
-								'fileuploader' => array(
-									'temp_name' => $chunk['temp_name']
-								)
-							));
-							exit;
-						}
-					}
-                    
-					$metas = array();
+                    // chunk
+                    if ($chunk) {
+                        if (isset($chunk['isFirst']))
+                            $chunk['temp_name'] = $this->random_string(6) . time();
+
+                        $tmp_name = $uploadDir . '.unconfirmed_' . $this->filterFilename($chunk['temp_name']);
+                        if (!isset($chunk['isFirst']) && !file_exists($tmp_name))
+                            continue;
+                        $sp = fopen($file['tmp_name'], 'r');
+                        $op = fopen($tmp_name, isset($chunk['isFirst']) ? 'w' : 'a');
+                        while (!feof($sp)) {
+                            $buffer = fread($sp, 512);
+                            fwrite($op, $buffer);
+                        }
+
+                        // close handles
+                        fclose($op);
+                        fclose($sp);
+
+                        if (isset($chunk['isLast'])) {
+                            $file['tmp_name'] = $tmp_name;
+                            $file['name'] = $chunk['name'];
+                            $file['type'] = $chunk['type'];
+                            $file['size'] = $chunk['size'];
+                        } else {
+                            echo json_encode(array(
+                                'fileuploader' => array(
+                                    'temp_name' => $chunk['temp_name']
+                                )
+                            ));
+                            exit;
+                        }
+                    }
+
+                    $metas = array();
                     $metas['tmp_name'] = $file['tmp_name'];
-					$metas['extension'] = strtolower(substr(strrchr($file['name'], "."), 1));
-					$metas['type'] = $file['type'];
-					$metas['old_name'] = $file['name'];
-					$metas['old_title'] = substr($metas['old_name'], 0, (strlen($metas['extension']) > 0 ? -(strlen($metas['extension'])+1) : strlen($metas['old_name'])));
-					$metas['size'] = $file['size'];
-					$metas['size2'] = $this->formatSize($file['size']);
-					//generar numero aleatorio
+                    $metas['extension'] = strtolower(substr(strrchr($file['name'], "."), 1));
+                    $metas['type'] = $file['type'];
+                    $metas['old_name'] = $file['name'];
+                    $metas['old_title'] = substr($metas['old_name'], 0, (strlen($metas['extension']) > 0 ? -(strlen($metas['extension'])+1) : strlen($metas['old_name'])));
+                    $metas['size'] = $file['size'];
+                    $metas['size2'] = $this->formatSize($file['size']);
+                    //generar numero aleatorio
                     $descripcion = $this->generarPassword(20);
-					$metas['name'] = $this->generateFileName($this->options['title'], array(
-						'title' => $metas['old_title'],
-						'size' => $metas['size'],
-						'extension' => $metas['extension']
-					));
-					$metas['title'] = substr($metas['name'], 0, (strlen($metas['extension']) > 0 ? -(strlen($metas['extension'])+1) : strlen($metas['name'])));
-					$metas['file'] = $uploadDir . $metas['name'];
-					$metas['replaced'] = file_exists($metas['file']);
-					$metas['date'] = date('r');
-					$metas['error'] = $file['error'];
-					$metas['chunked'] = $chunk;
-					ksort($metas);
+                    $metas['name'] = $this->generateFileName($this->options['title'], array(
+                        'title' => $metas['old_title'],
+                        'size' => $metas['size'],
+                        'extension' => $metas['extension']
+                    ));
+                    $metas['title'] = substr($metas['name'], 0, (strlen($metas['extension']) > 0 ? -(strlen($metas['extension'])+1) : strlen($metas['name'])));
+                    $metas['file'] = $uploadDir . $metas['name'];
+                    $metas['replaced'] = file_exists($metas['file']);
+                    $metas['date'] = date('r');
+                    $metas['error'] = $file['error'];
+                    $metas['chunked'] = $chunk;
+                    ksort($metas);
 
-					// validate file
-					$validateFile = $this->validate(array_merge($metas, array('index' => $i, 'tmp' => $file['tmp_name'])));
+                    // validate file
+                    $validateFile = $this->validate(array_merge($metas, array('index' => $i, 'tmp' => $file['tmp_name'])));
 
-					// check if file is in listInput
+                    // check if file is in listInput
                     $listInputName = '0:/' . $metas['old_name'];
-					$fileInList = $listInput === null || in_array($listInputName, $listInput['list']);
+                    $fileInList = $listInput === null || in_array($listInputName, $listInput['list']);
 
-					// add file to memory
-					if ($validateFile === true) {
-						if ($fileInList) {
+                    // add file to memory
+                    if ($validateFile === true) {
+                        if ($fileInList) {
                             $fileListIndex = 0;
-							
-							if ($listInput) {
+
+                            if ($listInput) {
                                 $fileListIndex = array_search($listInputName, $listInput['list']);
                                 $metas['listProps'] = $listInput['values'][$fileListIndex];
                                 unset($listInput['list'][$fileListIndex]);
                                 unset($listInput['values'][$fileListIndex]);
                             }
-							
-							$data['files'][] = $metas;
-						}
-					} else {
-						if ($metas['chunked'] && file_exists($metas['tmp_name']))
-							unlink($metas['tmp_name']);
-						if (!$fileInList)
-							continue;
-						
-						$data['isSuccess'] = false;
-						$data['hasWarnings'] = true;
-						$data['warnings'][] = $validateFile;
-						$data['files'] = array();
-						
-						break;
-					}
-				}
-                
+
+                            $data['files'][] = $metas;
+                        }
+                    } else {
+                        if ($metas['chunked'] && file_exists($metas['tmp_name']))
+                            unlink($metas['tmp_name']);
+                        if (!$fileInList)
+                            continue;
+
+                        $data['isSuccess'] = false;
+                        $data['hasWarnings'] = true;
+                        $data['warnings'][] = $validateFile;
+                        $data['files'] = array();
+
+                        break;
+                    }
+                }
+
                 // upload the files
                 if (!$data['hasWarnings']) {
                     foreach($data['files'] as $key => $file) {
@@ -629,73 +629,73 @@ class FileUploader {
                             unset($data['files'][$key]['chunked']);
                             unset($data['files'][$key]['error']);
                             unset($data['files'][$key]['tmp_name']);
-							$data['files'][$key]['uploaded'] = true;
-							$this->options['files'][] = $data['files'][$key];
+                            $data['files'][$key]['uploaded'] = true;
+                            $this->options['files'][] = $data['files'][$key];
                         } else {
                             unset($data['files'][$key]);
                         }
                     }
                 }
-			} else {
-				$data['isSuccess'] = false;
-				$data['hasWarnings'] = true;
-				$data['warnings'][] = $validate;
-			}
-		} else {
-			$lastPHPError = error_get_last();
-			if ($lastPHPError && $lastPHPError['type'] == E_WARNING && $lastPHPError['line'] == 0) {
+            } else {
+                $data['isSuccess'] = false;
+                $data['hasWarnings'] = true;
+                $data['warnings'][] = $validate;
+            }
+        } else {
+            $lastPHPError = error_get_last();
+            if ($lastPHPError && $lastPHPError['type'] == E_WARNING && $lastPHPError['line'] == 0) {
                 $errorMessage = null;
-                
-				if (strpos($lastPHPError['message'], "POST Content-Length") != false)
+
+                if (strpos($lastPHPError['message'], "POST Content-Length") != false)
                     $errorMessage = $this->codeToMessage(UPLOAD_ERR_INI_SIZE);
-				if (strpos($lastPHPError['message'], "Maximum number of allowable file uploads") != false)
+                if (strpos($lastPHPError['message'], "Maximum number of allowable file uploads") != false)
                     $errorMessage = $this->codeToMessage('max_number_of_files');
-                
+
                 if ($errorMessage != null) {
-					$data['isSuccess'] = false;
-					$data['hasWarnings'] = true;
-					$data['warnings'][] = $errorMessage;
+                    $data['isSuccess'] = false;
+                    $data['hasWarnings'] = true;
+                    $data['warnings'][] = $errorMessage;
                 }
-				
-			}
-			
-			if ($this->options['required'] && (isset($_SERVER) && strtolower($_SERVER['REQUEST_METHOD']) == "post")) {
-				$data['hasWarnings'] = true;
-				$data['warnings'][] = $this->codeToMessage('required_and_no_file');
-			}
-		}
-        
+
+            }
+
+            if ($this->options['required'] && (isset($_SERVER) && strtolower($_SERVER['REQUEST_METHOD']) == "post")) {
+                $data['hasWarnings'] = true;
+                $data['warnings'][] = $this->codeToMessage('required_and_no_file');
+            }
+        }
+
         // add listProp attribute to the files
         if ($listInput)
             foreach($this->getFileList() as $key=>$item) {
                 if (!isset($item['listProps'])) {
                     $fileListIndex = array_search($item['file'], $listInput['list']);
-                    
+
                     if ($fileListIndex !== false) {
                         $this->options['files'][$key]['listProps'] = $listInput['values'][$fileListIndex];
                     }
                 }
-                
+
                 if (isset($item['listProps'])) {
                     unset($this->options['files'][$key]['listProps']['file']);
-                        
+
                     if (empty($this->options['files'][$key]['listProps']))
                         unset($this->options['files'][$key]['listProps']);
                 }
             }
-        
-        $data['files'] = $this->getUploadedFiles();
-        
-		// call file editor
-		$this->editFiles();
-		
-		// call file sorter
-		$this->sortFiles();
-        
+
         $data['files'] = $this->getUploadedFiles();
 
-		return $data;
-	}
+        // call file editor
+        $this->editFiles();
+
+        // call file sorter
+        $this->sortFiles();
+
+        $data['files'] = $this->getUploadedFiles();
+
+        return $data;
+    }
 
     function generarPassword($longitud){
 
@@ -713,171 +713,171 @@ class FileUploader {
         return $key;
 
     }
-    
+
     /**
      * validation method
      * Check ini settings, field and files
      *
-	 * @private
-	 * @param $file {Array} File metas
+     * @private
+     * @param $file {Array} File metas
      * @return {boolean, String}
      */
-    private function validate($file = null) {		
+    private function validate($file = null) {
         if ($file == null) {
-			// check ini settings and some generally options
+            // check ini settings and some generally options
             $ini = array(
-				(boolean) ini_get('file_uploads'),
-				(int) ini_get('upload_max_filesize'),
-				(int) ini_get('post_max_size'),
-				(int) ini_get('max_file_uploads'),
-				(int) ini_get('memory_limit')
-			);
-			
+                (boolean) ini_get('file_uploads'),
+                (int) ini_get('upload_max_filesize'),
+                (int) ini_get('post_max_size'),
+                (int) ini_get('max_file_uploads'),
+                (int) ini_get('memory_limit')
+            );
+
             if (!$ini[0])
-				return $this->codeToMessage('file_uploads');
+                return $this->codeToMessage('file_uploads');
             if ($this->options['required'] && (isset($_SERVER) && strtolower($_SERVER['REQUEST_METHOD']) == "post") && $this->field['count'] + count($this->options['files']) == 0)
-				return $this->codeToMessage('required_and_no_file');
+                return $this->codeToMessage('required_and_no_file');
             if (($this->options['limit'] && $this->field['count'] + count($this->options['files']) > $this->options['limit']) || ($ini[3] != 0 && ($this->field['count']) > $ini[3]))
-				return $this->codeToMessage('max_number_of_files');
+                return $this->codeToMessage('max_number_of_files');
             if (!file_exists($this->options['uploadDir']) && !is_writable($this->options['uploadDir']))
-				return $this->codeToMessage('invalid_folder_path');
+                return $this->codeToMessage('invalid_folder_path');
 
             $total_size = 0; foreach($this->field['input']['size'] as $key=>$value){ $total_size += $value; } $total_size = $total_size/1000000;
             if ($ini[2] != 0 && $total_size > $ini[2])
-				return $this->codeToMessage('post_max_size');
-			if ($this->options['maxSize'] && $total_size > $this->options['maxSize'])
-				return $this->codeToMessage('max_files_size');
+                return $this->codeToMessage('post_max_size');
+            if ($this->options['maxSize'] && $total_size > $this->options['maxSize'])
+                return $this->codeToMessage('max_files_size');
         } else {
-			// check file
+            // check file
             if ($file['error'] > 0)
-				return $this->codeToMessage($file['error'], $file);
+                return $this->codeToMessage($file['error'], $file);
             if ($this->options['extensions'] && (!in_array(strtolower($file['extension']), $this->options['extensions']) && !in_array(strtolower($file['type']), $this->options['extensions'])))
-				return $this->codeToMessage('accepted_file_types', $file);
-			if ($this->options['fileMaxSize'] && $file['size']/1000000 > $this->options['fileMaxSize'])
-				return $this->codeToMessage('max_file_size', $file);
+                return $this->codeToMessage('accepted_file_types', $file);
+            if ($this->options['fileMaxSize'] && $file['size']/1000000 > $this->options['fileMaxSize'])
+                return $this->codeToMessage('max_file_size', $file);
             if ($this->options['maxSize'] && $file['size']/1000000 > $this->options['maxSize'])
-				return $this->codeToMessage('max_file_size', $file);
-			$custom_validation = $this->options['validate_file']($file, $this->options);
-			if ($custom_validation != true)
-				return $custom_validation;
+                return $this->codeToMessage('max_file_size', $file);
+            $custom_validation = $this->options['validate_file']($file, $this->options);
+            if ($custom_validation != true)
+                return $custom_validation;
         }
 
         return true;
-	}
-	
-	/**
+    }
+
+    /**
      * getListInputFiles method
      * Get value from listInput
      *
-	 * @private
+     * @private
      * @param $name {String} FileUploader $_FILES name
      * @return {null, Array}
      */
-	private function getListInputFiles($name = null) {
-		$inputName = 'fileuploader-list-' . ($name ? $name : $this->field['name']);
-		if (is_string($this->options['listInput']))
-			$inputName = $this->options['listInput'];
-		
-		if (isset($_POST[$inputName]) && $this->isJSON($_POST[$inputName])) {
-			$list = array(
-				'list' => array(),
-				'values' => json_decode($_POST[$inputName], true)
-			);
-			
-			foreach($list['values'] as $key=>$value) {
-				$list['list'][] = $value['file'];
-			}
-			
-			return $list;
-		}
-		
-		return null;
-	}
-	
-	/**
+    private function getListInputFiles($name = null) {
+        $inputName = 'fileuploader-list-' . ($name ? $name : $this->field['name']);
+        if (is_string($this->options['listInput']))
+            $inputName = $this->options['listInput'];
+
+        if (isset($_POST[$inputName]) && $this->isJSON($_POST[$inputName])) {
+            $list = array(
+                'list' => array(),
+                'values' => json_decode($_POST[$inputName], true)
+            );
+
+            foreach($list['values'] as $key=>$value) {
+                $list['list'][] = $value['file'];
+            }
+
+            return $list;
+        }
+
+        return null;
+    }
+
+    /**
      * editFiles method
      * Edit all files that have an editor from Front-End
      *
-	 * @private
+     * @private
      * @return void
      */
-	protected function editFiles() {
+    protected function editFiles() {
         if ($this->options['editor'] === false)
             return;
-        
-		foreach($this->getFileList() as $key=>$item) {
+
+        foreach($this->getFileList() as $key=>$item) {
             $file = !isset($item['relative_file']) ? $item['file'] : $item['relative_file'];
-            
-			// add editor to files
-			if (isset($item['listProps']) && isset($item['listProps']['editor'])) {
+
+            // add editor to files
+            if (isset($item['listProps']) && isset($item['listProps']['editor'])) {
                 $item['editor'] = $item['listProps']['editor'];
             }
             if (isset($item['uploaded']) && isset($_POST['_editorr']) && $this->isJSON($_POST['_editorr']) && count($this->field['input']['name']) == 1) {
                 $item['editor'] = json_decode($_POST['_editorr'], true);
-			}
-            
-			// edit file
-			if (($this->options['editor'] != null || isset($item['editor']) && file_exists($file) && strpos($item['type'], 'image/') === 0)) {
-				$width = isset($this->options['editor']['maxWidth']) ? $this->options['editor']['maxWidth'] : null;
-				$height = isset($this->options['editor']['maxHeight']) ? $this->options['editor']['maxHeight'] : null;
-				$quality = isset($this->options['editor']['quality']) ? $this->options['editor']['quality'] : 90;
-				$rotation = isset($item['editor']['rotation']) ? $item['editor']['rotation'] : 0;
-				$crop = isset($this->options['editor']['crop']) ? $this->options['editor']['crop'] : false;
-				$crop = isset($item['editor']['crop']) ? $item['editor']['crop'] : $crop;
-				
-				// edit
-				self::resize($file, $width, $height, null, $crop, $quality, $rotation);
+            }
+
+            // edit file
+            if (($this->options['editor'] != null || isset($item['editor']) && file_exists($file) && strpos($item['type'], 'image/') === 0)) {
+                $width = isset($this->options['editor']['maxWidth']) ? $this->options['editor']['maxWidth'] : null;
+                $height = isset($this->options['editor']['maxHeight']) ? $this->options['editor']['maxHeight'] : null;
+                $quality = isset($this->options['editor']['quality']) ? $this->options['editor']['quality'] : 90;
+                $rotation = isset($item['editor']['rotation']) ? $item['editor']['rotation'] : 0;
+                $crop = isset($this->options['editor']['crop']) ? $this->options['editor']['crop'] : false;
+                $crop = isset($item['editor']['crop']) ? $item['editor']['crop'] : $crop;
+
+                // edit
+                self::resize($file, $width, $height, null, $crop, $quality, $rotation);
                 unset($this->options['files'][$key]['editor']);
-			}
-		}
-	}
-	
-	/**
+            }
+        }
+    }
+
+    /**
      * sortFiles method
      * Sort all files that have an index from Front-End
      *
-	 * @private
+     * @private
      * @return void
      */
-	private function sortFiles() {
-		foreach($this->options['files'] as $key=>$item) {
-			if (isset($item['listProps']) && isset($item['listProps']['index']))
+    private function sortFiles() {
+        foreach($this->options['files'] as $key=>$item) {
+            if (isset($item['listProps']) && isset($item['listProps']['index']))
                 $this->options['files'][$key]['index'] = $item['listProps']['index'];
-		}
-        
+        }
+
         $freeIndex = count($this->options['files']);
-		if(isset($this->options['files'][0]['index']))
-			usort($this->options['files'], function($a, $b) {
+        if(isset($this->options['files'][0]['index']))
+            usort($this->options['files'], function($a, $b) {
                 global $freeIndex;
-                
+
                 if (!isset($a['index'])) {
                     $a['index'] = $freeIndex;
                     $freeIndex++;
                 }
-                
+
                 if (!isset($b['index'])) {
                     $b['index'] = $freeIndex;
                     $freeIndex++;
                 }
-                
-				return $a['index'] - $b['index'];
-			});
-	}
-    
+
+                return $a['index'] - $b['index'];
+            });
+    }
+
     /**
      * clean_chunked_files method
      * Remove chunked files from directory
      *
-	 * @public
+     * @public
      * @static
-	 * @param $directory {String} Directory scan
-	 * @param $time {String} Time difference
+     * @param $directory {String} Directory scan
+     * @param $time {String} Time difference
      * @return {String}
      */
     public static function clean_chunked_files($directory, $time = '-1 hour') {
         if (!is_dir($directory))
             return;
-        
+
         $dir = scandir($directory);
         $files = array_diff($dir, array('.', '..'));
         foreach($files as $key=>$name) {
@@ -886,41 +886,41 @@ class FileUploader {
                 unlink($file);
         }
     }
-    
+
     /**
      * codeToMessage method
      * Translate a warning code into text
      *
-	 * @private
+     * @private
      * @param $code {Number, String}
-	 * @param $file {null, Array}
+     * @param $file {null, Array}
      * @return {String}
      */
     private function codeToMessage($code, $file = null) {
         $message = null;
-		
-	    switch ($code) {
-	        case UPLOAD_ERR_INI_SIZE:
-	            $message = "El archivo cargado excede la directiva upload_max_filesize en php.ini";
-	            break;
-	        case UPLOAD_ERR_FORM_SIZE:
-	            $message = "El archivo cargado excede la directiva MAX_FILE_SIZE que se especificó en el formulario HTML";
-	            break;
-	        case UPLOAD_ERR_PARTIAL:
-	            $message = "El archivo cargado solo fue subido parcialmente";
-	            break;
-	        case UPLOAD_ERR_NO_FILE:
-	            $message = "ningun archivo fue subido";
-	            break;
-	        case UPLOAD_ERR_NO_TMP_DIR:
-	            $message = "Falta una carpeta temporal";
-	            break;
-	        case UPLOAD_ERR_CANT_WRITE:
-	            $message = "Error al escribir el archivo en el disco";
-	            break;
-	        case UPLOAD_ERR_EXTENSION:
-	            $message = "Carga de archivos detenida por extensión";
-	            break;
+
+        switch ($code) {
+            case UPLOAD_ERR_INI_SIZE:
+                $message = "El archivo cargado excede la directiva upload_max_filesize en php.ini";
+                break;
+            case UPLOAD_ERR_FORM_SIZE:
+                $message = "El archivo cargado excede la directiva MAX_FILE_SIZE que se especificó en el formulario HTML";
+                break;
+            case UPLOAD_ERR_PARTIAL:
+                $message = "El archivo cargado solo fue subido parcialmente";
+                break;
+            case UPLOAD_ERR_NO_FILE:
+                $message = "ningun archivo fue subido";
+                break;
+            case UPLOAD_ERR_NO_TMP_DIR:
+                $message = "Falta una carpeta temporal";
+                break;
+            case UPLOAD_ERR_CANT_WRITE:
+                $message = "Error al escribir el archivo en el disco";
+                break;
+            case UPLOAD_ERR_EXTENSION:
+                $message = "Carga de archivos detenida por extensión";
+                break;
             case 'accepted_file_types':
                 $message = "El tipo de archivo no está permitido para " . $file['old_name'];
                 break;
@@ -939,34 +939,34 @@ class FileUploader {
             case 'required_and_no_file':
                 $message = "No se seleccionó ningún archivo. Por favor, seleccione uno";
                 break;
-			case 'invalid_folder_path':
-				$message = "La carpeta de carga no existe o no se puede escribir";
-				break;
-	        default:
-	            $message = "Error de carga desconocido";
-	            break;
-	    }
-        
-	    return $message;
+            case 'invalid_folder_path':
+                $message = "La carpeta de carga no existe o no se puede escribir";
+                break;
+            default:
+                $message = "Error de carga desconocido";
+                break;
+        }
+
+        return $message;
     }
-	
-	private function getFileAttribute($file, $attribute) {
-		$result = null;
 
-		if (isset($file['data'][$attribute]))
-			$result = $file['data'][$attribute];
-		if (isset($file[$attribute]))
-			$result = $file[$attribute];
+    private function getFileAttribute($file, $attribute) {
+        $result = null;
 
-		return $result;
-	}
-    
+        if (isset($file['data'][$attribute]))
+            $result = $file['data'][$attribute];
+        if (isset($file[$attribute]))
+            $result = $file[$attribute];
+
+        return $result;
+    }
+
     /**
      * formatSize method
      * Cover bytes to readable file size format
      *
-	 * @private
-	 * @param $bytes {Number}
+     * @private
+     * @param $bytes {Number}
      * @return {Number}
      */
     private function formatSize($bytes) {
@@ -982,123 +982,123 @@ class FileUploader {
 
         return $bytes;
     }
-	
-	/**
+
+    /**
      * isJson method
      * Check if string is a valid json
      *
-	 * @private
-	 * @param $string {String}
+     * @private
+     * @param $string {String}
      * @return {boolean}
      */
     private function isJson($string) {
         json_decode($string);
         return (json_last_error() == JSON_ERROR_NONE);
     }
-	
-	/**
+
+    /**
      * filterFilename method
      * Remove invalid characters from filename
      *
-	 * @private
+     * @private
      * @param $filename {String}
      * @return {String}
      */
     private function filterFilename($filename) {
         $delimiter = '_';
         $invalidCharacters = array_merge(array_map('chr', range(0,31)), array("<", ">", ":", '"', "/", "\\", "|", "?", "*"));
-        
+
         $filename = str_replace($invalidCharacters, $delimiter, $filename);
         $filename = preg_replace('/(' . preg_quote($delimiter, '/') . '){2,}/', '$1', $filename);
 
         return $filename;
-	}
-    
+    }
+
     /**
      * generateFileName method
      * Generated a new file name
      *
-	 * @private
-	 * @param $conf {null, String, Array} FileUploader title option
-	 * @param $file {Array} File data as title, extension and size
-	 * @param $skip_replace_check {boolean} Used only for recursive auto generating file name to exclude replacements 
+     * @private
+     * @param $conf {null, String, Array} FileUploader title option
+     * @param $file {Array} File data as title, extension and size
+     * @param $skip_replace_check {boolean} Used only for recursive auto generating file name to exclude replacements
      * @return {String}
      */
-	private function generateFilename($conf, $file, $skip_replace_check = false) {
-		$conf = !is_array($conf) ? array($conf) : $conf;
-		$type = $conf[0];
-		$length = isset($conf[1]) ? (int) $conf[1] : 20;
-		$random_string = $this->random_string($length);
+    private function generateFilename($conf, $file, $skip_replace_check = false) {
+        $conf = !is_array($conf) ? array($conf) : $conf;
+        $type = $conf[0];
+        $length = isset($conf[1]) ? (int) $conf[1] : 20;
+        $random_string = $this->random_string($length);
         $extension = !empty($file['extension']) ? "." . $file['extension'] : "";
         $string = "";
-		
-		switch($type) {
-			case null:
-			case "auto":
-				$string = $random_string;
-				break;
-			case "name":
-				$string = $file['title'];
-				break;
-			default:
-				$string = $type;
-				$string_extension = substr(strrchr($string, "."), 1);
-				
-				$string = str_replace("{random}", $random_string, $string);
-				$string = str_replace("{file_name}", $file['title'], $string);
-				$string = str_replace("{file_size}", $file['size'], $string);
-				$string = str_replace("{timestamp}", time(), $string);
-				$string = str_replace("{date}", date('Y-n-d_H-i-s'), $string);
-				$string = str_replace("{extension}", $file['extension'], $string);
-				
-				if (!empty($string_extension)) {
-					if ($string_extension != "{extension}") {
-						$type = substr($string, 0, -(strlen($string_extension) + 1));
-						$extension = $file['extension'] = $string_extension;
-					} else {
-						$type = substr($string, 0, -(strlen($file['extension']) + 1));
-						$extension = '';
-					}
-				}
-		}
-		if ($extension && !preg_match('/'.$extension.'$/', $string))
-        	$string .= $extension;
-		
-		// generate another filename if a file with the same name already exists
-		// only when replace options is true
-		if (!$this->options['replace'] && !$skip_replace_check) {
+
+        switch($type) {
+            case null:
+            case "auto":
+                $string = $random_string;
+                break;
+            case "name":
+                $string = $file['title'];
+                break;
+            default:
+                $string = $type;
+                $string_extension = substr(strrchr($string, "."), 1);
+
+                $string = str_replace("{random}", $random_string, $string);
+                $string = str_replace("{file_name}", $file['title'], $string);
+                $string = str_replace("{file_size}", $file['size'], $string);
+                $string = str_replace("{timestamp}", time(), $string);
+                $string = str_replace("{date}", date('Y-n-d_H-i-s'), $string);
+                $string = str_replace("{extension}", $file['extension'], $string);
+
+                if (!empty($string_extension)) {
+                    if ($string_extension != "{extension}") {
+                        $type = substr($string, 0, -(strlen($string_extension) + 1));
+                        $extension = $file['extension'] = $string_extension;
+                    } else {
+                        $type = substr($string, 0, -(strlen($file['extension']) + 1));
+                        $extension = '';
+                    }
+                }
+        }
+        if ($extension && !preg_match('/'.$extension.'$/', $string))
+            $string .= $extension;
+
+        // generate another filename if a file with the same name already exists
+        // only when replace options is true
+        if (!$this->options['replace'] && !$skip_replace_check) {
             $title = $file['title'];
             $i = 1;
             while (file_exists($this->options['uploadDir'] . $string)) {
                 $file['title'] = $title . " ({$i})";
-				$conf[0] = $type == "auto" || $type == "name" || strpos($string, "{random}") !== false ? $type : $type  . " ({$i})";
+                $conf[0] = $type == "auto" || $type == "name" || strpos($string, "{random}") !== false ? $type : $type  . " ({$i})";
                 $string = $this->generateFileName($conf, $file, true);
                 $i++;
             }
         }
 
-		return $this->filterFilename($string);
-	}
-	
-	/**
+        return $this->filterFilename($string);
+    }
+
+    /**
      * random_string method
      * Generate a random string
      *
-	 * @public
-	 * @param $length {Number} Number of characters
+     * @public
+     * @param $length {Number} Number of characters
      * @return {String}
      */
-	private function random_string($length = 12) {
-		return substr(str_shuffle("_0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
-	}
-	
+    private function random_string($length = 12) {
+        return substr(str_shuffle("_0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+    }
+
     /**
      * mime_content_type method
      * Get the mime_content_type of a file
      *
-	 * @public
+     * @public
      * @static
-	 * @param $file {String} File location
+     * @param $file {String} File location
      * @return {String}
      */
     public static function mime_content_type($file, $fromName = false) {
@@ -1162,7 +1162,7 @@ class FileUploader {
                 'ods' => 'application/vnd.oasis.opendocument.spreadsheet',
             );
             $ext = strtolower(substr(strrchr($file, "."), 1));
-            
+
             if (array_key_exists($ext, $mime_types)) {
                 return $mime_types[$ext];
             } elseif (function_exists('finfo_open')) {

@@ -5,7 +5,7 @@ header('Access-Control-Max-Age: 86400');    // cache for 1 day
 header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
 header("Allow: GET, POST, OPTIONS, PUT, DELETE");
-header('content-type: application/json; charset=utf-8; application/x-www-form-urlencoded');
+header('content-type: application/json; charset=utf-8');
 
 // Allow from any origin
 //if (isset($_SERVER['HTTP_ORIGIN'])) {

@@ -163,7 +163,7 @@ class ControllerUsers{
                         CAMBIO DE CONTRASEÑA
                         =============================================*/
 
-                        $url = Ruta::ctrRutaEnvioEmail();
+                        $url = Ruta::ctrRutaFront();
 
                         date_default_timezone_set("America/Bogota");
 
@@ -392,7 +392,7 @@ class ControllerUsers{
 
                             date_default_timezone_set("America/Bogota");
 
-                            $url = Ruta::ctrRutaEnvioEmail();
+                            $url = Ruta::ctrRutaEnvioEmailAuth();
 
                             $mail = new PHPMailer;
 
@@ -423,7 +423,7 @@ class ControllerUsers{
                     
                                                 <h4 style="font-weight:100; color:#999; padding:0 20px">Para comenzar a usar su cuenta de Prujula, debe confirmar su dirección de correo electrónico</h4>
                     
-                                                <a href="' . $url . 'auth/verify-account/' . $encriptarEmail . '" target="_blank" style="text-decoration:none">
+                                                <a href="' . $url . 'register-sucess/' . $encriptarEmail . '" target="_blank" style="text-decoration:none">
                     
                                                 <div style="line-height:60px; background:#450E10; width:60%; color:white">Verifique su dirección de correo electrónico</div>
                     

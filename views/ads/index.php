@@ -63,6 +63,14 @@ switch ($method){
 
         break;
 
+    case "showadsid":
+
+        $respuesta = ControllerAds::ctrShowAdsId($obj);
+
+        echo $respuesta;
+
+        break;
+
     case "allShowSearchAds":
 
         $respuesta = ControllerAds::ctrShowSearchAds($obj);
@@ -74,8 +82,10 @@ switch ($method){
     default:
         echo json_encode(
             array(
-                "error11" => true,
+                "error" => true,
                 "statusCode"=>400,
-                "metodo" =>$method
+                "metodo" =>$method,
+                "variables" =>$obj,
+                "tipo" => gettype($obj)
             ));
 }
