@@ -12,6 +12,10 @@ require_once "controller/users.controller.php";
 require_once "controller/ads.controller.php";
 require_once "controller/category.controller.php";
 require_once "controller/banner.controller.php";
+require_once "controller/class.fileuploader.php";
+
+require_once "controller/config.controller.php";
+
 
 
 /*=============================
