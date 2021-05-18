@@ -19,6 +19,12 @@ switch ($method){
 
         break;
 
+    case  "sociallogin":
+        $respuesta = ControllerUsers::ctrSocialLoginUser($obj);
+        echo $respuesta;
+
+        break;
+
     case "restorepassword":
 
         $respuesta = ControllerUsers::ctrRecoverPassword($obj);
@@ -42,13 +48,21 @@ switch ($method){
         
         break;
 
+    case "datosuser":
+
+        $respuesta = ControllerUsers::ctrGetShowUser("id",$obj["conId"]);
+
+        echo $respuesta;
+
+        break;
 
     default:
         echo json_encode(
             array(
                 "error" => true,
                 "statusCode"=>"400",
-                "metodo" =>$method
+                "metodo" =>$method,
+                "variables" =>$obj
             ));
 }
 

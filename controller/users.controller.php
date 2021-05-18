@@ -22,40 +22,41 @@ class ControllerUsers{
 
                     if($answer["email"] == $value && $answer["password"] == $encrypt){
 
-                        if($answer["estado"] == 1){
+                        if($answer["verificacion"] == 0){
+                            if($answer["estado"] == 1){
 
-                            $resultado = array(
-                                "id" =>$answer["id"],
-                                "nombre" =>$answer["nombre"],
-                                "apellido" =>$answer["apellido"],
-                                "modo" =>"directo",
-                                "email" =>$answer["email"],
-                                "foto" =>$answer["foto"]
-                            );
+                                /*=============================================
+                                REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN
+                                =============================================*/
 
-                            /*=============================================
-                            REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN
-                            =============================================*/
+                                self::ctrUpdateLastLogin($table,$answer["id"]);
 
-                            self::ctrUpdateLastLogin($table,$answer["id"]);
-
-                            echo json_encode(array(
-                                "statusCode" => 200,
-                                "error" => false,
-                                "userInfo" =>$resultado,
-                                "mensaje" =>""
-                            ));
+                                echo json_encode(array(
+                                    "statusCode" => 200,
+                                    "error" => false,
+                                    "userInfo" =>$answer,
+                                    "mensaje" =>""
+                                ));
 
 
+                            }else{
+
+                                echo json_encode(array(
+                                    "statusCode" => 400,
+                                    "error" => true,
+                                    "mensaje" =>"La cuenta se encuentra desactivada, contacte con el administrador"
+                                ));
+
+                            }
                         }else{
-
                             echo json_encode(array(
                                 "statusCode" => 400,
                                 "error" => true,
-                                "mensaje" =>"El email aún no está activado"
+                                "mensaje" =>"La cuenta no ha sido verificada"
                             ));
-
                         }
+
+
 
                     }else{
 
@@ -68,41 +69,135 @@ class ControllerUsers{
                     }
 
                 }
+            }
+
+        }
+    }
+
+    static public function ctrSocialLoginUser($data){
+
+        if(isset($data["conEmail"])){
+
+            $table = "usuarios";
+
+            $item = "email";
+
+            $value = $data["conEmail"];
+
+            $encriptarEmail = md5($data["conEmail"]);
+
+            $answer = ModelUsers::mdlShowUsers($table,$item,$value);
+
+            if($answer){
+
+                if($answer["estado"] == 1){
+
+                    /*=============================================
+                    REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN
+                    =============================================*/
+                    self::ctrUpdateLastLogin($table,$answer["id"]);
+
+                    echo json_encode(array(
+                        "statusCode" => 200,
+                        "error" => false,
+                        "userInfo" =>$answer,
+                        "mensaje" =>""
+                    ));
+                }else{
+                    echo json_encode(array(
+                        "statusCode" => 400,
+                        "error" => true,
+                        "mensaje" =>"La cuenta se encuentra desactivada, contacte con el administrador"
+                    ));
+
+                }
+
             }else{
-                if(preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $data["conEmail"])){
 
-                    $table = "usuarios";
+                $datos = array(
+                    "nombre" => $data["conNombre"],
+                    "apellido" => $data["conApellido"],
+                    "password" => "",
+                    "email" => $data["conEmail"],
+                    "foto" => $data["conFoto"],
+                    "modo" => $data["conModo"],
+                    "verificacion"=> 0,
+                    "emailEncriptado" => $encriptarEmail);
 
-                    $item = "email";
+                $respuesta1 = ModelUsers::mdlUserRegister($table, $datos);
 
-                    $value = $data["conEmail"];
+                if($respuesta1 == "ok"){
 
-                    $answer = ModelUsers::mdlShowUsers($table,$item,$value);
+                    $answer = ModelUsers::mdlShowUsers($table, $item, $value);
 
-                    if($answer["email"] == $value){
+                    /*=============================================
+                        VERIFICACIÓN CORREO ELECTRÓNICO
+                        =============================================*/
 
-                        $resultado = array(
-                            "id" =>$answer["id"],
-                            "nombre" =>$answer["nombre"],
-                            "modo" =>$answer["conModo"],
-                            "email" =>$answer["email"],
-                            "foto" =>$answer["foto"],
-                            "perfil" =>$answer["perfil"],
-                            "error" => false,
-                            "statusCode" => 200,
-                        );
+                    date_default_timezone_set("America/Bogota");
+
+
+                    $mail = new PHPMailer;
+
+                    $mail->CharSet = 'UTF-8';
+
+                    $mail->isMail();
+
+                    $mail->setFrom('hola@prujula.com', 'PRUJULA');
+
+                    $mail->addReplyTo('hola@prujula.com', 'PRUJULA');
+
+                    $mail->Subject = "Bienvenido a Prujula";
+
+                    $mail->addAddress($data["conEmail"]);
+
+                    $mail->msgHTML('
+                                    <div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
+
+                                        <div style="position:relative; margin:auto; width:600px; background:white; padding:20px">
+                
+                                            <center>
+                
+                                                <img style="padding:20px; width:15%" src="http://tutorialesatualcance.com/tienda/icon-email.png">
+                    
+                                                <h3 style="font-weight:100; color:#999">BIENVENIDO A PRUJULA</h3>
+                    
+                                                <hr style="border:1px solid #ccc; width:80%">
+                    
+                                                <h4 style="font-weight:100; color:#999; padding:0 20px">Ahora podras disfrutar de nuestras ofertas</h4>
+                    
+                    
+                                                <br>
+                    
+                                                <hr style="border:1px solid #ccc; width:80%">
+                    
+                                                <h5 style="font-weight:100; color:#999">Si no se inscribió en esta cuenta, puede ignorar este correo electrónico y la cuenta se eliminará.</h5>
+                
+                                            </center>
+                
+                                        </div>
+                                    </div>'
+                    );
+
+                    $envio = $mail->Send();
+
+                    if ($envio) {
 
                         echo json_encode(array(
                             "statusCode" => 200,
                             "error" => false,
-                            "userInfo" =>$resultado
+                            "userInfo" =>$answer,
+                            "mensaje" =>"¡Excelente trabajo " . $answer["email"] . ", ahora podras disfrutar de nuestras promociones!"
                         ));
 
                     }
 
 
+
                 }
+
             }
+
 
         }
     }
@@ -364,6 +459,7 @@ class ControllerUsers{
                         "email" => $data["regEmail"],
                         "foto" => "",
                         "modo" => "directo",
+                        "verificacion"=> 1,
                         "emailEncriptado" => $encriptarEmail);
 
                     //ANTES REALIZO UNA VALIDACION SI EL USUARIO EXISTE NUEVAMENTE PARA EVITAR DUPLICIDAD
@@ -455,7 +551,7 @@ class ControllerUsers{
 
                                 echo json_encode(array(
                                     "statusCode" => 200,
-                                    "error" => true,
+                                    "error" => false,
                                     "mensaje" =>"¡Excelente trabajo " . $data["regName"] . ", ahora podras disfrutar de nuestras promociones!",
                                 ));
 
@@ -478,60 +574,6 @@ class ControllerUsers{
 
             }
 
-        }else{
-            //REGISTRO DE GOOGLE O FACEBOOK
-
-            $tabla = "usuarios";
-            $item = "email";
-            $valor = $data["regEmail"];
-            $emailRepetido = false;
-
-            $respuesta0 = ModelUsers::mdlShowUsers($tabla, $item, $valor);
-
-            if($respuesta0){
-
-                if($respuesta0["modo"] != $data["regModo"]){
-
-                    echo json_encode(array(
-                        "statusCode" => 400,
-                        "error" => true,
-                        "mensaje" =>"¡El correo electrónico ".$data["regEmail"].", ya está registrado en el sistema!"
-                    ));
-
-                    $emailRepetido = false;
-
-                }
-
-                $emailRepetido = true;
-
-            }else{
-
-                $respuesta1 = ModelUsers::mdlUserRegister($tabla, $data);
-
-            }
-
-            if($emailRepetido || $respuesta1 == "ok"){
-
-                $respuesta2 = ModelUsers::mdlShowUsers($tabla, $item, $valor);
-
-                $answer = array(
-                    "id" =>$respuesta2["id"],
-                    "nombre" =>$respuesta2["nombre"],
-                    "email" =>$respuesta2["email"],
-                    "foto" =>$respuesta2["foto"],
-                    "perfil" =>$respuesta2["perfil"],
-                    "error" => false,
-                    "statusCode" => 200,
-                );
-
-                echo json_encode(array(
-                    "statusCode" => 200,
-                    "error" => false,
-                    "userInfo" =>$answer,
-                    "mensaje" =>""
-                ));
-
-            }
         }
 
 
@@ -547,6 +589,33 @@ class ControllerUsers{
         $respuesta = ModelUsers::mdlShowUsers($tabla,$item,$valor);
 
         return $respuesta;
+
+    }
+
+    static public function ctrGetShowUser($item,$valor){
+
+        $tabla = "usuarios";
+
+        $respuesta = ModelUsers::mdlShowUsers($tabla,$item,$valor);
+
+        if($respuesta){
+
+            echo json_encode(array(
+                "statusCode" => 200,
+                "error" => false,
+                "userInfo" =>$respuesta,
+                "mensaje" =>""
+            ));
+        }else{
+            echo json_encode(array(
+                "statusCode" => 400,
+                "error" => true,
+                "userInfo" =>"",
+                "mensaje" =>"No se encontraron registros"
+            ));
+        }
+
+
     }
 
     /*=============================================

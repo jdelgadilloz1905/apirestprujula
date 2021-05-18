@@ -6,6 +6,7 @@ class ControllerAds{
         if(isset($data["regTitulo"])){
             //insertar los registros y posteriormente insertar las imagenes
             $datos = array(
+                "id_user"=>$data["regIdUser"],
                 "titulo"=>$data["regTitulo"],
                 "descripcion"=>$data["regDescripcion"],
                 "id_categoria"=>$data["regIdCategoria"],

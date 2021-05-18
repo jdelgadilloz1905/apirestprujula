@@ -12,13 +12,13 @@ class ModelUsers{
 
         if($item != null){
 
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item  ORDER BY id");
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
             $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
             $stmt -> execute();
 
-            return $stmt -> fetch();
+            return $stmt -> fetch(PDO::FETCH_ASSOC);
 
         }else{
 
@@ -26,7 +26,7 @@ class ModelUsers{
 
             $stmt -> execute();
 
-            return $stmt -> fetchAll();
+            return $stmt -> fetchAll(PDO::FETCH_ASSOC);
 
         }
 
