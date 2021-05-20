@@ -132,9 +132,9 @@ class ModelsAds{
 
     static public function mdlShowSearchAds($tabla,$valor){
 
-        $stmt = Conexion::conectar()->prepare("SELECT a.*, c.nombre nombre_categoria FROM $tabla a left join categorias c on a.id_categoria = c.id
+        $stmt = Conexion::conectar()->prepare("SELECT a.*, c.nombre nombre_categoria FROM $tabla a left join categorias c on a.id_category = c.id
                                                             WHERE a.estado = 1 
-                                                            and (a.titulo LIKE '%$valor%' or a.descripcion LIKE '%$valor%') ORDER BY a.id DESC ");
+                                                            and (a.title LIKE '%$valor%' or a.description LIKE '%$valor%') ORDER BY a.id DESC ");
 
         $stmt -> execute();
 

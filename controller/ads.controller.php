@@ -3,7 +3,7 @@ class ControllerAds{
 
     static public function ctrCreateAd($data){
 
-        if(isset($data["regTitulo"])){
+        if(isset($data["regTitle"])){
             //insertar los registros y posteriormente insertar las imagenes
             $datos = array(
                 "id_user"=>$data["regIdUser"],
@@ -27,6 +27,7 @@ class ControllerAds{
             if($resultado == "ok"){
                 $idInsertado = ModelsAds::mdlGetLastId("anuncios");
 
+                //Enviar el registro en algolia
                 echo json_encode(array(
                     "statusCode" => 200,
                     "adsInfo"=>$idInsertado["id"],
@@ -34,8 +35,6 @@ class ControllerAds{
                     "mensaje" =>"Genial orden # ".$idInsertado["id"]." creada con exito",
                 ));
             }else{
-
-
                 echo json_encode(array(
                     "statusCode" => 400,
                     "adsInfo"=>"",
@@ -43,13 +42,6 @@ class ControllerAds{
                     "mensaje" =>"Error al crear el anuncio, contacte con el administrador",
                 ));
             }
-
-
-
-
-
-
-
         }
     }
 

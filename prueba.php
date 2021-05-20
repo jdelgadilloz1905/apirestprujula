@@ -1,3 +1,111 @@
-<?php
-
-echo "prueba web ";
+{
+"regIdUser": "1",
+"regTitle": "Campis Magallanes de catia !",
+"regPrice": "35000",
+"regDescription": "Lo mejor de catia",
+"regHalf": "pago completo ",
+"regPeople": "15",
+"regOffer": true,
+"regDiscountAmount": 100,
+"regIdCategory": "1",
+"regAddress": {
+"completeAddress": "San Juan, República Dominicana",
+"country": "Santo Domingo",
+"countryCode": "do",
+"county": "República Dominicana",
+"municipality":"",
+"state":"",
+"lat": -71.2862706,
+"lng": 18.87967
+},
+"regAddressDescription": "direccion exacta de prueba",
+"regPhone": "02128700824",
+"regImageGallery": [
+{
+"uid": "rc-upload-1620741320988-9",
+"image": "https://estudio57.net/apirestprujula/views/img/anuncios/0oekXaqbWfHrcNvnTMxp.png",
+"name": "0oekXaqbWfHrcNvnTMxp.png",
+"old_name": "cnt.png",
+"old_title": "cnt"
+},
+{
+"uid": "rc-upload-1620741320988-8",
+"image": "https://estudio57.net/apirestprujula/views/img/anuncios/6dMy3uvLtPNeRlWcBOSn.png",
+"name": "6dMy3uvLtPNeRlWcBOSn.png",
+"old_name": "CNBC.png",
+"old_title": "CNBC"
+},
+{
+"uid": "rc-upload-1620741320988-11",
+"image": "https://estudio57.net/apirestprujula/views/img/anuncios/oVduigYIb0zW3H8ylRe1.png",
+"name": "oVduigYIb0zW3H8ylRe1.png",
+"old_name": "cooking.png",
+"old_title": "cooking"
+},
+{
+"uid": "rc-upload-1620741320988-10",
+"image": "https://estudio57.net/apirestprujula/views/img/anuncios/bEgyDvXL6MzVfnou7_wC.png",
+"name": "bEgyDvXL6MzVfnou7_wC.png",
+"old_name": "Comedy_Central.png",
+"old_title": "Comedy_Central"
+}
+],
+"regMainImage": {
+"date": "Tue, 11 May 2021 08:55:38 -0500",
+"extension": "png",
+"file": "https://estudio57.net/apirestprujula/views/img/anuncios/uRzNKVT8HSovrt2Um7Lp.png",
+"name": "uRzNKVT8HSovrt2Um7Lp.png",
+"old_name": "bbc-america.png",
+"old_title": "bbc-america",
+"replaced": false,
+"size": 9772,
+"size2": "9.54 KB",
+"title": "uRzNKVT8HSovrt2Um7Lp",
+"type": "image/png",
+"uploaded": true
+},
+"regDealImage": {
+"date": "Tue, 11 May 2021 08:55:40 -0500",
+"extension": "png",
+"file": "https://estudio57.net/apirestprujula/views/img/anuncios/LbQegUCcA9TjlNRSPdFB.png",
+"name": "LbQegUCcA9TjlNRSPdFB.png",
+"old_name": "Cartoon_Network.png",
+"old_title": "Cartoon_Network",
+"replaced": false,
+"size": 20487,
+"size2": "20.01 KB",
+"title": "LbQegUCcA9TjlNRSPdFB",
+"type": "image/png",
+"uploaded": true
+},
+"regAmenities": {
+"camping_mochila": true,
+"camping_baul": true,
+"agua": true,
+"luz": true,
+"tocador": true,
+"cocinas": true,
+"bbq": true,
+"fogata": true,
+"historico": true,
+"ecologia": true,
+"agricola": true,
+"reactivo_pasivo": true,
+"reactivo_activo": true,
+"recreacion_piscinas": true,
+"recreacion_acuaticas": true,
+"recreacion_veredas": true,
+"recreacion_espeleologia": true,
+"recreacion_kayac_paddle_balsas": true,
+"recreacion_cocina": true,
+"recreacion_pajaros": true,
+"recreacion_alpinismo": true,
+"recreacion_zipline": true,
+"paracaidas": true,
+"recreacion_areas": true,
+"recreacion_animales": true,
+"equipos_mesas": true,
+"equipos_sillas": true,
+"equipos_estufas": true
+}
+}

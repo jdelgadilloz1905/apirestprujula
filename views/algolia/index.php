@@ -13,9 +13,9 @@ $method = str_replace("-","",$rutas[2]);
 
 switch ($method){
 
-    case  "publication":
+    case  "publications":
 
-        $respuesta = ControllerUsers::ctrLoginUser($obj);
+        $respuesta = ControllerAlgolia::ctrGetAllPublications();
 
         echo $respuesta;
 

@@ -1,935 +1,1871 @@
 [
-  {
-    "titulo": "Camping en oferta Exclusiva 2021!",
-    "precio": "25000",
-    "descripcion": "descripcion para pruebas ...",
-    "media": "medio de pago definitivo",
-    "personas": "2",
-    "oferta": "1",
-    "monto_descuento": "25",
-    "id_categoria": "4",
-    "nombre_categoria": "vacaciones",
-    "direccion": "San Juan, Puerto Rico, Estados Unidos de América",
-    "ciudad": "Estados Unidos de América",
-    "lat": "-66.1167",
-    "lng": "18.4653",
-    "direccion_referencia": "direccion de donde se encuentra el camping",
-    "telefono": "02128700824",
-    "imagen_principal": {
-      "date": "Mon, 17 May 2021 21:10:09 -0500",
-      "extension": "jpg",
-      "file": "views/img/anuncios/r_ov70j4pcPwhs2IHEXi.jpg",
-      "name": "r_ov70j4pcPwhs2IHEXi.jpg",
-      "old_name": "kidstv.jpg",
-      "old_title": "kidstv",
-      "replaced": false,
-      "size": 18097,
-      "size2": "17.67 KB",
-      "title": "r_ov70j4pcPwhs2IHEXi",
-      "type": "image/jpeg",
-      "uploaded": true
-    },
-    "imagen_oferta": {
-      "date": "Mon, 17 May 2021 21:10:12 -0500",
-      "extension": "png",
-      "file": "views/img/anuncios/DQyvi8z1rIHc40jCJSAf.png",
-      "name": "DQyvi8z1rIHc40jCJSAf.png",
-      "old_name": "CNBC.png",
-      "old_title": "CNBC",
-      "replaced": false,
-      "size": 58388,
-      "size2": "57.02 KB",
-      "title": "DQyvi8z1rIHc40jCJSAf",
-      "type": "image/png",
-      "uploaded": true
-    },
-    "imagen_galeria": [
-      {
-        "uid": "rc-upload-1621303786869-8",
-        "image": "views/img/anuncios/65Mzl1FgcDfP7NVeW8CB.png",
-        "name": "65Mzl1FgcDfP7NVeW8CB.png",
-        "old_name": "American_Heroes_Channel.png",
-        "old_title": "American_Heroes_Channel"
-      },
-      {
-        "uid": "rc-upload-1621303786869-10",
-        "image": "views/img/anuncios/xpmjhavJ851SRkcqQiBY.png",
-        "name": "xpmjhavJ851SRkcqQiBY.png",
-        "old_name": "Atrescine_logo.svg.png",
-        "old_title": "Atrescine_logo.svg"
-      },
-      {
-        "uid": "rc-upload-1621303786869-9",
-        "image": "views/img/anuncios/Rp7GOuA5lMw0TE3exoFh.png",
-        "name": "Rp7GOuA5lMw0TE3exoFh.png",
-        "old_name": "Animal_Planet.png",
-        "old_title": "Animal_Planet"
-      },
-      {
-        "uid": "rc-upload-1621303786869-11",
-        "image": "views/img/anuncios/OhtxQ3q9MXgdYsocmKWk.png",
-        "name": "OhtxQ3q9MXgdYsocmKWk.png",
-        "old_name": "Atreseries_logo.svg.png",
-        "old_title": "Atreseries_logo.svg"
-      },
-      {
-        "uid": "rc-upload-1621303786869-12",
-        "image": "views/img/anuncios/Uk9iyvXo5rCZPh1EW0q8.png",
-        "name": "Uk9iyvXo5rCZPh1EW0q8.png",
-        "old_name": "Comedy_Central.png",
-        "old_title": "Comedy_Central"
-      }
-    ],
-    "calificacion": "0",
-    "estado": "1",
-    "fecha_creacion": "2021-05-17 22:10:50",
-    "vistas": "0",
-    "reservaciones": "0",
-    "fin_oferta": null,
-    "amenidades": {
-      "camping_mochila": null,
-      "camping_baul": null,
-      "agua": null,
-      "luz": null,
-      "tocador": null,
-      "cocinas": null,
-      "bbq": null,
-      "fogata": null,
-      "historico": null,
-      "ecologia": null,
-      "agricola": null,
-      "reactivo_pasivo": null,
-      "reactivo_activo": null,
-      "recreacion_piscinas": null,
-      "recreacion_acuaticas": null,
-      "recreacion_veredas": null,
-      "recreacion_espeleologia": null,
-      "recreacion_kayac_paddle_balsas": null,
-      "recreacion_cocina": null,
-      "recreacion_pajaros": null,
-      "recreacion_alpinismo": null,
-      "recreacion_zipline": null,
-      "paracaidas": null,
-      "recreacion_areas": null,
-      "recreacion_animales": null,
-      "equipos_mesas": null,
-      "equipos_sillas": null,
-      "equipos_estufas": null
-    }
-  },
-  {
-    "titulo": "Camping en oferta",
-    "precio": "16000",
-    "descripcion": "descripcion de prueba",
-    "media": "medio de pago",
-    "personas": "7",
-    "oferta": "1",
-    "monto_descuento": "50",
-    "id_categoria": "1",
-    "nombre_categoria": "reservaciones",
-    "direccion": "San Juan, Puerto Rico, Estados Unidos de América",
-    "ciudad": "Estados Unidos de América",
-    "lat": "-66.1167",
-    "lng": "18.4653",
-    "direccion_referencia": "direccion exacta",
-    "telefono": "02128700824",
-    "imagen_principal": {
-      "date": "Mon, 17 May 2021 20:19:53 -0500",
-      "extension": "png",
-      "file": "views/img/anuncios/xyhS9ZU8_IwpjnAqNa0K.png",
-      "name": "xyhS9ZU8_IwpjnAqNa0K.png",
-      "old_name": "bbc-america.png",
-      "old_title": "bbc-america",
-      "replaced": false,
-      "size": 9772,
-      "size2": "9.54 KB",
-      "title": "xyhS9ZU8_IwpjnAqNa0K",
-      "type": "image/png",
-      "uploaded": true
-    },
-    "imagen_oferta": {
-      "date": "Mon, 17 May 2021 20:19:55 -0500",
-      "extension": "png",
-      "file": "views/img/anuncios/UIQRhtE1JqszcoSr2yK0.png",
-      "name": "UIQRhtE1JqszcoSr2yK0.png",
-      "old_name": "Cartoon_Network - copia.png",
-      "old_title": "Cartoon_Network - copia",
-      "replaced": false,
-      "size": 20487,
-      "size2": "20.01 KB",
-      "title": "UIQRhtE1JqszcoSr2yK0",
-      "type": "image/png",
-      "uploaded": true
-    },
-    "imagen_galeria": [
-      {
-        "uid": "rc-upload-1621300774867-10",
-        "image": "views/img/anuncios/vmSa9C0FY6OLEkM2I_W3.png",
-        "name": "vmSa9C0FY6OLEkM2I_W3.png",
-        "old_name": "Cinemax_(Yellow).svg.png",
-        "old_title": "Cinemax_(Yellow).svg"
-      },
-      {
-        "uid": "rc-upload-1621300774867-8",
-        "image": "views/img/anuncios/k3OVHhd_joquW0D9p5K1.png",
-        "name": "k3OVHhd_joquW0D9p5K1.png",
-        "old_name": "Cartoon_Network.png",
-        "old_title": "Cartoon_Network"
-      },
-      {
-        "uid": "rc-upload-1621300774867-9",
-        "image": "views/img/anuncios/BxRwf2YDzyU9daIoH1hV.png",
-        "name": "BxRwf2YDzyU9daIoH1hV.png",
-        "old_name": "Cinemax_(Yellow).svg - copia.png",
-        "old_title": "Cinemax_(Yellow).svg - copia"
-      },
-      {
-        "uid": "rc-upload-1621300774867-12",
-        "image": "views/img/anuncios/bnUk2JAea6vqlhmNBudx.jpg",
-        "name": "bnUk2JAea6vqlhmNBudx.jpg",
-        "old_name": "cinemaxeast.jpg",
-        "old_title": "cinemaxeast"
-      },
-      {
-        "uid": "rc-upload-1621300774867-11",
-        "image": "views/img/anuncios/_YnkuTDCz5Fia2t0A1dP.jpg",
-        "name": "_YnkuTDCz5Fia2t0A1dP.jpg",
-        "old_name": "cinemaxeast - copia.jpg",
-        "old_title": "cinemaxeast - copia"
-      }
-    ],
-    "calificacion": "0",
-    "estado": "1",
-    "fecha_creacion": "2021-05-17 21:20:17",
-    "vistas": "0",
-    "reservaciones": "0",
-    "fin_oferta": null,
-    "amenidades": {
-      "camping_mochila": null,
-      "camping_baul": null,
-      "agua": null,
-      "luz": null,
-      "tocador": null,
-      "cocinas": null,
-      "bbq": null,
-      "fogata": null,
-      "historico": null,
-      "ecologia": null,
-      "agricola": null,
-      "reactivo_pasivo": null,
-      "reactivo_activo": null,
-      "recreacion_piscinas": null,
-      "recreacion_acuaticas": null,
-      "recreacion_veredas": null,
-      "recreacion_espeleologia": null,
-      "recreacion_kayac_paddle_balsas": null,
-      "recreacion_cocina": null,
-      "recreacion_pajaros": null,
-      "recreacion_alpinismo": null,
-      "recreacion_zipline": null,
-      "paracaidas": null,
-      "recreacion_areas": null,
-      "recreacion_animales": null,
-      "equipos_mesas": null,
-      "equipos_sillas": null,
-      "equipos_estufas": null
-    }
-  },
-  {
-    "titulo": "Camping en oferta",
-    "precio": "15000",
-    "descripcion": "casa en full oportunidad",
-    "media": "medio de pago",
-    "personas": "4",
-    "oferta": "1",
-    "monto_descuento": "25",
-    "id_categoria": "2",
-    "nombre_categoria": "viajes",
-    "direccion": "San Juan, Puerto Rico, Estados Unidos de América",
-    "ciudad": "Estados Unidos de América",
-    "lat": "-66.1167",
-    "lng": "18.4653",
-    "direccion_referencia": "direccion exacta de referencia",
-    "telefono": "02128700824",
-    "imagen_principal": {
-      "date": "Mon, 17 May 2021 20:00:10 -0500",
-      "extension": "png",
-      "file": "views/img/anuncios/VNFshpAI3LMRZyf7OExJ.png",
-      "name": "VNFshpAI3LMRZyf7OExJ.png",
-      "old_name": "Atrescine_logo.svg.png",
-      "old_title": "Atrescine_logo.svg",
-      "replaced": false,
-      "size": 40505,
-      "size2": "39.56 KB",
-      "title": "VNFshpAI3LMRZyf7OExJ",
-      "type": "image/png",
-      "uploaded": true
-    },
-    "imagen_oferta": {
-      "date": "Mon, 17 May 2021 20:00:14 -0500",
-      "extension": "png",
-      "file": "views/img/anuncios/g9NFz3TqjDiUwHBQIOVK.png",
-      "name": "g9NFz3TqjDiUwHBQIOVK.png",
-      "old_name": "Comedy_Central.png",
-      "old_title": "Comedy_Central",
-      "replaced": false,
-      "size": 74197,
-      "size2": "72.46 KB",
-      "title": "g9NFz3TqjDiUwHBQIOVK",
-      "type": "image/png",
-      "uploaded": true
-    },
-    "imagen_galeria": [
-      {
-        "uid": "rc-upload-1621299591877-10",
-        "image": "views/img/anuncios/cFmdGlsr5fjZ6nOTK87W.png",
-        "name": "cFmdGlsr5fjZ6nOTK87W.png",
-        "old_name": "bbc-america.png",
-        "old_title": "bbc-america"
-      },
-      {
-        "uid": "rc-upload-1621299591877-8",
-        "image": "views/img/anuncios/QCB7Ltpqy_SH6W4IEchP.png",
-        "name": "QCB7Ltpqy_SH6W4IEchP.png",
-        "old_name": "Atrescine_logo.svg.png",
-        "old_title": "Atrescine_logo.svg"
-      },
-      {
-        "uid": "rc-upload-1621299591877-11",
-        "image": "views/img/anuncios/KGzTxAHEewStC5iL7cfB.png",
-        "name": "KGzTxAHEewStC5iL7cfB.png",
-        "old_name": "bbcwored.png",
-        "old_title": "bbcwored"
-      },
-      {
-        "uid": "rc-upload-1621299591877-9",
-        "image": "views/img/anuncios/Hpfd_7uCDi2EUn9Gb3Tw.png",
-        "name": "Hpfd_7uCDi2EUn9Gb3Tw.png",
-        "old_name": "Atreseries_logo.svg.png",
-        "old_title": "Atreseries_logo.svg"
-      },
-      {
-        "uid": "rc-upload-1621299591877-12",
-        "image": "views/img/anuncios/M7Wz5Jd2QFbq39IYPrmU.png",
-        "name": "M7Wz5Jd2QFbq39IYPrmU.png",
-        "old_name": "BET_logo.png",
-        "old_title": "BET_logo"
-      }
-    ],
-    "calificacion": "0",
-    "estado": "1",
-    "fecha_creacion": "2021-05-17 21:00:42",
-    "vistas": "0",
-    "reservaciones": "0",
-    "fin_oferta": null,
-    "amenidades": {
-      "camping_mochila": null,
-      "camping_baul": null,
-      "agua": null,
-      "luz": null,
-      "tocador": null,
-      "cocinas": null,
-      "bbq": null,
-      "fogata": null,
-      "historico": null,
-      "ecologia": null,
-      "agricola": null,
-      "reactivo_pasivo": null,
-      "reactivo_activo": null,
-      "recreacion_piscinas": null,
-      "recreacion_acuaticas": null,
-      "recreacion_veredas": null,
-      "recreacion_espeleologia": null,
-      "recreacion_kayac_paddle_balsas": null,
-      "recreacion_cocina": null,
-      "recreacion_pajaros": null,
-      "recreacion_alpinismo": null,
-      "recreacion_zipline": null,
-      "paracaidas": null,
-      "recreacion_areas": null,
-      "recreacion_animales": null,
-      "equipos_mesas": null,
-      "equipos_sillas": null,
-      "equipos_estufas": null
-    }
-  },
-  {
-    "titulo": "Casa en oferta",
-    "precio": "12000",
-    "descripcion": "descripcion de prueba",
-    "media": "medio de pago",
-    "personas": "3",
-    "oferta": "1",
-    "monto_descuento": "50",
-    "id_categoria": "3",
-    "nombre_categoria": "turismo",
-    "direccion": "San Juan, Puerto Rico, Estados Unidos de América",
-    "ciudad": "Estados Unidos de América",
-    "lat": "-66.1167",
-    "lng": "18.4653",
-    "direccion_referencia": "direccion exacta de prueba aqui",
-    "telefono": "02128700824",
-    "imagen_principal": {
-      "date": "Mon, 17 May 2021 18:56:59 -0500",
-      "extension": "png",
-      "file": "views/img/anuncios/NSvy_RPkOeXI97d4LGat.png",
-      "name": "NSvy_RPkOeXI97d4LGat.png",
-      "old_name": "bbcwored.png",
-      "old_title": "bbcwored",
-      "replaced": false,
-      "size": 3932,
-      "size2": "3.84 KB",
-      "title": "NSvy_RPkOeXI97d4LGat",
-      "type": "image/png",
-      "uploaded": true
-    },
-    "imagen_oferta": {
-      "date": "Mon, 17 May 2021 18:57:02 -0500",
-      "extension": "jpg",
-      "file": "views/img/anuncios/mU2JbrcVzETRSQylB7Fj.jpg",
-      "name": "mU2JbrcVzETRSQylB7Fj.jpg",
-      "old_name": "cinemaxeast - copia.jpg",
-      "old_title": "cinemaxeast - copia",
-      "replaced": false,
-      "size": 12717,
-      "size2": "12.42 KB",
-      "title": "mU2JbrcVzETRSQylB7Fj",
-      "type": "image/jpeg",
-      "uploaded": true
-    },
-    "imagen_galeria": [
-      {
-        "uid": "rc-upload-1621295802391-8",
-        "image": "views/img/anuncios/sTw_hFR3gWtH8G5Z7kA4.png",
-        "name": "sTw_hFR3gWtH8G5Z7kA4.png",
-        "old_name": "Atreseries_logo.svg.png",
-        "old_title": "Atreseries_logo.svg",
-        "position": "8"
-      },
-      {
-        "uid": "rc-upload-1621295802391-9",
-        "image": "views/img/anuncios/CeUlY_vGHJ0NDap15uQt.png",
-        "name": "CeUlY_vGHJ0NDap15uQt.png",
-        "old_name": "bbc-america.png",
-        "old_title": "bbc-america",
-        "position": "9"
-      },
-      {
-        "uid": "rc-upload-1621295802391-10",
-        "image": "views/img/anuncios/5ICi13gxMmlYsSGEqUuW.png",
-        "name": "5ICi13gxMmlYsSGEqUuW.png",
-        "old_name": "bbcwored.png",
-        "old_title": "bbcwored",
-        "position": "10"
-      },
-      {
-        "uid": "rc-upload-1621295802391-11",
-        "image": "views/img/anuncios/xgwfKEDIT8qkR5sm9z2p.png",
-        "name": "xgwfKEDIT8qkR5sm9z2p.png",
-        "old_name": "BET_logo.png",
-        "old_title": "BET_logo",
-        "position": "11"
-      },
-      {
-        "uid": "rc-upload-1621295802391-12",
-        "image": "views/img/anuncios/9a4hObmyYIDUAHkznJdQ.jpg",
-        "name": "9a4hObmyYIDUAHkznJdQ.jpg",
-        "old_name": "cinemaxeast - copia.jpg",
-        "old_title": "cinemaxeast - copia",
-        "position": "12"
-      }
-    ],
-    "calificacion": "0",
-    "estado": "1",
-    "fecha_creacion": "2021-05-17 20:27:24",
-    "vistas": "0",
-    "reservaciones": "0",
-    "fin_oferta": null,
-    "amenidades": {
-      "camping_mochila": null,
-      "camping_baul": null,
-      "agua": null,
-      "luz": null,
-      "tocador": null,
-      "cocinas": null,
-      "bbq": null,
-      "fogata": null,
-      "historico": null,
-      "ecologia": null,
-      "agricola": null,
-      "reactivo_pasivo": null,
-      "reactivo_activo": null,
-      "recreacion_piscinas": null,
-      "recreacion_acuaticas": null,
-      "recreacion_veredas": null,
-      "recreacion_espeleologia": null,
-      "recreacion_kayac_paddle_balsas": null,
-      "recreacion_cocina": null,
-      "recreacion_pajaros": null,
-      "recreacion_alpinismo": null,
-      "recreacion_zipline": null,
-      "paracaidas": null,
-      "recreacion_areas": null,
-      "recreacion_animales": null,
-      "equipos_mesas": null,
-      "equipos_sillas": null,
-      "equipos_estufas": null
-    }
-  },
-  {
-    "titulo": "Casa en oferta",
-    "precio": "12000",
-    "descripcion": "descripcion de prueba",
-    "media": "medio de pago",
-    "personas": "3",
-    "oferta": "1",
-    "monto_descuento": "50",
-    "id_categoria": "3",
-    "nombre_categoria": "turismo",
-    "direccion": "San Juan, Puerto Rico, Estados Unidos de América",
-    "ciudad": "Estados Unidos de América",
-    "lat": "-66.1167",
-    "lng": "18.4653",
-    "direccion_referencia": "direccion exacta de prueba aqui",
-    "telefono": "02128700824",
-    "imagen_principal": {
-      "date": "Mon, 17 May 2021 18:56:59 -0500",
-      "extension": "png",
-      "file": "views/img/anuncios/NSvy_RPkOeXI97d4LGat.png",
-      "name": "NSvy_RPkOeXI97d4LGat.png",
-      "old_name": "bbcwored.png",
-      "old_title": "bbcwored",
-      "replaced": false,
-      "size": 3932,
-      "size2": "3.84 KB",
-      "title": "NSvy_RPkOeXI97d4LGat",
-      "type": "image/png",
-      "uploaded": true
-    },
-    "imagen_oferta": {
-      "date": "Mon, 17 May 2021 18:57:02 -0500",
-      "extension": "jpg",
-      "file": "views/img/anuncios/mU2JbrcVzETRSQylB7Fj.jpg",
-      "name": "mU2JbrcVzETRSQylB7Fj.jpg",
-      "old_name": "cinemaxeast - copia.jpg",
-      "old_title": "cinemaxeast - copia",
-      "replaced": false,
-      "size": 12717,
-      "size2": "12.42 KB",
-      "title": "mU2JbrcVzETRSQylB7Fj",
-      "type": "image/jpeg",
-      "uploaded": true
-    },
-    "imagen_galeria": [
-      {
-        "uid": "rc-upload-1621295802391-8",
-        "image": "views/img/anuncios/sTw_hFR3gWtH8G5Z7kA4.png",
-        "name": "sTw_hFR3gWtH8G5Z7kA4.png",
-        "old_name": "Atreseries_logo.svg.png",
-        "old_title": "Atreseries_logo.svg",
-        "position": "8"
-      },
-      {
-        "uid": "rc-upload-1621295802391-9",
-        "image": "views/img/anuncios/CeUlY_vGHJ0NDap15uQt.png",
-        "name": "CeUlY_vGHJ0NDap15uQt.png",
-        "old_name": "bbc-america.png",
-        "old_title": "bbc-america",
-        "position": "9"
-      },
-      {
-        "uid": "rc-upload-1621295802391-10",
-        "image": "views/img/anuncios/5ICi13gxMmlYsSGEqUuW.png",
-        "name": "5ICi13gxMmlYsSGEqUuW.png",
-        "old_name": "bbcwored.png",
-        "old_title": "bbcwored",
-        "position": "10"
-      },
-      {
-        "uid": "rc-upload-1621295802391-11",
-        "image": "views/img/anuncios/xgwfKEDIT8qkR5sm9z2p.png",
-        "name": "xgwfKEDIT8qkR5sm9z2p.png",
-        "old_name": "BET_logo.png",
-        "old_title": "BET_logo",
-        "position": "11"
-      },
-      {
-        "uid": "rc-upload-1621295802391-12",
-        "image": "views/img/anuncios/9a4hObmyYIDUAHkznJdQ.jpg",
-        "name": "9a4hObmyYIDUAHkznJdQ.jpg",
-        "old_name": "cinemaxeast - copia.jpg",
-        "old_title": "cinemaxeast - copia",
-        "position": "12"
-      }
-    ],
-    "calificacion": "0",
-    "estado": "1",
-    "fecha_creacion": "2021-05-17 20:13:38",
-    "vistas": "0",
-    "reservaciones": "0",
-    "fin_oferta": null,
-    "amenidades": {
-      "camping_mochila": null,
-      "camping_baul": null,
-      "agua": null,
-      "luz": null,
-      "tocador": null,
-      "cocinas": null,
-      "bbq": null,
-      "fogata": null,
-      "historico": null,
-      "ecologia": null,
-      "agricola": null,
-      "reactivo_pasivo": null,
-      "reactivo_activo": null,
-      "recreacion_piscinas": null,
-      "recreacion_acuaticas": null,
-      "recreacion_veredas": null,
-      "recreacion_espeleologia": null,
-      "recreacion_kayac_paddle_balsas": null,
-      "recreacion_cocina": null,
-      "recreacion_pajaros": null,
-      "recreacion_alpinismo": null,
-      "recreacion_zipline": null,
-      "paracaidas": null,
-      "recreacion_areas": null,
-      "recreacion_animales": null,
-      "equipos_mesas": null,
-      "equipos_sillas": null,
-      "equipos_estufas": null
-    }
-  },
-  {
-    "titulo": "Casa en oferta!",
-    "precio": "12000",
-    "descripcion": "descripcion de prueba",
-    "media": "Medio de pago",
-    "personas": "2",
-    "oferta": "1",
-    "monto_descuento": "50",
-    "id_categoria": "1",
-    "nombre_categoria": "reservaciones",
-    "direccion": "San Juan, República Dominicana",
-    "ciudad": "República Dominicana",
-    "lat": "-71.2863",
-    "lng": "18.8797",
-    "direccion_referencia": "direccion exacta de prueba",
-    "telefono": "02128700824",
-    "imagen_principal": {
-      "date": "Tue, 11 May 2021 08:55:38 -0500",
-      "extension": "png",
-      "file": "views/img/anuncios/uRzNKVT8HSovrt2Um7Lp.png",
-      "name": "uRzNKVT8HSovrt2Um7Lp.png",
-      "old_name": "bbc-america.png",
-      "old_title": "bbc-america",
-      "replaced": false,
-      "size": 9772,
-      "size2": "9.54 KB",
-      "title": "uRzNKVT8HSovrt2Um7Lp",
-      "type": "image/png",
-      "uploaded": true
-    },
-    "imagen_oferta": {
-      "date": "Tue, 11 May 2021 08:55:40 -0500",
-      "extension": "png",
-      "file": "views/img/anuncios/LbQegUCcA9TjlNRSPdFB.png",
-      "name": "LbQegUCcA9TjlNRSPdFB.png",
-      "old_name": "Cartoon_Network.png",
-      "old_title": "Cartoon_Network",
-      "replaced": false,
-      "size": 20487,
-      "size2": "20.01 KB",
-      "title": "LbQegUCcA9TjlNRSPdFB",
-      "type": "image/png",
-      "uploaded": true
-    },
-    "imagen_galeria": [
-      {
-        "uid": "rc-upload-1620741320988-9",
-        "image": "views/img/anuncios/0oekXaqbWfHrcNvnTMxp.png",
-        "name": "0oekXaqbWfHrcNvnTMxp.png",
-        "old_name": "cnt.png",
-        "old_title": "cnt"
-      },
-      {
-        "uid": "rc-upload-1620741320988-8",
-        "image": "views/img/anuncios/6dMy3uvLtPNeRlWcBOSn.png",
-        "name": "6dMy3uvLtPNeRlWcBOSn.png",
-        "old_name": "CNBC.png",
-        "old_title": "CNBC"
-      },
-      {
-        "uid": "rc-upload-1620741320988-11",
-        "image": "views/img/anuncios/oVduigYIb0zW3H8ylRe1.png",
-        "name": "oVduigYIb0zW3H8ylRe1.png",
-        "old_name": "cooking.png",
-        "old_title": "cooking"
-      },
-      {
-        "uid": "rc-upload-1620741320988-10",
-        "image": "views/img/anuncios/bEgyDvXL6MzVfnou7_wC.png",
-        "name": "bEgyDvXL6MzVfnou7_wC.png",
-        "old_name": "Comedy_Central.png",
-        "old_title": "Comedy_Central"
-      }
-    ],
-    "calificacion": "0",
-    "estado": "1",
-    "fecha_creacion": "2021-05-17 20:05:37",
-    "vistas": "0",
-    "reservaciones": "0",
-    "fin_oferta": null,
-    "amenidades": {
-      "camping_mochila": null,
-      "camping_baul": null,
-      "agua": null,
-      "luz": null,
-      "tocador": null,
-      "cocinas": null,
-      "bbq": null,
-      "fogata": null,
-      "historico": null,
-      "ecologia": null,
-      "agricola": null,
-      "reactivo_pasivo": null,
-      "reactivo_activo": null,
-      "recreacion_piscinas": null,
-      "recreacion_acuaticas": null,
-      "recreacion_veredas": null,
-      "recreacion_espeleologia": null,
-      "recreacion_kayac_paddle_balsas": null,
-      "recreacion_cocina": null,
-      "recreacion_pajaros": null,
-      "recreacion_alpinismo": null,
-      "recreacion_zipline": null,
-      "paracaidas": null,
-      "recreacion_areas": null,
-      "recreacion_animales": null,
-      "equipos_mesas": null,
-      "equipos_sillas": null,
-      "equipos_estufas": null
-    }
-  },
-  {
-    "titulo": "Casa en oferta!",
-    "precio": "12000",
-    "descripcion": "descripcion de prueba",
-    "media": "Medio de pago",
-    "personas": "2",
-    "oferta": "1",
-    "monto_descuento": "50",
-    "id_categoria": "1",
-    "nombre_categoria": "reservaciones",
-    "direccion": "San Juan, República Dominicana",
-    "ciudad": "República Dominicana",
-    "lat": "-71.2863",
-    "lng": "18.8797",
-    "direccion_referencia": "direccion exacta de prueba",
-    "telefono": "02128700824",
-    "imagen_principal": {
-      "date": "Tue, 11 May 2021 08:55:38 -0500",
-      "extension": "png",
-      "file": "views/img/anuncios/uRzNKVT8HSovrt2Um7Lp.png",
-      "name": "uRzNKVT8HSovrt2Um7Lp.png",
-      "old_name": "bbc-america.png",
-      "old_title": "bbc-america",
-      "replaced": false,
-      "size": 9772,
-      "size2": "9.54 KB",
-      "title": "uRzNKVT8HSovrt2Um7Lp",
-      "type": "image/png",
-      "uploaded": true
-    },
-    "imagen_oferta": {
-      "date": "Tue, 11 May 2021 08:55:40 -0500",
-      "extension": "png",
-      "file": "views/img/anuncios/LbQegUCcA9TjlNRSPdFB.png",
-      "name": "LbQegUCcA9TjlNRSPdFB.png",
-      "old_name": "Cartoon_Network.png",
-      "old_title": "Cartoon_Network",
-      "replaced": false,
-      "size": 20487,
-      "size2": "20.01 KB",
-      "title": "LbQegUCcA9TjlNRSPdFB",
-      "type": "image/png",
-      "uploaded": true
-    },
-    "imagen_galeria": [
-      {
-        "uid": "rc-upload-1620741320988-9",
-        "image": "views/img/anuncios/0oekXaqbWfHrcNvnTMxp.png",
-        "name": "0oekXaqbWfHrcNvnTMxp.png",
-        "old_name": "cnt.png",
-        "old_title": "cnt"
-      },
-      {
-        "uid": "rc-upload-1620741320988-8",
-        "image": "views/img/anuncios/6dMy3uvLtPNeRlWcBOSn.png",
-        "name": "6dMy3uvLtPNeRlWcBOSn.png",
-        "old_name": "CNBC.png",
-        "old_title": "CNBC"
-      },
-      {
-        "uid": "rc-upload-1620741320988-11",
-        "image": "views/img/anuncios/oVduigYIb0zW3H8ylRe1.png",
-        "name": "oVduigYIb0zW3H8ylRe1.png",
-        "old_name": "cooking.png",
-        "old_title": "cooking"
-      },
-      {
-        "uid": "rc-upload-1620741320988-10",
-        "image": "views/img/anuncios/bEgyDvXL6MzVfnou7_wC.png",
-        "name": "bEgyDvXL6MzVfnou7_wC.png",
-        "old_name": "Comedy_Central.png",
-        "old_title": "Comedy_Central"
-      }
-    ],
-    "calificacion": "0",
-    "estado": "1",
-    "fecha_creacion": "2021-05-17 20:05:30",
-    "vistas": "0",
-    "reservaciones": "0",
-    "fin_oferta": null,
-    "amenidades": {
-      "camping_mochila": null,
-      "camping_baul": null,
-      "agua": null,
-      "luz": null,
-      "tocador": null,
-      "cocinas": null,
-      "bbq": null,
-      "fogata": null,
-      "historico": null,
-      "ecologia": null,
-      "agricola": null,
-      "reactivo_pasivo": null,
-      "reactivo_activo": null,
-      "recreacion_piscinas": null,
-      "recreacion_acuaticas": null,
-      "recreacion_veredas": null,
-      "recreacion_espeleologia": null,
-      "recreacion_kayac_paddle_balsas": null,
-      "recreacion_cocina": null,
-      "recreacion_pajaros": null,
-      "recreacion_alpinismo": null,
-      "recreacion_zipline": null,
-      "paracaidas": null,
-      "recreacion_areas": null,
-      "recreacion_animales": null,
-      "equipos_mesas": null,
-      "equipos_sillas": null,
-      "equipos_estufas": null
-    }
-  },
-  {
-    "titulo": "Casa en oferta!",
-    "precio": "12000",
-    "descripcion": "descripcion de prueba",
-    "media": "Medio de pago",
-    "personas": "2",
-    "oferta": "1",
-    "monto_descuento": "50",
-    "id_categoria": "1",
-    "nombre_categoria": "reservaciones",
-    "direccion": "San Juan, República Dominicana",
-    "ciudad": "República Dominicana",
-    "lat": "-71.2863",
-    "lng": "18.8797",
-    "direccion_referencia": "direccion exacta de prueba",
-    "telefono": "02128700824",
-    "imagen_principal": {
-      "date": "Tue, 11 May 2021 08:55:38 -0500",
-      "extension": "png",
-      "file": "views/img/anuncios/uRzNKVT8HSovrt2Um7Lp.png",
-      "name": "uRzNKVT8HSovrt2Um7Lp.png",
-      "old_name": "bbc-america.png",
-      "old_title": "bbc-america",
-      "replaced": false,
-      "size": 9772,
-      "size2": "9.54 KB",
-      "title": "uRzNKVT8HSovrt2Um7Lp",
-      "type": "image/png",
-      "uploaded": true
-    },
-    "imagen_oferta": {
-      "date": "Tue, 11 May 2021 08:55:40 -0500",
-      "extension": "png",
-      "file": "views/img/anuncios/LbQegUCcA9TjlNRSPdFB.png",
-      "name": "LbQegUCcA9TjlNRSPdFB.png",
-      "old_name": "Cartoon_Network.png",
-      "old_title": "Cartoon_Network",
-      "replaced": false,
-      "size": 20487,
-      "size2": "20.01 KB",
-      "title": "LbQegUCcA9TjlNRSPdFB",
-      "type": "image/png",
-      "uploaded": true
-    },
-    "imagen_galeria": [
-      {
-        "uid": "rc-upload-1620741320988-9",
-        "image": "views/img/anuncios/0oekXaqbWfHrcNvnTMxp.png",
-        "name": "0oekXaqbWfHrcNvnTMxp.png",
-        "old_name": "cnt.png",
-        "old_title": "cnt"
-      },
-      {
-        "uid": "rc-upload-1620741320988-8",
-        "image": "views/img/anuncios/6dMy3uvLtPNeRlWcBOSn.png",
-        "name": "6dMy3uvLtPNeRlWcBOSn.png",
-        "old_name": "CNBC.png",
-        "old_title": "CNBC"
-      },
-      {
-        "uid": "rc-upload-1620741320988-11",
-        "image": "views/img/anuncios/oVduigYIb0zW3H8ylRe1.png",
-        "name": "oVduigYIb0zW3H8ylRe1.png",
-        "old_name": "cooking.png",
-        "old_title": "cooking"
-      },
-      {
-        "uid": "rc-upload-1620741320988-10",
-        "image": "views/img/anuncios/bEgyDvXL6MzVfnou7_wC.png",
-        "name": "bEgyDvXL6MzVfnou7_wC.png",
-        "old_name": "Comedy_Central.png",
-        "old_title": "Comedy_Central"
-      }
-    ],
-    "calificacion": "0",
-    "estado": "1",
-    "fecha_creacion": "2021-05-12 22:23:18",
-    "vistas": "0",
-    "reservaciones": "0",
-    "fin_oferta": null,
-    "amenidades": {
-      "camping_mochila": "1",
-      "camping_baul": "1",
-      "agua": "1",
-      "luz": "1",
-      "tocador": "1",
-      "cocinas": "1",
-      "bbq": "1",
-      "fogata": "1",
-      "historico": "1",
-      "ecologia": "1",
-      "agricola": "1",
-      "reactivo_pasivo": "1",
-      "reactivo_activo": "1",
-      "recreacion_piscinas": "1",
-      "recreacion_acuaticas": "1",
-      "recreacion_veredas": "1",
-      "recreacion_espeleologia": "1",
-      "recreacion_kayac_paddle_balsas": "1",
-      "recreacion_cocina": "1",
-      "recreacion_pajaros": "1",
-      "recreacion_alpinismo": "1",
-      "recreacion_zipline": "1",
-      "paracaidas": "1",
-      "recreacion_areas": "1",
-      "recreacion_animales": "1",
-      "equipos_mesas": "1",
-      "equipos_sillas": "1",
-      "equipos_estufas": "1"
-    }
-  }
+	{
+		"id": 33577,
+		"city": "San Francisco",
+		"thumbnail_url": "https://a1.muscache.com/ac/pictures/546722/9e670a28_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+		"medium_url": "https://a1.muscache.com/im/pictures/546722/9e670a28_original.jpg?aki_policy=medium",
+		"user_id": 145258,
+		"picture_url": "https://a1.muscache.com/ac/pictures/546722/9e670a28_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+		"xl_picture_url": "https://a1.muscache.com/ac/pictures/546722/9e670a28_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+		"price": 190,
+		"native_currency": "USD",
+		"price_native": 190,
+		"price_formatted": "$190",
+		"lat": 37.76514606125046,
+		"lng": -122.39750094268479,
+		"country": "United States",
+		"name": "Potrero Hill Garden Suite",
+		"smart_location": "San Francisco, CA",
+		"has_double_blind_reviews": false,
+		"instant_bookable": false,
+		"bedrooms": 1,
+		"beds": 1,
+		"bathrooms": 1,
+		"market": "San Francisco",
+		"min_nights": 1,
+		"neighborhood": "Potrero Hill",
+		"person_capacity": 2,
+		"state": "CA",
+		"zipcode": "94107",
+		"user": {
+			"user": {
+				"id": 145258,
+				"first_name": "Mason",
+				"picture_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/algolia/men/honza.png",
+				"thumbnail_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/algolia/men/honza.png",
+				"has_profile_pic": true
+			}
+		},
+		"address": "Missouri St, San Francisco, CA 94107, United States",
+		"country_code": "US",
+		"cancellation_policy": "strict",
+		"property_type": "House",
+		"reviews_count": 394,
+		"room_type": "Entire home/apt",
+		"room_type_category": "entire_home",
+		"picture_urls": [
+			"https://a1.muscache.com/ac/pictures/546722/9e670a28_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/546742/57db5dfc_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/546739/373a4796_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70"
+		],
+		"thumbnail_urls": [
+			"https://a1.muscache.com/ac/pictures/546722/9e670a28_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/546742/57db5dfc_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/546739/373a4796_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70"
+		],
+		"xl_picture_urls": [
+			"https://a1.muscache.com/ac/pictures/546722/9e670a28_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/546742/57db5dfc_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/546739/373a4796_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70"
+		],
+		"picture_count": 64,
+		"_geoloc": {
+			"lat": 37.76514606125046,
+			"lng": -122.39750094268479
+		},
+		"objectID": "507106150",
+		"_highlightResult": {
+			"city": {
+				"value": "San Francisco",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"country": {
+				"value": "United States",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"name": {
+				"value": "Potrero Hill Garden Suite",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"zipcode": {
+				"value": "94107",
+				"matchLevel": "none",
+				"matchedWords": []
+			}
+		},
+		"__position": 1
+	},
+	{
+		"id": 10745,
+		"city": "Cambridge",
+		"thumbnail_url": "https://a2.muscache.com/ac/pictures/39994598/46b3f772_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+		"medium_url": "https://a2.muscache.com/im/pictures/39994598/46b3f772_original.jpg?aki_policy=medium",
+		"user_id": 1312,
+		"picture_url": "https://a2.muscache.com/ac/pictures/39994598/46b3f772_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+		"xl_picture_url": "https://a2.muscache.com/ac/pictures/39994598/46b3f772_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+		"price": 124,
+		"native_currency": "USD",
+		"price_native": 124,
+		"price_formatted": "$124",
+		"lat": 42.362987909136415,
+		"lng": -71.10652076483046,
+		"country": "United States",
+		"name": "JazzVille: Bn'B Boston & Cambridge",
+		"smart_location": "Cambridge, MA",
+		"has_double_blind_reviews": false,
+		"instant_bookable": false,
+		"bedrooms": 1,
+		"beds": 1,
+		"bathrooms": 2,
+		"market": "Boston",
+		"min_nights": 1,
+		"neighborhood": "Cambridge",
+		"person_capacity": 2,
+		"state": "MA",
+		"zipcode": "02139",
+		"user": {
+			"user": {
+				"id": 1312,
+				"first_name": "Emily",
+				"picture_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/women/3.jpg",
+				"thumbnail_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/women/3.jpg",
+				"has_profile_pic": true
+			}
+		},
+		"address": "Pearl St, Cambridge, MA 02139, United States",
+		"country_code": "US",
+		"cancellation_policy": "moderate",
+		"property_type": "Bed & Breakfast",
+		"reviews_count": 391,
+		"room_type": "Private room",
+		"room_type_category": "private_room",
+		"picture_urls": [
+			"https://a2.muscache.com/ac/pictures/39994598/46b3f772_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/39993854/73f09506_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/39993827/249ee61a_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70"
+		],
+		"thumbnail_urls": [
+			"https://a2.muscache.com/ac/pictures/39994598/46b3f772_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/39993854/73f09506_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/39993827/249ee61a_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70"
+		],
+		"xl_picture_urls": [
+			"https://a2.muscache.com/ac/pictures/39994598/46b3f772_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/39993854/73f09506_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/39993827/249ee61a_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70"
+		],
+		"picture_count": 27,
+		"_geoloc": {
+			"lat": 42.362987909136415,
+			"lng": -71.10652076483046
+		},
+		"objectID": "507178960",
+		"_highlightResult": {
+			"city": {
+				"value": "Cambridge",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"country": {
+				"value": "United States",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"name": {
+				"value": "JazzVille: Bn'B Boston & Cambridge",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"zipcode": {
+				"value": "02139",
+				"matchLevel": "none",
+				"matchedWords": []
+			}
+		},
+		"__position": 2
+	},
+	{
+		"id": 66288,
+		"city": "Boston",
+		"thumbnail_url": "https://a0.muscache.com/ac/pictures/498193/d635fa24_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+		"medium_url": "https://a0.muscache.com/im/pictures/498193/d635fa24_original.jpg?aki_policy=medium",
+		"user_id": 324630,
+		"picture_url": "https://a0.muscache.com/ac/pictures/498193/d635fa24_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+		"xl_picture_url": "https://a0.muscache.com/ac/pictures/498193/d635fa24_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+		"price": 75,
+		"native_currency": "USD",
+		"price_native": 75,
+		"price_formatted": "$75",
+		"lat": 42.33215157576381,
+		"lng": -71.10674178342134,
+		"country": "United States",
+		"name": "Architects Live-in Studio in Boston",
+		"smart_location": "Boston, MA",
+		"has_double_blind_reviews": false,
+		"instant_bookable": true,
+		"bedrooms": 0,
+		"beds": 1,
+		"bathrooms": 1,
+		"market": "Boston",
+		"min_nights": 2,
+		"neighborhood": "Mission Hill",
+		"person_capacity": 2,
+		"state": "MA",
+		"zipcode": "02120",
+		"user": {
+			"user": {
+				"id": 324630,
+				"first_name": "Sara",
+				"picture_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/women/39.jpg",
+				"thumbnail_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/women/39.jpg",
+				"has_profile_pic": true
+			}
+		},
+		"address": "Wait St, Boston, MA 02120, United States",
+		"country_code": "US",
+		"cancellation_policy": "moderate",
+		"property_type": "Apartment",
+		"reviews_count": 352,
+		"room_type": "Entire home/apt",
+		"room_type_category": "entire_home",
+		"picture_urls": [
+			"https://a0.muscache.com/ac/pictures/498193/d635fa24_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/498187/e09dd7c3_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/498205/969f1412_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70"
+		],
+		"thumbnail_urls": [
+			"https://a0.muscache.com/ac/pictures/498193/d635fa24_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/498187/e09dd7c3_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/498205/969f1412_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70"
+		],
+		"xl_picture_urls": [
+			"https://a0.muscache.com/ac/pictures/498193/d635fa24_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/498187/e09dd7c3_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/498205/969f1412_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70"
+		],
+		"picture_count": 20,
+		"_geoloc": {
+			"lat": 42.33215157576381,
+			"lng": -71.10674178342134
+		},
+		"objectID": "507177740",
+		"_highlightResult": {
+			"city": {
+				"value": "Boston",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"country": {
+				"value": "United States",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"name": {
+				"value": "Architects Live-in Studio in Boston",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"zipcode": {
+				"value": "02120",
+				"matchLevel": "none",
+				"matchedWords": []
+			}
+		},
+		"__position": 3
+	},
+	{
+		"id": 8739,
+		"city": "San Francisco",
+		"thumbnail_url": "https://a0.muscache.com/ac/pictures/80811/7a57d0e7_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+		"medium_url": "https://a0.muscache.com/im/pictures/80811/7a57d0e7_original.jpg?aki_policy=medium",
+		"user_id": 7149,
+		"picture_url": "https://a0.muscache.com/ac/pictures/80811/7a57d0e7_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+		"xl_picture_url": "https://a0.muscache.com/ac/pictures/80811/7a57d0e7_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+		"price": 120,
+		"native_currency": "USD",
+		"price_native": 120,
+		"price_formatted": "$120",
+		"lat": 37.75559189708064,
+		"lng": -122.42365687240562,
+		"country": "United States",
+		"name": "Mission Sunshine, with Private Bath",
+		"smart_location": "San Francisco, CA",
+		"has_double_blind_reviews": false,
+		"instant_bookable": false,
+		"bedrooms": 1,
+		"beds": 2,
+		"bathrooms": 1,
+		"market": "San Francisco",
+		"min_nights": 1,
+		"neighborhood": "Mission District",
+		"person_capacity": 3,
+		"state": "CA",
+		"zipcode": "94110",
+		"user": {
+			"user": {
+				"id": 7149,
+				"first_name": "Valdemar",
+				"picture_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/men/99.jpg",
+				"thumbnail_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/men/99.jpg",
+				"has_profile_pic": true
+			}
+		},
+		"address": "19th St, San Francisco, CA 94110, United States",
+		"country_code": "US",
+		"cancellation_policy": "moderate",
+		"property_type": "Apartment",
+		"reviews_count": 352,
+		"room_type": "Private room",
+		"room_type_category": "private_room",
+		"picture_urls": [
+			"https://a0.muscache.com/ac/pictures/80811/7a57d0e7_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/14371954/241b510a_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/80805/14fdeed9_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70"
+		],
+		"thumbnail_urls": [
+			"https://a0.muscache.com/ac/pictures/80811/7a57d0e7_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/14371954/241b510a_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/80805/14fdeed9_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70"
+		],
+		"xl_picture_urls": [
+			"https://a0.muscache.com/ac/pictures/80811/7a57d0e7_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/14371954/241b510a_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/80805/14fdeed9_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70"
+		],
+		"picture_count": 19,
+		"_geoloc": {
+			"lat": 37.75559189708064,
+			"lng": -122.42365687240562
+		},
+		"objectID": "507107770",
+		"_highlightResult": {
+			"city": {
+				"value": "San Francisco",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"country": {
+				"value": "United States",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"name": {
+				"value": "Mission Sunshine, with Private Bath",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"zipcode": {
+				"value": "94110",
+				"matchLevel": "none",
+				"matchedWords": []
+			}
+		},
+		"__position": 4
+	},
+	{
+		"id": 24436,
+		"city": "Paris",
+		"thumbnail_url": "https://a0.muscache.com/ac/pictures/91830230/5fdcae0e_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+		"medium_url": "https://a0.muscache.com/im/pictures/91830230/5fdcae0e_original.jpg?aki_policy=medium",
+		"user_id": 59987,
+		"picture_url": "https://a0.muscache.com/ac/pictures/91830230/5fdcae0e_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+		"xl_picture_url": "https://a0.muscache.com/ac/pictures/91830230/5fdcae0e_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+		"price": 99,
+		"native_currency": "USD",
+		"price_native": 102,
+		"price_formatted": "$102",
+		"lat": 48.860059285334664,
+		"lng": 2.3474471021375654,
+		"country": "France",
+		"name": "Notre-Dame &Louvre at your doorstep",
+		"smart_location": "Paris, France",
+		"has_double_blind_reviews": false,
+		"instant_bookable": true,
+		"bedrooms": 0,
+		"beds": 1,
+		"bathrooms": 1,
+		"market": "Paris",
+		"min_nights": 3,
+		"neighborhood": "Châtelet - Les Halles - Beaubourg",
+		"person_capacity": 2,
+		"state": "Ile-de-France",
+		"zipcode": "75001",
+		"user": {
+			"user": {
+				"id": 59987,
+				"first_name": "شایان",
+				"picture_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/men/58.jpg",
+				"thumbnail_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/men/58.jpg",
+				"has_profile_pic": true
+			}
+		},
+		"address": "Rue Des Lombards, Paris, Ile-de-France 75001, France",
+		"country_code": "FR",
+		"cancellation_policy": "strict",
+		"property_type": "Apartment",
+		"reviews_count": 350,
+		"room_type": "Entire home/apt",
+		"room_type_category": "entire_home",
+		"picture_urls": [
+			"https://a0.muscache.com/ac/pictures/91830230/5fdcae0e_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/91830276/edd8ff86_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/91830398/cc7f9d58_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70"
+		],
+		"thumbnail_urls": [
+			"https://a0.muscache.com/ac/pictures/91830230/5fdcae0e_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/91830276/edd8ff86_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/91830398/cc7f9d58_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70"
+		],
+		"xl_picture_urls": [
+			"https://a0.muscache.com/ac/pictures/91830230/5fdcae0e_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/91830276/edd8ff86_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/91830398/cc7f9d58_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70"
+		],
+		"picture_count": 9,
+		"_geoloc": {
+			"lat": 48.860059285334664,
+			"lng": 2.3474471021375654
+		},
+		"objectID": "507160410",
+		"_highlightResult": {
+			"city": {
+				"value": "Paris",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"country": {
+				"value": "France",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"name": {
+				"value": "Notre-Dame &Louvre at your doorstep",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"zipcode": {
+				"value": "75001",
+				"matchLevel": "none",
+				"matchedWords": []
+			}
+		},
+		"__position": 5
+	},
+	{
+		"id": 205842,
+		"city": "San Francisco",
+		"thumbnail_url": "https://a2.muscache.com/ac/pictures/8037338/b11427ee_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+		"medium_url": "https://a2.muscache.com/im/pictures/8037338/b11427ee_original.jpg?aki_policy=medium",
+		"user_id": 145258,
+		"picture_url": "https://a2.muscache.com/ac/pictures/8037338/b11427ee_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+		"xl_picture_url": "https://a2.muscache.com/ac/pictures/8037338/b11427ee_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+		"price": 190,
+		"native_currency": "USD",
+		"price_native": 190,
+		"price_formatted": "$190",
+		"lat": 37.76487422024667,
+		"lng": -122.39762672259354,
+		"country": "United States",
+		"name": "Potrero Hill Garden Cabana",
+		"smart_location": "San Francisco, CA",
+		"has_double_blind_reviews": false,
+		"instant_bookable": false,
+		"bedrooms": 1,
+		"beds": 1,
+		"bathrooms": 1,
+		"market": "San Francisco",
+		"min_nights": 1,
+		"neighborhood": "Potrero Hill",
+		"person_capacity": 2,
+		"state": "CA",
+		"zipcode": "94107",
+		"user": {
+			"user": {
+				"id": 145258,
+				"first_name": "James",
+				"picture_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/men/43.jpg",
+				"thumbnail_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/men/43.jpg",
+				"has_profile_pic": true
+			}
+		},
+		"address": "Missouri Street, San Francisco, CA 94107, United States",
+		"country_code": "US",
+		"cancellation_policy": "strict",
+		"property_type": "Cabin",
+		"reviews_count": 349,
+		"room_type": "Entire home/apt",
+		"room_type_category": "entire_home",
+		"picture_urls": [
+			"https://a2.muscache.com/ac/pictures/8037338/b11427ee_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/8036742/4262bc2c_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/8036478/aa9af20c_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70"
+		],
+		"thumbnail_urls": [
+			"https://a2.muscache.com/ac/pictures/8037338/b11427ee_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/8036742/4262bc2c_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/8036478/aa9af20c_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70"
+		],
+		"xl_picture_urls": [
+			"https://a2.muscache.com/ac/pictures/8037338/b11427ee_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/8036742/4262bc2c_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/8036478/aa9af20c_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70"
+		],
+		"picture_count": 66,
+		"_geoloc": {
+			"lat": 37.76487422024667,
+			"lng": -122.39762672259354
+		},
+		"objectID": "507106060",
+		"_highlightResult": {
+			"city": {
+				"value": "San Francisco",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"country": {
+				"value": "United States",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"name": {
+				"value": "Potrero Hill Garden Cabana",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"zipcode": {
+				"value": "94107",
+				"matchLevel": "none",
+				"matchedWords": []
+			}
+		},
+		"__position": 6
+	},
+	{
+		"id": 251657,
+		"city": "Somerville",
+		"thumbnail_url": "https://a1.muscache.com/ac/pictures/2646876/21f70c9c_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+		"medium_url": "https://a1.muscache.com/im/pictures/2646876/21f70c9c_original.jpg?aki_policy=medium",
+		"user_id": 814202,
+		"picture_url": "https://a1.muscache.com/ac/pictures/2646876/21f70c9c_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+		"xl_picture_url": "https://a1.muscache.com/ac/pictures/2646876/21f70c9c_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+		"price": 46,
+		"native_currency": "USD",
+		"price_native": 46,
+		"price_formatted": "$46",
+		"lat": 42.381345310073435,
+		"lng": -71.08847906771845,
+		"country": "United States",
+		"name": "connected ,centrally located pad",
+		"smart_location": "Somerville, MA",
+		"has_double_blind_reviews": false,
+		"instant_bookable": false,
+		"bedrooms": 1,
+		"beds": 1,
+		"bathrooms": 0,
+		"market": "Boston",
+		"min_nights": 1,
+		"neighborhood": "Somerville",
+		"person_capacity": 2,
+		"state": "MA",
+		"zipcode": "02145",
+		"user": {
+			"user": {
+				"id": 814202,
+				"first_name": "James",
+				"picture_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/men/43.jpg",
+				"thumbnail_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/men/43.jpg",
+				"has_profile_pic": true
+			}
+		},
+		"address": "Glen St, Somerville, MA 02145, United States",
+		"country_code": "US",
+		"cancellation_policy": "strict",
+		"property_type": "Apartment",
+		"reviews_count": 344,
+		"room_type": "Private room",
+		"room_type_category": "private_room",
+		"picture_urls": [
+			"https://a1.muscache.com/ac/pictures/2646876/21f70c9c_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/2646901/cb7649cb_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/2646877/fc3899ad_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70"
+		],
+		"thumbnail_urls": [
+			"https://a1.muscache.com/ac/pictures/2646876/21f70c9c_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/2646901/cb7649cb_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/2646877/fc3899ad_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70"
+		],
+		"xl_picture_urls": [
+			"https://a1.muscache.com/ac/pictures/2646876/21f70c9c_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/2646901/cb7649cb_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/2646877/fc3899ad_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70"
+		],
+		"picture_count": 17,
+		"_geoloc": {
+			"lat": 42.381345310073435,
+			"lng": -71.08847906771845
+		},
+		"objectID": "507176620",
+		"_highlightResult": {
+			"city": {
+				"value": "Somerville",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"country": {
+				"value": "United States",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"name": {
+				"value": "connected ,centrally located pad",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"zipcode": {
+				"value": "02145",
+				"matchLevel": "none",
+				"matchedWords": []
+			}
+		},
+		"__position": 7
+	},
+	{
+		"id": 42010,
+		"city": "East Finchley",
+		"thumbnail_url": "https://a1.muscache.com/ac/pictures/7684380/16f08fc3_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+		"medium_url": "https://a1.muscache.com/im/pictures/7684380/16f08fc3_original.jpg?aki_policy=medium",
+		"user_id": 157884,
+		"picture_url": "https://a1.muscache.com/ac/pictures/7684380/16f08fc3_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+		"xl_picture_url": "https://a1.muscache.com/ac/pictures/7684380/16f08fc3_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+		"price": 77,
+		"native_currency": "USD",
+		"price_native": 79,
+		"price_formatted": "$79",
+		"lat": 51.58611257319016,
+		"lng": -0.16272156599580986,
+		"country": "United Kingdom",
+		"name": "You Will Save Money Here",
+		"smart_location": "East Finchley, United Kingdom",
+		"has_double_blind_reviews": false,
+		"instant_bookable": true,
+		"bedrooms": 1,
+		"beds": 2,
+		"bathrooms": 0,
+		"market": "London",
+		"min_nights": 2,
+		"neighborhood": null,
+		"person_capacity": 2,
+		"state": "",
+		"zipcode": "N2 0NU",
+		"user": {
+			"user": {
+				"id": 157884,
+				"first_name": "Enora",
+				"picture_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/women/2.jpg",
+				"thumbnail_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/women/2.jpg",
+				"has_profile_pic": true
+			}
+		},
+		"address": "Blenheim Lodge, Great North Road, East Finchley, N2 0NU, United Kingdom",
+		"country_code": "GB",
+		"cancellation_policy": "strict",
+		"property_type": "Bed & Breakfast",
+		"reviews_count": 332,
+		"room_type": "Private room",
+		"room_type_category": "private_room",
+		"picture_urls": [
+			"https://a1.muscache.com/ac/pictures/7684380/16f08fc3_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/7684387/01d03fbd_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/7684389/dc24424c_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70"
+		],
+		"thumbnail_urls": [
+			"https://a1.muscache.com/ac/pictures/7684380/16f08fc3_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/7684387/01d03fbd_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/7684389/dc24424c_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70"
+		],
+		"xl_picture_urls": [
+			"https://a1.muscache.com/ac/pictures/7684380/16f08fc3_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/7684387/01d03fbd_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/7684389/dc24424c_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70"
+		],
+		"picture_count": 13,
+		"_geoloc": {
+			"lat": 51.58611257319016,
+			"lng": -0.16272156599580986
+		},
+		"objectID": "507155120",
+		"_highlightResult": {
+			"city": {
+				"value": "East Finchley",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"country": {
+				"value": "United Kingdom",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"name": {
+				"value": "You Will Save Money Here",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"zipcode": {
+				"value": "N2 0NU",
+				"matchLevel": "none",
+				"matchedWords": []
+			}
+		},
+		"__position": 8
+	},
+	{
+		"id": 42010,
+		"city": "East Finchley",
+		"thumbnail_url": "https://a1.muscache.com/ac/pictures/7684380/16f08fc3_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+		"medium_url": "https://a1.muscache.com/im/pictures/7684380/16f08fc3_original.jpg?aki_policy=medium",
+		"user_id": 157884,
+		"picture_url": "https://a1.muscache.com/ac/pictures/7684380/16f08fc3_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+		"xl_picture_url": "https://a1.muscache.com/ac/pictures/7684380/16f08fc3_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+		"price": 77,
+		"native_currency": "USD",
+		"price_native": 79,
+		"price_formatted": "$79",
+		"lat": 51.58611257319016,
+		"lng": -0.16272156599580986,
+		"country": "United Kingdom",
+		"name": "You Will Save Money Here",
+		"smart_location": "East Finchley, United Kingdom",
+		"has_double_blind_reviews": false,
+		"instant_bookable": true,
+		"bedrooms": 1,
+		"beds": 2,
+		"bathrooms": 0,
+		"market": "London",
+		"min_nights": 2,
+		"neighborhood": null,
+		"person_capacity": 2,
+		"state": "",
+		"zipcode": "N2 0NU",
+		"user": {
+			"user": {
+				"id": 157884,
+				"first_name": "Enora",
+				"picture_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/women/2.jpg",
+				"thumbnail_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/women/2.jpg",
+				"has_profile_pic": true
+			}
+		},
+		"address": "Blenheim Lodge, Great North Road, East Finchley, N2 0NU, United Kingdom",
+		"country_code": "GB",
+		"cancellation_policy": "strict",
+		"property_type": "Bed & Breakfast",
+		"reviews_count": 332,
+		"room_type": "Private room",
+		"room_type_category": "private_room",
+		"picture_urls": [
+			"https://a1.muscache.com/ac/pictures/7684380/16f08fc3_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/7684387/01d03fbd_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/7684389/dc24424c_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70"
+		],
+		"thumbnail_urls": [
+			"https://a1.muscache.com/ac/pictures/7684380/16f08fc3_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/7684387/01d03fbd_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/7684389/dc24424c_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70"
+		],
+		"xl_picture_urls": [
+			"https://a1.muscache.com/ac/pictures/7684380/16f08fc3_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/7684387/01d03fbd_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/7684389/dc24424c_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70"
+		],
+		"picture_count": 13,
+		"_geoloc": {
+			"lat": 51.58611257319016,
+			"lng": -0.16272156599580986
+		},
+		"objectID": "507155120",
+		"_highlightResult": {
+			"city": {
+				"value": "East Finchley",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"country": {
+				"value": "United Kingdom",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"name": {
+				"value": "You Will Save Money Here",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"zipcode": {
+				"value": "N2 0NU",
+				"matchLevel": "none",
+				"matchedWords": []
+			}
+		},
+		"__position": 8
+	},
+	{
+		"id": 285356,
+		"city": "Somerville",
+		"thumbnail_url": "https://a2.muscache.com/ac/pictures/2946146/c6ce978c_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+		"medium_url": "https://a2.muscache.com/im/pictures/2946146/c6ce978c_original.jpg?aki_policy=medium",
+		"user_id": 814202,
+		"picture_url": "https://a2.muscache.com/ac/pictures/2946146/c6ce978c_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+		"xl_picture_url": "https://a2.muscache.com/ac/pictures/2946146/c6ce978c_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+		"price": 46,
+		"native_currency": "USD",
+		"price_native": 46,
+		"price_formatted": "$46",
+		"lat": 42.38314089033681,
+		"lng": -71.08754940986604,
+		"country": "United States",
+		"name": "centrally located, connected pad",
+		"smart_location": "Somerville, MA",
+		"has_double_blind_reviews": false,
+		"instant_bookable": false,
+		"bedrooms": 1,
+		"beds": 1,
+		"bathrooms": 1,
+		"market": "Boston",
+		"min_nights": 1,
+		"neighborhood": "Somerville",
+		"person_capacity": 2,
+		"state": "MA",
+		"zipcode": "02145",
+		"user": {
+			"user": {
+				"id": 814202,
+				"first_name": "Amelia",
+				"picture_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/women/91.jpg",
+				"thumbnail_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/women/91.jpg",
+				"has_profile_pic": true
+			}
+		},
+		"address": "Glen St, Somerville, MA 02145, United States",
+		"country_code": "US",
+		"cancellation_policy": "strict",
+		"property_type": "Apartment",
+		"reviews_count": 328,
+		"room_type": "Private room",
+		"room_type_category": "private_room",
+		"picture_urls": [
+			"https://a2.muscache.com/ac/pictures/2946146/c6ce978c_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/6937462/8a14467e_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/6936778/c9c659a8_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70"
+		],
+		"thumbnail_urls": [
+			"https://a2.muscache.com/ac/pictures/2946146/c6ce978c_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/6937462/8a14467e_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/6936778/c9c659a8_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70"
+		],
+		"xl_picture_urls": [
+			"https://a2.muscache.com/ac/pictures/2946146/c6ce978c_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/6937462/8a14467e_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/6936778/c9c659a8_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70"
+		],
+		"picture_count": 18,
+		"_geoloc": {
+			"lat": 42.38314089033681,
+			"lng": -71.08754940986604
+		},
+		"objectID": "507176230",
+		"_highlightResult": {
+			"city": {
+				"value": "Somerville",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"country": {
+				"value": "United States",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"name": {
+				"value": "centrally located, connected pad",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"zipcode": {
+				"value": "02145",
+				"matchLevel": "none",
+				"matchedWords": []
+			}
+		},
+		"__position": 9
+	},
+	{
+		"id": 33578,
+		"city": "San Francisco",
+		"thumbnail_url": "https://a1.muscache.com/ac/pictures/546799/92f5004e_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+		"medium_url": "https://a1.muscache.com/im/pictures/546799/92f5004e_original.jpg?aki_policy=medium",
+		"user_id": 145258,
+		"picture_url": "https://a1.muscache.com/ac/pictures/546799/92f5004e_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+		"xl_picture_url": "https://a1.muscache.com/ac/pictures/546799/92f5004e_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+		"price": 190,
+		"native_currency": "USD",
+		"price_native": 190,
+		"price_formatted": "$190",
+		"lat": 37.76525618558157,
+		"lng": -122.39730470636793,
+		"country": "United States",
+		"name": "Potrero Hill Garden Lookout ",
+		"smart_location": "San Francisco, CA",
+		"has_double_blind_reviews": false,
+		"instant_bookable": false,
+		"bedrooms": 1,
+		"beds": 1,
+		"bathrooms": 1,
+		"market": "San Francisco",
+		"min_nights": 1,
+		"neighborhood": "Potrero Hill",
+		"person_capacity": 2,
+		"state": "CA",
+		"zipcode": "94107",
+		"user": {
+			"user": {
+				"id": 145258,
+				"first_name": "Wyatt",
+				"picture_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/men/67.jpg",
+				"thumbnail_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/men/67.jpg",
+				"has_profile_pic": true
+			}
+		},
+		"address": "Missouri Street, San Francisco, CA 94107, United States",
+		"country_code": "US",
+		"cancellation_policy": "strict",
+		"property_type": "House",
+		"reviews_count": 328,
+		"room_type": "Entire home/apt",
+		"room_type_category": "entire_home",
+		"picture_urls": [
+			"https://a1.muscache.com/ac/pictures/546799/92f5004e_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/45200120/9945647f_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/546803/32b90bef_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70"
+		],
+		"thumbnail_urls": [
+			"https://a1.muscache.com/ac/pictures/546799/92f5004e_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/45200120/9945647f_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/546803/32b90bef_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70"
+		],
+		"xl_picture_urls": [
+			"https://a1.muscache.com/ac/pictures/546799/92f5004e_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/45200120/9945647f_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/546803/32b90bef_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70"
+		],
+		"picture_count": 93,
+		"_geoloc": {
+			"lat": 37.76525618558157,
+			"lng": -122.39730470636793
+		},
+		"objectID": "507107470",
+		"_highlightResult": {
+			"city": {
+				"value": "San Francisco",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"country": {
+				"value": "United States",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"name": {
+				"value": "Potrero Hill Garden Lookout ",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"zipcode": {
+				"value": "94107",
+				"matchLevel": "none",
+				"matchedWords": []
+			}
+		},
+		"__position": 10
+	},
+	{
+		"id": 591318,
+		"city": "Somerville",
+		"thumbnail_url": "https://a2.muscache.com/ac/pictures/9038224/403e90e3_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+		"medium_url": "https://a2.muscache.com/im/pictures/9038224/403e90e3_original.jpg?aki_policy=medium",
+		"user_id": 814202,
+		"picture_url": "https://a2.muscache.com/ac/pictures/9038224/403e90e3_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+		"xl_picture_url": "https://a2.muscache.com/ac/pictures/9038224/403e90e3_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+		"price": 46,
+		"native_currency": "USD",
+		"price_native": 46,
+		"price_formatted": "$46",
+		"lat": 42.38215415518623,
+		"lng": -71.08822058018606,
+		"country": "United States",
+		"name": "Close and Convenient to everywhere",
+		"smart_location": "Somerville, MA",
+		"has_double_blind_reviews": false,
+		"instant_bookable": false,
+		"bedrooms": 1,
+		"beds": 1,
+		"bathrooms": 1,
+		"market": "Boston",
+		"min_nights": 1,
+		"neighborhood": "Somerville",
+		"person_capacity": 2,
+		"state": "MA",
+		"zipcode": "02145",
+		"user": {
+			"user": {
+				"id": 814202,
+				"first_name": "Stephanie",
+				"picture_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/women/20.jpg",
+				"thumbnail_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/women/20.jpg",
+				"has_profile_pic": true
+			}
+		},
+		"address": "Morton St, Somerville, MA 02145, United States",
+		"country_code": "US",
+		"cancellation_policy": "strict",
+		"property_type": "Apartment",
+		"reviews_count": 314,
+		"room_type": "Private room",
+		"room_type_category": "private_room",
+		"picture_urls": [
+			"https://a2.muscache.com/ac/pictures/9038224/403e90e3_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/9038355/157ff524_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/9039135/1e9b46f0_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70"
+		],
+		"thumbnail_urls": [
+			"https://a2.muscache.com/ac/pictures/9038224/403e90e3_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/9038355/157ff524_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/9039135/1e9b46f0_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70"
+		],
+		"xl_picture_urls": [
+			"https://a2.muscache.com/ac/pictures/9038224/403e90e3_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/9038355/157ff524_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/9039135/1e9b46f0_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70"
+		],
+		"picture_count": 17,
+		"_geoloc": {
+			"lat": 42.38215415518623,
+			"lng": -71.08822058018606
+		},
+		"objectID": "507176200",
+		"_highlightResult": {
+			"city": {
+				"value": "Somerville",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"country": {
+				"value": "United States",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"name": {
+				"value": "Close and Convenient to everywhere",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"zipcode": {
+				"value": "02145",
+				"matchLevel": "none",
+				"matchedWords": []
+			}
+		},
+		"__position": 11
+	},
+	{
+		"id": 10638,
+		"city": "Somerville",
+		"thumbnail_url": "https://a2.muscache.com/ac/pictures/44787/76076a74_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+		"medium_url": "https://a2.muscache.com/im/pictures/44787/76076a74_original.jpg?aki_policy=medium",
+		"user_id": 37347,
+		"picture_url": "https://a2.muscache.com/ac/pictures/44787/76076a74_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+		"xl_picture_url": "https://a2.muscache.com/ac/pictures/44787/76076a74_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+		"price": 49,
+		"native_currency": "USD",
+		"price_native": 49,
+		"price_formatted": "$49",
+		"lat": 42.380950916647734,
+		"lng": -71.09450958737496,
+		"country": "United States",
+		"name": "Sunny Library in Victorian Home",
+		"smart_location": "Somerville, MA",
+		"has_double_blind_reviews": false,
+		"instant_bookable": false,
+		"bedrooms": 1,
+		"beds": 1,
+		"bathrooms": 1,
+		"market": "Boston",
+		"min_nights": 12,
+		"neighborhood": "Somerville",
+		"person_capacity": 2,
+		"state": "MA",
+		"zipcode": "02143",
+		"user": {
+			"user": {
+				"id": 37347,
+				"first_name": "Helena",
+				"picture_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/women/53.jpg",
+				"thumbnail_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/women/53.jpg",
+				"has_profile_pic": true
+			}
+		},
+		"address": "Columbus Ave, Somerville, MA 02143, United States",
+		"country_code": "US",
+		"cancellation_policy": "strict",
+		"property_type": "Apartment",
+		"reviews_count": 313,
+		"room_type": "Private room",
+		"room_type_category": "private_room",
+		"picture_urls": [
+			"https://a2.muscache.com/ac/pictures/44787/76076a74_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/362583/9fb9d2e5_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/362582/e931c3cb_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70"
+		],
+		"thumbnail_urls": [
+			"https://a2.muscache.com/ac/pictures/44787/76076a74_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/362583/9fb9d2e5_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/362582/e931c3cb_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70"
+		],
+		"xl_picture_urls": [
+			"https://a2.muscache.com/ac/pictures/44787/76076a74_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/362583/9fb9d2e5_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/362582/e931c3cb_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70"
+		],
+		"picture_count": 10,
+		"_geoloc": {
+			"lat": 42.380950916647734,
+			"lng": -71.09450958737496
+		},
+		"objectID": "507177350",
+		"_highlightResult": {
+			"city": {
+				"value": "Somerville",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"country": {
+				"value": "United States",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"name": {
+				"value": "Sunny Library in Victorian Home",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"zipcode": {
+				"value": "02143",
+				"matchLevel": "none",
+				"matchedWords": []
+			}
+		},
+		"__position": 12
+	},
+	{
+		"id": 388767,
+		"city": "London",
+		"thumbnail_url": "https://a0.muscache.com/ac/pictures/4987161/7b8afcae_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+		"medium_url": "https://a0.muscache.com/im/pictures/4987161/7b8afcae_original.jpg?aki_policy=medium",
+		"user_id": 1945165,
+		"picture_url": "https://a0.muscache.com/ac/pictures/4987161/7b8afcae_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+		"xl_picture_url": "https://a0.muscache.com/ac/pictures/4987161/7b8afcae_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+		"price": 85,
+		"native_currency": "USD",
+		"price_native": 88,
+		"price_formatted": "$88",
+		"lat": 51.54266648313288,
+		"lng": -0.14029819419441056,
+		"country": "United Kingdom",
+		"name": "**CENTRAL** Comfy Artist's Home",
+		"smart_location": "London, United Kingdom",
+		"has_double_blind_reviews": false,
+		"instant_bookable": false,
+		"bedrooms": 1,
+		"beds": 1,
+		"bathrooms": 1,
+		"market": "London",
+		"min_nights": 2,
+		"neighborhood": "LB of Camden",
+		"person_capacity": 4,
+		"state": "",
+		"zipcode": "NW1 9NB",
+		"user": {
+			"user": {
+				"id": 1945165,
+				"first_name": "Adam",
+				"picture_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/men/86.jpg",
+				"thumbnail_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/men/86.jpg",
+				"has_profile_pic": true
+			}
+		},
+		"address": "London, NW1 9NB, United Kingdom",
+		"country_code": "GB",
+		"cancellation_policy": "strict",
+		"property_type": "Apartment",
+		"reviews_count": 302,
+		"room_type": "Private room",
+		"room_type_category": "private_room",
+		"picture_urls": [
+			"https://a0.muscache.com/ac/pictures/4987161/7b8afcae_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/4987234/928e3ba9_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/4987272/890b0766_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70"
+		],
+		"thumbnail_urls": [
+			"https://a0.muscache.com/ac/pictures/4987161/7b8afcae_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/4987234/928e3ba9_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/4987272/890b0766_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70"
+		],
+		"xl_picture_urls": [
+			"https://a0.muscache.com/ac/pictures/4987161/7b8afcae_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/4987234/928e3ba9_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/4987272/890b0766_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70"
+		],
+		"picture_count": 25,
+		"_geoloc": {
+			"lat": 51.54266648313288,
+			"lng": -0.14029819419441056
+		},
+		"objectID": "507148250",
+		"_highlightResult": {
+			"city": {
+				"value": "London",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"country": {
+				"value": "United Kingdom",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"name": {
+				"value": "**CENTRAL** Comfy Artist's Home",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"zipcode": {
+				"value": "NW1 9NB",
+				"matchLevel": "none",
+				"matchedWords": []
+			}
+		},
+		"__position": 13
+	},
+	{
+		"id": 39742,
+		"city": "Chicago",
+		"thumbnail_url": "https://a1.muscache.com/ac/pictures/74594970/33c66010_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+		"medium_url": "https://a1.muscache.com/im/pictures/74594970/33c66010_original.jpg?aki_policy=medium",
+		"user_id": 170758,
+		"picture_url": "https://a1.muscache.com/ac/pictures/74594970/33c66010_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+		"xl_picture_url": "https://a1.muscache.com/ac/pictures/74594970/33c66010_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+		"price": 90,
+		"native_currency": "USD",
+		"price_native": 90,
+		"price_formatted": "$90",
+		"lat": 41.89377490037404,
+		"lng": -87.63465211289514,
+		"country": "United States",
+		"name": "Central guestroom! Walk everywhere!",
+		"smart_location": "Chicago, IL",
+		"has_double_blind_reviews": false,
+		"instant_bookable": false,
+		"bedrooms": 1,
+		"beds": 1,
+		"bathrooms": null,
+		"market": "Chicago",
+		"min_nights": 5,
+		"neighborhood": "River North",
+		"person_capacity": 2,
+		"state": "IL",
+		"zipcode": "60654",
+		"user": {
+			"user": {
+				"id": 170758,
+				"first_name": "Soren",
+				"picture_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/men/55.jpg",
+				"thumbnail_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/men/55.jpg",
+				"has_profile_pic": true
+			}
+		},
+		"address": "W Huron St, Chicago, IL 60654, United States",
+		"country_code": "US",
+		"cancellation_policy": "strict",
+		"property_type": "Apartment",
+		"reviews_count": 301,
+		"room_type": "Private room",
+		"room_type_category": "private_room",
+		"picture_urls": [
+			"https://a1.muscache.com/ac/pictures/74594970/33c66010_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/74594768/ce91d0e5_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/332822/9158db16_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70"
+		],
+		"thumbnail_urls": [
+			"https://a1.muscache.com/ac/pictures/74594970/33c66010_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/74594768/ce91d0e5_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/332822/9158db16_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70"
+		],
+		"xl_picture_urls": [
+			"https://a1.muscache.com/ac/pictures/74594970/33c66010_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/74594768/ce91d0e5_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/332822/9158db16_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70"
+		],
+		"picture_count": 20,
+		"_geoloc": {
+			"lat": 41.89377490037404,
+			"lng": -87.63465211289514
+		},
+		"objectID": "507206360",
+		"_highlightResult": {
+			"city": {
+				"value": "Chicago",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"country": {
+				"value": "United States",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"name": {
+				"value": "Central guestroom! Walk everywhere!",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"zipcode": {
+				"value": "60654",
+				"matchLevel": "none",
+				"matchedWords": []
+			}
+		},
+		"__position": 14
+	},
+	{
+		"id": 629248,
+		"city": "Paris",
+		"thumbnail_url": "https://a0.muscache.com/ac/pictures/8120872/41612baa_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+		"medium_url": "https://a0.muscache.com/im/pictures/8120872/41612baa_original.jpg?aki_policy=medium",
+		"user_id": 3125405,
+		"picture_url": "https://a0.muscache.com/ac/pictures/8120872/41612baa_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+		"xl_picture_url": "https://a0.muscache.com/ac/pictures/8120872/41612baa_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+		"price": 66,
+		"native_currency": "USD",
+		"price_native": 68,
+		"price_formatted": "$68",
+		"lat": 48.85139133871688,
+		"lng": 2.385443004692208,
+		"country": "France",
+		"name": "Charming room in spacious apartment",
+		"smart_location": "Paris, France",
+		"has_double_blind_reviews": false,
+		"instant_bookable": false,
+		"bedrooms": 1,
+		"beds": 1,
+		"bathrooms": 2,
+		"market": "Paris",
+		"min_nights": 1,
+		"neighborhood": "XI Arrondissement",
+		"person_capacity": 2,
+		"state": "Île-de-France",
+		"zipcode": "75011",
+		"user": {
+			"user": {
+				"id": 3125405,
+				"first_name": "Valdemar",
+				"picture_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/men/99.jpg",
+				"thumbnail_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/men/99.jpg",
+				"has_profile_pic": true
+			}
+		},
+		"address": "Rue Chanzy, Paris, Île-de-France 75011, France",
+		"country_code": "FR",
+		"cancellation_policy": "moderate",
+		"property_type": "Apartment",
+		"reviews_count": 300,
+		"room_type": "Private room",
+		"room_type_category": "private_room",
+		"picture_urls": [
+			"https://a0.muscache.com/ac/pictures/8120872/41612baa_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/8120538/5b87b6c6_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/8120654/35c035da_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70"
+		],
+		"thumbnail_urls": [
+			"https://a0.muscache.com/ac/pictures/8120872/41612baa_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/8120538/5b87b6c6_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/8120654/35c035da_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70"
+		],
+		"xl_picture_urls": [
+			"https://a0.muscache.com/ac/pictures/8120872/41612baa_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/8120538/5b87b6c6_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/8120654/35c035da_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70"
+		],
+		"picture_count": 18,
+		"_geoloc": {
+			"lat": 48.85139133871688,
+			"lng": 2.385443004692208
+		},
+		"objectID": "507156810",
+		"_highlightResult": {
+			"city": {
+				"value": "Paris",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"country": {
+				"value": "France",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"name": {
+				"value": "Charming room in spacious apartment",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"zipcode": {
+				"value": "75011",
+				"matchLevel": "none",
+				"matchedWords": []
+			}
+		},
+		"__position": 15
+	},
+	{
+		"id": 728092,
+		"city": "Paris",
+		"thumbnail_url": "https://a0.muscache.com/ac/pictures/10002279/beee659e_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+		"medium_url": "https://a0.muscache.com/im/pictures/10002279/beee659e_original.jpg?aki_policy=medium",
+		"user_id": 3775471,
+		"picture_url": "https://a0.muscache.com/ac/pictures/10002279/beee659e_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+		"xl_picture_url": "https://a0.muscache.com/ac/pictures/10002279/beee659e_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+		"price": 66,
+		"native_currency": "USD",
+		"price_native": 68,
+		"price_formatted": "$68",
+		"lat": 48.857710753532366,
+		"lng": 2.3566038107155203,
+		"country": "France",
+		"name": "Charming studio with postcard view",
+		"smart_location": "Paris, France",
+		"has_double_blind_reviews": false,
+		"instant_bookable": false,
+		"bedrooms": 1,
+		"beds": 1,
+		"bathrooms": 1,
+		"market": "Paris",
+		"min_nights": 1,
+		"neighborhood": "Le Marais",
+		"person_capacity": 2,
+		"state": "Île-de-France",
+		"zipcode": "75004",
+		"user": {
+			"user": {
+				"id": 3775471,
+				"first_name": "Julia",
+				"picture_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/women/6.jpg",
+				"thumbnail_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/women/6.jpg",
+				"has_profile_pic": true
+			}
+		},
+		"address": "Rue du Roi de Sicile, Paris, Île-de-France 75004, France",
+		"country_code": "FR",
+		"cancellation_policy": "moderate",
+		"property_type": "Apartment",
+		"reviews_count": 297,
+		"room_type": "Entire home/apt",
+		"room_type_category": "entire_home",
+		"picture_urls": [
+			"https://a0.muscache.com/ac/pictures/10002279/beee659e_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/61062198/7e95b29c_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/61066386/71768470_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70"
+		],
+		"thumbnail_urls": [
+			"https://a0.muscache.com/ac/pictures/10002279/beee659e_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/61062198/7e95b29c_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/61066386/71768470_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70"
+		],
+		"xl_picture_urls": [
+			"https://a0.muscache.com/ac/pictures/10002279/beee659e_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/61062198/7e95b29c_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/61066386/71768470_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70"
+		],
+		"picture_count": 5,
+		"_geoloc": {
+			"lat": 48.857710753532366,
+			"lng": 2.3566038107155203
+		},
+		"objectID": "507156040",
+		"_highlightResult": {
+			"city": {
+				"value": "Paris",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"country": {
+				"value": "France",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"name": {
+				"value": "Charming studio with postcard view",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"zipcode": {
+				"value": "75004",
+				"matchLevel": "none",
+				"matchedWords": []
+			}
+		},
+		"__position": 16
+	},
+	{
+		"id": 183061,
+		"city": "Rome",
+		"thumbnail_url": "https://a2.muscache.com/ac/pictures/45128744/dc9dff29_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+		"medium_url": "https://a2.muscache.com/im/pictures/45128744/dc9dff29_original.jpg?aki_policy=medium",
+		"user_id": 877794,
+		"picture_url": "https://a2.muscache.com/ac/pictures/45128744/dc9dff29_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+		"xl_picture_url": "https://a2.muscache.com/ac/pictures/45128744/dc9dff29_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+		"price": 41,
+		"native_currency": "USD",
+		"price_native": 42,
+		"price_formatted": "$42",
+		"lat": 41.8951973624695,
+		"lng": 12.506785829577915,
+		"country": "Italy",
+		"name": "ROME COLOSSEUM TERMINI B&B NILI RED",
+		"smart_location": "Rome, Italy",
+		"has_double_blind_reviews": false,
+		"instant_bookable": false,
+		"bedrooms": 1,
+		"beds": 2,
+		"bathrooms": 1,
+		"market": "Rome",
+		"min_nights": 1,
+		"neighborhood": "Esquilino",
+		"person_capacity": 2,
+		"state": "Lazio",
+		"zipcode": "00185",
+		"user": {
+			"user": {
+				"id": 877794,
+				"first_name": "Sharon",
+				"picture_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/women/61.jpg",
+				"thumbnail_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/women/61.jpg",
+				"has_profile_pic": true
+			}
+		},
+		"address": "Via Cairoli, Rome, Lazio 00185, Italy",
+		"country_code": "IT",
+		"cancellation_policy": "strict",
+		"property_type": "Bed & Breakfast",
+		"reviews_count": 292,
+		"room_type": "Private room",
+		"room_type_category": "private_room",
+		"picture_urls": [
+			"https://a2.muscache.com/ac/pictures/45128744/dc9dff29_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/28035307/0e3a4d16_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/28035482/d0d64d45_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70"
+		],
+		"thumbnail_urls": [
+			"https://a2.muscache.com/ac/pictures/45128744/dc9dff29_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/28035307/0e3a4d16_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/28035482/d0d64d45_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70"
+		],
+		"xl_picture_urls": [
+			"https://a2.muscache.com/ac/pictures/45128744/dc9dff29_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/28035307/0e3a4d16_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/28035482/d0d64d45_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70"
+		],
+		"picture_count": 29,
+		"_geoloc": {
+			"lat": 41.8951973624695,
+			"lng": 12.506785829577915
+		},
+		"objectID": "507189980",
+		"_highlightResult": {
+			"city": {
+				"value": "Rome",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"country": {
+				"value": "Italy",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"name": {
+				"value": "ROME COLOSSEUM TERMINI B&B NILI RED",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"zipcode": {
+				"value": "00185",
+				"matchLevel": "none",
+				"matchedWords": []
+			}
+		},
+		"__position": 17
+	},
+	{
+		"id": 29520,
+		"city": "Paris",
+		"thumbnail_url": "https://a1.muscache.com/ac/pictures/621024/e57c39cd_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+		"medium_url": "https://a1.muscache.com/im/pictures/621024/e57c39cd_original.jpg?aki_policy=medium",
+		"user_id": 127098,
+		"picture_url": "https://a1.muscache.com/ac/pictures/621024/e57c39cd_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+		"xl_picture_url": "https://a1.muscache.com/ac/pictures/621024/e57c39cd_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+		"price": 86,
+		"native_currency": "USD",
+		"price_native": 89,
+		"price_formatted": "$89",
+		"lat": 48.8623818105632,
+		"lng": 2.3564082134949915,
+		"country": "France",
+		"name": "MARAIS: Unique studio with GARDEN",
+		"smart_location": "Paris, France",
+		"has_double_blind_reviews": false,
+		"instant_bookable": false,
+		"bedrooms": 1,
+		"beds": 1,
+		"bathrooms": 1,
+		"market": "Paris",
+		"min_nights": 2,
+		"neighborhood": "Le Marais",
+		"person_capacity": 2,
+		"state": "Île-de-France",
+		"zipcode": "75003",
+		"user": {
+			"user": {
+				"id": 127098,
+				"first_name": "Lino",
+				"picture_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/men/29.jpg",
+				"thumbnail_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/men/29.jpg",
+				"has_profile_pic": true
+			}
+		},
+		"address": "le Marais, Paris, Île-de-France 75003, France",
+		"country_code": "FR",
+		"cancellation_policy": "strict",
+		"property_type": "Apartment",
+		"reviews_count": 292,
+		"room_type": "Entire home/apt",
+		"room_type_category": "entire_home",
+		"picture_urls": [
+			"https://a1.muscache.com/ac/pictures/621024/e57c39cd_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/621136/9da69242_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/621035/c87fd7a0_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70"
+		],
+		"thumbnail_urls": [
+			"https://a1.muscache.com/ac/pictures/621024/e57c39cd_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/621136/9da69242_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/621035/c87fd7a0_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70"
+		],
+		"xl_picture_urls": [
+			"https://a1.muscache.com/ac/pictures/621024/e57c39cd_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/621136/9da69242_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/621035/c87fd7a0_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70"
+		],
+		"picture_count": 28,
+		"_geoloc": {
+			"lat": 48.8623818105632,
+			"lng": 2.3564082134949915
+		},
+		"objectID": "507162440",
+		"_highlightResult": {
+			"city": {
+				"value": "Paris",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"country": {
+				"value": "France",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"name": {
+				"value": "MARAIS: Unique studio with GARDEN",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"zipcode": {
+				"value": "75003",
+				"matchLevel": "none",
+				"matchedWords": []
+			}
+		},
+		"__position": 18
+	},
+	{
+		"id": 846954,
+		"city": "Paris",
+		"thumbnail_url": "https://a0.muscache.com/ac/pictures/12182637/8484fea8_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+		"medium_url": "https://a0.muscache.com/im/pictures/12182637/8484fea8_original.jpg?aki_policy=medium",
+		"user_id": 3125405,
+		"picture_url": "https://a0.muscache.com/ac/pictures/12182637/8484fea8_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+		"xl_picture_url": "https://a0.muscache.com/ac/pictures/12182637/8484fea8_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+		"price": 72,
+		"native_currency": "USD",
+		"price_native": 74,
+		"price_formatted": "$74",
+		"lat": 48.85258055569335,
+		"lng": 2.386366144635373,
+		"country": "France",
+		"name": "Big room  in a spacious apartment",
+		"smart_location": "Paris, France",
+		"has_double_blind_reviews": false,
+		"instant_bookable": false,
+		"bedrooms": 1,
+		"beds": 1,
+		"bathrooms": 2,
+		"market": "Paris",
+		"min_nights": 1,
+		"neighborhood": "XI Arrondissement",
+		"person_capacity": 2,
+		"state": "Île-de-France",
+		"zipcode": "75011",
+		"user": {
+			"user": {
+				"id": 3125405,
+				"first_name": "Jeremiah",
+				"picture_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/algolia/men/olivier.png",
+				"thumbnail_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/algolia/men/olivier.png",
+				"has_profile_pic": true
+			}
+		},
+		"address": "Rue Chanzy, Paris, Île-de-France 75011, France",
+		"country_code": "FR",
+		"cancellation_policy": "moderate",
+		"property_type": "Apartment",
+		"reviews_count": 291,
+		"room_type": "Private room",
+		"room_type_category": "private_room",
+		"picture_urls": [
+			"https://a0.muscache.com/ac/pictures/12182637/8484fea8_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/12182682/0f7c44b8_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/12182717/8dbf0e47_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70"
+		],
+		"thumbnail_urls": [
+			"https://a0.muscache.com/ac/pictures/12182637/8484fea8_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/12182682/0f7c44b8_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/12182717/8dbf0e47_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70"
+		],
+		"xl_picture_urls": [
+			"https://a0.muscache.com/ac/pictures/12182637/8484fea8_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/12182682/0f7c44b8_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a1.muscache.com/ac/pictures/12182717/8dbf0e47_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70"
+		],
+		"picture_count": 25,
+		"_geoloc": {
+			"lat": 48.85258055569335,
+			"lng": 2.386366144635373
+		},
+		"objectID": "507158000",
+		"_highlightResult": {
+			"city": {
+				"value": "Paris",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"country": {
+				"value": "France",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"name": {
+				"value": "Big room  in a spacious apartment",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"zipcode": {
+				"value": "75011",
+				"matchLevel": "none",
+				"matchedWords": []
+			}
+		},
+		"__position": 19
+	},
+	{
+		"id": 162163,
+		"city": "Paris",
+		"thumbnail_url": "https://a2.muscache.com/ac/pictures/2052018/93f09c05_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+		"medium_url": "https://a2.muscache.com/im/pictures/2052018/93f09c05_original.jpg?aki_policy=medium",
+		"user_id": 775000,
+		"picture_url": "https://a2.muscache.com/ac/pictures/2052018/93f09c05_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+		"xl_picture_url": "https://a2.muscache.com/ac/pictures/2052018/93f09c05_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+		"price": 65,
+		"native_currency": "USD",
+		"price_native": 67,
+		"price_formatted": "$67",
+		"lat": 48.87372909961798,
+		"lng": 2.3245621882833722,
+		"country": "France",
+		"name": "Amazing design flat heart of Paris!",
+		"smart_location": "Paris, France",
+		"has_double_blind_reviews": false,
+		"instant_bookable": true,
+		"bedrooms": 1,
+		"beds": 2,
+		"bathrooms": 1,
+		"market": "Paris",
+		"min_nights": 1,
+		"neighborhood": "Saint-Lazare",
+		"person_capacity": 4,
+		"state": "Île-de-France",
+		"zipcode": "75008",
+		"user": {
+			"user": {
+				"id": 775000,
+				"first_name": "Terrence",
+				"picture_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/men/87.jpg",
+				"thumbnail_url": "https://raw.githubusercontent.com/pixelastic/fakeusers/master/pictures/men/87.jpg",
+				"has_profile_pic": true
+			}
+		},
+		"address": "Rue Greffulhe, Paris, Île-de-France 75008, France",
+		"country_code": "FR",
+		"cancellation_policy": "moderate",
+		"property_type": "Apartment",
+		"reviews_count": 290,
+		"room_type": "Entire home/apt",
+		"room_type_category": "entire_home",
+		"picture_urls": [
+			"https://a2.muscache.com/ac/pictures/2052018/93f09c05_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/2051841/5ca77e0a_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/2051847/ba7e581c_original.jpg?interpolation=lanczos-none&size=large_cover&output-format=jpg&output-quality=70"
+		],
+		"thumbnail_urls": [
+			"https://a2.muscache.com/ac/pictures/2052018/93f09c05_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/2051841/5ca77e0a_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/2051847/ba7e581c_original.jpg?interpolation=lanczos-none&size=small&output-format=jpg&output-quality=70"
+		],
+		"xl_picture_urls": [
+			"https://a2.muscache.com/ac/pictures/2052018/93f09c05_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a2.muscache.com/ac/pictures/2051841/5ca77e0a_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70",
+			"https://a0.muscache.com/ac/pictures/2051847/ba7e581c_original.jpg?interpolation=lanczos-none&size=x_large_cover&output-format=jpg&output-quality=70"
+		],
+		"picture_count": 19,
+		"_geoloc": {
+			"lat": 48.87372909961798,
+			"lng": 2.3245621882833722
+		},
+		"objectID": "507164860",
+		"_highlightResult": {
+			"city": {
+				"value": "Paris",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"country": {
+				"value": "France",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"name": {
+				"value": "Amazing design flat heart of Paris!",
+				"matchLevel": "none",
+				"matchedWords": []
+			},
+			"zipcode": {
+				"value": "75008",
+				"matchLevel": "none",
+				"matchedWords": []
+			}
+		},
+		"__position": 20
+	}
 ]

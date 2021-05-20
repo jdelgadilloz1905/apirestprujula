@@ -26,4 +26,11 @@ class Ruta{
 
     }
 
+    static public function apiAlgolia(){
+
+        $client = \Algolia\AlgoliaSearch\SearchClient::create('RK5WGMMT2Y', '5faaffff77e964237ab79653cb5057ba');
+
+        return $client;
+    }
+
 }
