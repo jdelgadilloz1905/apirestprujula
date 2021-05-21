@@ -7,6 +7,7 @@ class ControllerAlgolia{
 
         $resultado = self::ctrPrepararMatrizJson($respuesta);
 
+        echo json_encode("enviando datos a algolia");
         $client = Ruta::apiAlgolia();
         $index = $client->initIndex('publications');
         $index->saveObjects($resultado, ['autoGenerateObjectIDIfNotExist' => true]);
@@ -76,7 +77,7 @@ class ControllerAlgolia{
                 "objectID"=>$data["id"],
                 "user"=>ControllerUsers::ctrShowUsers("id", $data["id_user"]),
                 "picture_url"=>$picture_url["file"],
-                "picture_url_offer"=>$picture_url_offer["file"],
+                "picture_url_offer"=>$picture_url_offer !=NULL ? $picture_url_offer["file"] : "",
                 "picture_galery"=>$result,
                 "title"=>$data["title"],
                 "price"=>floatval($data["price"]),
