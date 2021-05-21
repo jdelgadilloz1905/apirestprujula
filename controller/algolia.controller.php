@@ -4,24 +4,34 @@ class ControllerAlgolia{
     static public function ctrGetAllPublications(){
 
         $respuesta = ModelsAlgolia::mdlGetAllPublications();
+        if($respuesta){
+            $resultado = self::ctrPrepararMatrizJson($respuesta);
 
-        $resultado = self::ctrPrepararMatrizJson($respuesta);
 
-        echo json_encode("enviando datos a algolia");
-        $client = Ruta::apiAlgolia();
-        $index = $client->initIndex('publications');
-        $index->saveObjects($resultado, ['autoGenerateObjectIDIfNotExist' => true]);
+            $client = Ruta::apiAlgolia();
+            $index = $client->initIndex('publications');
+            $index->saveObjects($resultado, ['autoGenerateObjectIDIfNotExist' => true]);
 
-        //CREAR UNA FUNCION QUE MARQUE LOS ANUNCIOS QUE FUERON EVNIADOS AL ALGOLIA Y DENTRO DE LA CONSULTA SELECT VALIDAR CONTRA ESE CAMPO DE SINCRONIZADO
-        //OPTIMIZAR TIEMPO Y REGISTROS DE CONSULTA
+            //CREAR UNA FUNCION QUE MARQUE LOS ANUNCIOS QUE FUERON EVNIADOS AL ALGOLIA Y DENTRO DE LA CONSULTA SELECT VALIDAR CONTRA ESE CAMPO DE SINCRONIZADO
+            //OPTIMIZAR TIEMPO Y REGISTROS DE CONSULTA
 
-        echo json_encode(array(
-            "statusCode" => 200,
-            "cantidad"  =>count($resultado),
-            "adsInfo"=>$resultado,
-            "error" => false,
-            "mensaje" =>"",
-        ));
+            echo json_encode(array(
+                "statusCode" => 200,
+                "cantidad"  =>count($resultado),
+                "adsInfo"=>$resultado,
+                "error" => false,
+                "mensaje" =>"",
+            ));
+        }else{
+            echo json_encode(array(
+                "statusCode" => 400,
+                "cantidad"  =>0,
+                "adsInfo"=>"",
+                "error" => true,
+                "mensaje" =>"No s encontraron registros",
+            ));
+        }
+
 
 
     }
@@ -83,8 +93,8 @@ class ControllerAlgolia{
                 "price"=>floatval($data["price"]),
                 "description"=>$data["description"],
                 "half"=>$data["half"],
-                "people"=>intval($data["people"]),
-                "offer"=>intval($data["offer"]),
+                "people"=>intval($data["people"]) . " Personas",
+                "offer"=>intval($data["offer"]) == 1 ? "Si" : "No",
                 "discount_amount"=>floatval($data["discount_amount"]),
                 "category"=>$categoria["nombre"],
                 "completeAddress" => array(
@@ -114,6 +124,12 @@ class ControllerAlgolia{
                 "fin_oferta"=>$data["fin_oferta"],
                 "amenidades"=> $amenidades
             );
+
+            //actualizo el anuncio
+
+            $returnResponse = ModelsAlgolia::mdlUpdateSincronizadoAlgolia("anuncios","algolia",1,$data["id"]);
+
+
         }
 
         return $resultado;
