@@ -665,6 +665,75 @@ class ControllerUsers{
         }
     }
 
+    static public function ctrUpdateUser($data){
+
+        if (isset($data["updEmail"])) {
+
+            if (preg_match('/^[^0-9][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[@][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[.][a-zA-Z]{2,4}$/', $data["updEmail"])
+            ) {
+
+                $encriptar = crypt($data["updPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+
+                $encriptarEmail = md5($data["updEmail"]);
+
+                //ANTES REALIZO UNA VALIDACION SI EL USUARIO EXISTE NUEVAMENTE PARA EVITAR DUPLICIDAD
+                $result = self::ctrShowUsers("email",trim($data["updEmail"])) ;
+
+                if($result["id"] == $data["updId"]){
+                    $datos = array(
+                        "id" => $data["updId"],
+                        "nombre" => $data["updName"],
+                        "apellido" => $data["updLast"],
+                        "password" => $encriptar,
+                        "email" => $data["updEmail"],
+                        "telefono" => $data["updPhone"],
+                        "foto" => $data["updFoto"],
+                        "idioma" => isset($data["updIdioma"]) ? $data["updIdioma"] : 'en',
+                        "email_encriptado" => $encriptarEmail);
+
+                    $tabla = "usuarios";
+
+                    $respuesta = ModelUsers::mdlUpdateUser2($tabla, $datos);
+                    if($respuesta){
+
+                        echo json_encode(array(
+                            "statusCode" => 200,
+                            "error" => false,
+                            "mensaje" =>"Datos actualizados",
+                            "datos" =>$datos
+                        ));
+                    }else{
+                        echo json_encode(array(
+                            "statusCode" => 400,
+                            "error" => true,
+                            "mensaje" =>"¡Error actualizando los datos del usuario, contacte con el administrador!",
+                        ));
+                    }
+
+                }else{
+
+                    echo json_encode(array(
+                        "statusCode" => 400,
+                        "error" => true,
+                        "mensaje" =>"El email ingresado, se encuentra en uso",
+                    ));
+                }
+
+
+            } else {
+
+                echo json_encode(array(
+                    "statusCode" => 400,
+                    "error" => true,
+                    "mensaje" =>"¡Error actualizando los datos del usuario, no se permiten caracteres especiales!",
+                ));
+
+
+            }
+
+        }
+    }
+
     /*=============================================
         FUNCIONES
     =============================================*/

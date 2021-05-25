@@ -89,6 +89,7 @@ class ControllerAds{
 
         if($data){
             $resultado = array(
+                "id"=>$data["id"],
                 "id_user"=>$data["id_user"],
                 "title"=>$data["title"],
                 "price"=>$data["price"],
@@ -247,6 +248,7 @@ class ControllerAds{
         foreach ($valores as $key => $data){
 
             $resultado[$key] = array(
+                "id"=>$data["id"],
                 "id_user"=>$data["id_user"],
                 "title"=>$data["title"],
                 "price"=>$data["price"],
@@ -350,6 +352,88 @@ class ControllerAds{
                 "error" => true,
                 "mensaje" =>"",
             ));
+        }
+    }
+
+    static public function ctrUpdateAd($data){
+
+        if(isset($data["regTitle"])){
+            //insertar los registros y posteriormente insertar las imagenes
+            $datos = array(
+                "id_user"=>$data["regIdUser"],
+                "title"=>$data["regTitle"],
+                "price"=>$data["regPrice"],
+                "description"=>$data["regDescription"],
+                "half"=>$data["regHalf"],
+                "people"=>$data["regPeople"],
+                "offer"=>$data["regOffer"],
+                "discount_amount"=>$data["regDiscountAmount"],
+                "id_category"=>$data["regIdCategory"],
+                "address"=>$data["regAddress"]["completeAddress"],
+                "country"=>$data["regAddress"]["country"],
+                "country_code"=>$data["regAddress"]["countryCode"],
+                "county"=>$data["regAddress"]["county"],
+                "city"=>$data["regAddress"]["city"],
+                "municipality"=>$data["regAddress"]["municipality"],
+                "state"=>$data["regAddress"]["state"],
+                "lat"=>$data["regAddress"]["lat"],
+                "lng"=>$data["regAddress"]["lng"],
+                "address_reference"=>$data["regAddressDescription"],
+                "phone"=>$data["regPhone"],
+                "picture_url"=>json_encode($data["regMainImage"]),
+                "picture_url_offer"=>json_encode($data["regDealImage"]),
+                "picture_galery"=>json_encode($data["regImageGallery"]),
+                "camping_mochila"=>$data["regAmenities"]["camping_mochila"],
+                "camping_baul"=>$data["regAmenities"]["camping_baul"],
+                "agua"=>$data["regAmenities"]["agua"],
+                "luz"=>$data["regAmenities"]["luz"],
+                "tocador"=>$data["regAmenities"]["tocador"],
+                "cocinas"=>$data["regAmenities"]["cocinas"],
+                "bbq"=>$data["regAmenities"]["bbq"],
+                "fogata"=>$data["regAmenities"]["fogata"],
+                "historico"=>$data["regAmenities"]["historico"],
+                "ecologia"=>$data["regAmenities"]["ecologia"],
+                "agricola"=>$data["regAmenities"]["agricola"],
+                "reactivo_pasivo"=>$data["regAmenities"]["reactivo_pasivo"],
+                "reactivo_activo"=>$data["regAmenities"]["reactivo_activo"],
+                "recreacion_piscinas"=>$data["regAmenities"]["recreacion_piscinas"],
+                "recreacion_acuaticas"=>$data["regAmenities"]["recreacion_acuaticas"],
+                "recreacion_veredas"=>$data["regAmenities"]["recreacion_veredas"],
+                "recreacion_espeleologia"=>$data["regAmenities"]["recreacion_espeleologia"],
+                "recreacion_kayac_paddle_balsas"=>$data["regAmenities"]["recreacion_kayac_paddle_balsas"],
+                "recreacion_cocina"=>$data["regAmenities"]["recreacion_cocina"],
+                "recreacion_pajaros"=>$data["regAmenities"]["recreacion_pajaros"],
+                "recreacion_alpinismo"=>$data["regAmenities"]["recreacion_alpinismo"],
+                "recreacion_zipline"=>$data["regAmenities"]["recreacion_zipline"],
+                "paracaidas"=>$data["regAmenities"]["paracaidas"],
+                "recreacion_areas"=>$data["regAmenities"]["recreacion_areas"],
+                "recreacion_animales"=>$data["regAmenities"]["recreacion_animales"],
+                "equipos_mesas"=>$data["regAmenities"]["equipos_mesas"],
+                "equipos_sillas"=>$data["regAmenities"]["equipos_sillas"],
+                "equipos_estufas"=>$data["regAmenities"]["equipos_estufas"]
+            );
+
+            $resultado = ModelsAds::mdlCreateAd("anuncios",$datos);
+
+            //Busco el ultimo ID para las imagenes
+            if($resultado == "ok"){
+                $idInsertado = ModelsAds::mdlGetLastId("anuncios");
+
+                //Enviar el registro en algolia
+                echo json_encode(array(
+                    "statusCode" => 200,
+                    "adsInfo"=>$idInsertado["id"],
+                    "error" => false,
+                    "mensaje" =>"Genial orden # ".$idInsertado["id"]." creada con exito"
+                ));
+            }else{
+                echo json_encode(array(
+                    "statusCode" => 400,
+                    "adsInfo"=>"",
+                    "error" => true,
+                    "mensaje" =>"Error al crear el anuncio, contacte con el administrador",
+                ));
+            }
         }
     }
 }
