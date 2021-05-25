@@ -89,6 +89,7 @@ class ControllerAds{
 
         if($data){
             $resultado = array(
+                "id"=>$data["id"],
                 "id_user"=>$data["id_user"],
                 "title"=>$data["title"],
                 "price"=>$data["price"],
@@ -247,6 +248,7 @@ class ControllerAds{
         foreach ($valores as $key => $data){
 
             $resultado[$key] = array(
+                "id"=>$data["id"],
                 "id_user"=>$data["id_user"],
                 "title"=>$data["title"],
                 "price"=>$data["price"],
