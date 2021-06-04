@@ -667,7 +667,7 @@ class ControllerUsers{
 
     static public function ctrUpdateUser($data){
 
-        if (isset($data["updEmail"])) {
+        if (isset($data["updId"])) {
 
             if (preg_match('/^[^0-9][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[@][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[.][a-zA-Z]{2,4}$/', $data["updEmail"])
             ) {

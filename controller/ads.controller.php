@@ -5,6 +5,30 @@ class ControllerAds{
 
         if(isset($data["regTitle"])){
             //insertar los registros y posteriormente insertar las imagenes
+            /*=============================================
+                GENERAR CONTRASEÑA ALEATORIA
+                =============================================*/
+
+            function generarPassword($longitud){
+
+                $key = "";
+                $pattern = "1234567890abcdefghijklmnopqrstuvwxyz";
+
+                $max = strlen($pattern)-1;
+
+                for($i = 0; $i < $longitud; $i++){
+
+                    $key .= $pattern[mt_rand(0,$max)];
+
+                }
+
+                return $key;
+
+            }
+
+            $nuevaForenKey = generarPassword(30);
+
+
             $datos = array(
                 "id_user"=>$data["regIdUser"],
                 "title"=>$data["regTitle"],
@@ -56,27 +80,34 @@ class ControllerAds{
                 "recreacion_animales"=>$data["regAmenities"]["recreacion_animales"],
                 "equipos_mesas"=>$data["regAmenities"]["equipos_mesas"],
                 "equipos_sillas"=>$data["regAmenities"]["equipos_sillas"],
-                "equipos_estufas"=>$data["regAmenities"]["equipos_estufas"]
+                "equipos_estufas"=>$data["regAmenities"]["equipos_estufas"],
+                "rowid"=> $nuevaForenKey
             );
 
             $resultado = ModelsAds::mdlCreateAd("anuncios",$datos);
 
             //Busco el ultimo ID para las imagenes
             if($resultado == "ok"){
-                $idInsertado = ModelsAds::mdlGetLastId("anuncios");
+                //$idInsertado = ModelsAds::mdlGetLastId("anuncios");
+                $idUltimoAnuncio = ModelsAds::mdlShowAdsId("anuncios","rowid",$nuevaForenKey);
 
                 //Enviar el registro en algolia
+
+                $algolia= ControllerAlgolia::ctrCreateAdsAlgolia($idUltimoAnuncio);
+
                 echo json_encode(array(
                     "statusCode" => 200,
-                    "adsInfo"=>$idInsertado["id"],
+                    "adsInfo"=>$idUltimoAnuncio["id"],
                     "error" => false,
-                    "mensaje" =>"Genial orden # ".$idInsertado["id"]." creada con exito"
+                    "algolia"=>$algolia,
+                    "mensaje" =>"Genial orden # ".$idUltimoAnuncio["id"]." creada con exito"
                 ));
             }else{
                 echo json_encode(array(
                     "statusCode" => 400,
                     "adsInfo"=>"",
                     "error" => true,
+                    "algolia"=>$algolia,
                     "mensaje" =>"Error al crear el anuncio, contacte con el administrador",
                 ));
             }
@@ -357,72 +388,73 @@ class ControllerAds{
 
     static public function ctrUpdateAd($data){
 
-        if(isset($data["regTitle"])){
-            //insertar los registros y posteriormente insertar las imagenes
+        if(isset($data["updId"])){
+
             $datos = array(
-                "id_user"=>$data["regIdUser"],
-                "title"=>$data["regTitle"],
-                "price"=>$data["regPrice"],
-                "description"=>$data["regDescription"],
-                "half"=>$data["regHalf"],
-                "people"=>$data["regPeople"],
-                "offer"=>$data["regOffer"],
-                "discount_amount"=>$data["regDiscountAmount"],
-                "id_category"=>$data["regIdCategory"],
-                "address"=>$data["regAddress"]["completeAddress"],
-                "country"=>$data["regAddress"]["country"],
-                "country_code"=>$data["regAddress"]["countryCode"],
-                "county"=>$data["regAddress"]["county"],
-                "city"=>$data["regAddress"]["city"],
-                "municipality"=>$data["regAddress"]["municipality"],
-                "state"=>$data["regAddress"]["state"],
-                "lat"=>$data["regAddress"]["lat"],
-                "lng"=>$data["regAddress"]["lng"],
-                "address_reference"=>$data["regAddressDescription"],
-                "phone"=>$data["regPhone"],
-                "picture_url"=>json_encode($data["regMainImage"]),
-                "picture_url_offer"=>json_encode($data["regDealImage"]),
-                "picture_galery"=>json_encode($data["regImageGallery"]),
-                "camping_mochila"=>$data["regAmenities"]["camping_mochila"],
-                "camping_baul"=>$data["regAmenities"]["camping_baul"],
-                "agua"=>$data["regAmenities"]["agua"],
-                "luz"=>$data["regAmenities"]["luz"],
-                "tocador"=>$data["regAmenities"]["tocador"],
-                "cocinas"=>$data["regAmenities"]["cocinas"],
-                "bbq"=>$data["regAmenities"]["bbq"],
-                "fogata"=>$data["regAmenities"]["fogata"],
-                "historico"=>$data["regAmenities"]["historico"],
-                "ecologia"=>$data["regAmenities"]["ecologia"],
-                "agricola"=>$data["regAmenities"]["agricola"],
-                "reactivo_pasivo"=>$data["regAmenities"]["reactivo_pasivo"],
-                "reactivo_activo"=>$data["regAmenities"]["reactivo_activo"],
-                "recreacion_piscinas"=>$data["regAmenities"]["recreacion_piscinas"],
-                "recreacion_acuaticas"=>$data["regAmenities"]["recreacion_acuaticas"],
-                "recreacion_veredas"=>$data["regAmenities"]["recreacion_veredas"],
-                "recreacion_espeleologia"=>$data["regAmenities"]["recreacion_espeleologia"],
-                "recreacion_kayac_paddle_balsas"=>$data["regAmenities"]["recreacion_kayac_paddle_balsas"],
-                "recreacion_cocina"=>$data["regAmenities"]["recreacion_cocina"],
-                "recreacion_pajaros"=>$data["regAmenities"]["recreacion_pajaros"],
-                "recreacion_alpinismo"=>$data["regAmenities"]["recreacion_alpinismo"],
-                "recreacion_zipline"=>$data["regAmenities"]["recreacion_zipline"],
-                "paracaidas"=>$data["regAmenities"]["paracaidas"],
-                "recreacion_areas"=>$data["regAmenities"]["recreacion_areas"],
-                "recreacion_animales"=>$data["regAmenities"]["recreacion_animales"],
-                "equipos_mesas"=>$data["regAmenities"]["equipos_mesas"],
-                "equipos_sillas"=>$data["regAmenities"]["equipos_sillas"],
-                "equipos_estufas"=>$data["regAmenities"]["equipos_estufas"]
+                "id" =>$data["updId"],
+                "id_user"=>$data["updIdUser"],
+                "title"=>$data["updTitle"],
+                "price"=>$data["updPrice"],
+                "description"=>$data["updDescription"],
+                "half"=>$data["updHalf"],
+                "people"=>$data["updPeople"],
+                "offer"=>$data["updOffer"],
+                "discount_amount"=>$data["updDiscountAmount"],
+                "id_category"=>$data["updIdCategory"],
+                "address"=>$data["updAddress"]["completeAddress"],
+                "country"=>$data["updAddress"]["country"],
+                "country_code"=>$data["updAddress"]["countryCode"],
+                "county"=>$data["updAddress"]["county"],
+                "city"=>$data["updAddress"]["city"],
+                "municipality"=>$data["updAddress"]["municipality"],
+                "state"=>$data["updAddress"]["state"],
+                "lat"=>$data["updAddress"]["lat"],
+                "lng"=>$data["updAddress"]["lng"],
+                "address_reference"=>$data["updAddressDescription"],
+                "phone"=>$data["updPhone"],
+                "picture_url"=>json_encode($data["updMainImage"]),
+                "picture_url_offer"=>json_encode($data["updDealImage"]),
+                "picture_galery"=>json_encode($data["updImageGallery"]),
+                "camping_mochila"=>$data["updAmenities"]["camping_mochila"],
+                "camping_baul"=>$data["updAmenities"]["camping_baul"],
+                "agua"=>$data["updAmenities"]["agua"],
+                "luz"=>$data["updAmenities"]["luz"],
+                "tocador"=>$data["updAmenities"]["tocador"],
+                "cocinas"=>$data["updAmenities"]["cocinas"],
+                "bbq"=>$data["updAmenities"]["bbq"],
+                "fogata"=>$data["updAmenities"]["fogata"],
+                "historico"=>$data["updAmenities"]["historico"],
+                "ecologia"=>$data["updAmenities"]["ecologia"],
+                "agricola"=>$data["updAmenities"]["agricola"],
+                "reactivo_pasivo"=>$data["updAmenities"]["reactivo_pasivo"],
+                "reactivo_activo"=>$data["updAmenities"]["reactivo_activo"],
+                "recreacion_piscinas"=>$data["updAmenities"]["recreacion_piscinas"],
+                "recreacion_acuaticas"=>$data["updAmenities"]["recreacion_acuaticas"],
+                "recreacion_veredas"=>$data["updAmenities"]["recreacion_veredas"],
+                "recreacion_espeleologia"=>$data["updAmenities"]["recreacion_espeleologia"],
+                "recreacion_kayac_paddle_balsas"=>$data["updAmenities"]["recreacion_kayac_paddle_balsas"],
+                "recreacion_cocina"=>$data["updAmenities"]["recreacion_cocina"],
+                "recreacion_pajaros"=>$data["updAmenities"]["recreacion_pajaros"],
+                "recreacion_alpinismo"=>$data["updAmenities"]["recreacion_alpinismo"],
+                "recreacion_zipline"=>$data["updAmenities"]["recreacion_zipline"],
+                "paracaidas"=>$data["updAmenities"]["paracaidas"],
+                "recreacion_areas"=>$data["updAmenities"]["recreacion_areas"],
+                "recreacion_animales"=>$data["updAmenities"]["recreacion_animales"],
+                "equipos_mesas"=>$data["updAmenities"]["equipos_mesas"],
+                "equipos_sillas"=>$data["updAmenities"]["equipos_sillas"],
+                "equipos_estufas"=>$data["updAmenities"]["equipos_estufas"]
             );
 
-            $resultado = ModelsAds::mdlCreateAd("anuncios",$datos);
+            $resultado = ModelsAds::mdlUpdateAd("anuncios",$datos);
 
-            //Busco el ultimo ID para las imagenes
+
             if($resultado == "ok"){
                 $idInsertado = ModelsAds::mdlGetLastId("anuncios");
 
                 //Enviar el registro en algolia
                 echo json_encode(array(
                     "statusCode" => 200,
-                    "adsInfo"=>$idInsertado["id"],
+                    "adsInfo"=>"",
                     "error" => false,
                     "mensaje" =>"Genial orden # ".$idInsertado["id"]." creada con exito"
                 ));
