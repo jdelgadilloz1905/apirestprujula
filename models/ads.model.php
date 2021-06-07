@@ -6,11 +6,11 @@ class ModelsAds{
 
     static public function mdlCreateAd($tabla,$datos){
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_user,title,price,description,half,people,offer,discount_amount,id_category,address,country,country_code,county,city,municipality,state,lat,lng,address_reference,phone,picture_url,picture_url_offer,picture_galery,
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_user,title,price,price_offer,description,half,people,offer,discount_amount,id_category,address,country,country_code,county,city,municipality,state,lat,lng,address_reference,phone,picture_url,picture_url_offer,picture_galery,
                                                                             camping_mochila,camping_baul,agua,luz,tocador,cocinas,bbq,fogata,historico,ecologia,agricola,reactivo_pasivo,reactivo_activo,recreacion_piscinas,recreacion_acuaticas,recreacion_veredas,
                                                                             recreacion_espeleologia,recreacion_kayac_paddle_balsas,recreacion_cocina,recreacion_pajaros,recreacion_alpinismo,recreacion_zipline,paracaidas,recreacion_areas,recreacion_animales,
                                                                             equipos_mesas,equipos_sillas,equipos_estufas, rowid)
-                                                                    VALUES (:id_user,:title,:price,:description,:half,:people,:offer,:discount_amount,:id_category,:address,:country,:country_code,:county,:city,:municipality,:state,:lat,:lng,:address_reference,:phone,:picture_url,:picture_url_offer,:picture_galery,
+                                                                    VALUES (:id_user,:title,:price,:price_offer,:description,:half,:people,:offer,:discount_amount,:id_category,:address,:country,:country_code,:county,:city,:municipality,:state,:lat,:lng,:address_reference,:phone,:picture_url,:picture_url_offer,:picture_galery,
                                                                             :camping_mochila,:camping_baul,:agua,:luz,:tocador,:cocinas,:bbq,:fogata,:historico,:ecologia,:agricola,:reactivo_pasivo,:reactivo_activo,:recreacion_piscinas,:recreacion_acuaticas,:recreacion_veredas,
                                                                             :recreacion_espeleologia,:recreacion_kayac_paddle_balsas,:recreacion_cocina,:recreacion_pajaros,:recreacion_alpinismo,:recreacion_zipline,:paracaidas,:recreacion_areas,:recreacion_animales,
                                                                             :equipos_mesas,:equipos_sillas,:equipos_estufas, :rowid)");
@@ -18,6 +18,7 @@ class ModelsAds{
         $stmt->bindParam(":id_user", $datos["id_user"], PDO::PARAM_STR);
         $stmt->bindParam(":title", $datos["title"], PDO::PARAM_STR);
         $stmt->bindParam(":price", $datos["price"], PDO::PARAM_STR);
+        $stmt->bindParam(":price_offer", $datos["price_offer"], PDO::PARAM_STR);
         $stmt->bindParam(":description", $datos["description"], PDO::PARAM_STR);
         $stmt->bindParam(":half", $datos["half"], PDO::PARAM_STR);
         $stmt->bindParam(":people", $datos["people"], PDO::PARAM_STR);
@@ -196,19 +197,20 @@ class ModelsAds{
 
     static public function mdlUpdateAd($tabla,$datos){
 
-        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_user= :id_user,title= :title,price= :price,description= :description,half= :half,people= :people,offer= :offer,discount_amount= :discount_amount,id_category= :id_category,address= :address,
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_user= :id_user,title= :title,price= :price, price_offer= :price_offer,description= :description,half= :half,people= :people,offer= :offer,discount_amount= :discount_amount,id_category= :id_category,address= :address,
                                                                             country= :country,country_code= :country_code,county= :county,city= :city,municipality= :municipality,state= :state,lat= :lat,lng= :lng,address_reference= :address_reference,phone= :phone,
                                                                             picture_url= :picture_url,picture_url_offer= :picture_url_offer,picture_galery = :picture_galery,camping_mochila= :camping_mochila,camping_baul = :camping_baul,agua = :agua,luz = :luz,tocador = :tocador,
                                                                             cocinas = :cocinas,bbq = :bbq,fogata = :fogata,historico = :historico,ecologia = :ecologia,agricola = :agricola,reactivo_pasivo = :reactivo_pasivo,reactivo_activo = :reactivo_activo,recreacion_piscinas = :recreacion_piscinas,
                                                                             recreacion_acuaticas = :recreacion_acuaticas,recreacion_veredas = :recreacion_veredas, recreacion_espeleologia = :recreacion_espeleologia,recreacion_kayac_paddle_balsas = :recreacion_kayac_paddle_balsas,
                                                                             recreacion_cocina = :recreacion_cocina,recreacion_pajaros = :recreacion_pajaros,recreacion_alpinismo = :recreacion_alpinismo,recreacion_zipline = :recreacion_zipline,paracaidas = :paracaidas,
                                                                             recreacion_areas = :recreacion_areas,recreacion_animales = :recreacion_animales, equipos_mesas = :equipos_mesas,equipos_sillas = :equipos_sillas,equipos_estufas = :equipos_estufas
-                                                                             WHERE id = :id");
+                                                                            WHERE id = :id");
 
         $stmt->bindParam(":id", $datos["id"], PDO::PARAM_STR);
         $stmt->bindParam(":id_user", $datos["id_user"], PDO::PARAM_STR);
         $stmt->bindParam(":title", $datos["title"], PDO::PARAM_STR);
         $stmt->bindParam(":price", $datos["price"], PDO::PARAM_STR);
+        $stmt->bindParam(":price_offer", $datos["price_offer"], PDO::PARAM_STR);
         $stmt->bindParam(":description", $datos["description"], PDO::PARAM_STR);
         $stmt->bindParam(":half", $datos["half"], PDO::PARAM_STR);
         $stmt->bindParam(":people", $datos["people"], PDO::PARAM_STR);

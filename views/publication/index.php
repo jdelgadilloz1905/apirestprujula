@@ -33,7 +33,7 @@ switch ($method){
 
     case "updatead":
 
-        $respuesta = ControllerAds::ctrUpdateUser($obj);
+        $respuesta = ControllerAds::ctrUpdateAd($obj);
 
         echo $respuesta;
 

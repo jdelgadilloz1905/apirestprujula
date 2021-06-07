@@ -672,7 +672,7 @@ class ControllerUsers{
             if (preg_match('/^[^0-9][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[@][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[.][a-zA-Z]{2,4}$/', $data["updEmail"])
             ) {
 
-                $encriptar = crypt($data["updPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+                //$encriptar = crypt($data["updPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
                 $encriptarEmail = md5($data["updEmail"]);
 
@@ -684,7 +684,6 @@ class ControllerUsers{
                         "id" => $data["updId"],
                         "nombre" => $data["updName"],
                         "apellido" => $data["updLast"],
-                        "password" => $encriptar,
                         "email" => $data["updEmail"],
                         "telefono" => $data["updPhone"],
                         "foto" => $data["updFoto"],
