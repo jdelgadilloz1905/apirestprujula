@@ -460,7 +460,7 @@ class ControllerAds{
                     "statusCode" => 200,
                     "adsInfo"=>"",
                     "error" => false,
-                    "mensaje" =>"Genial orden # ".$idInsertado["id"]." creada con exito"
+                    "mensaje" =>"Genial orden # ".$idInsertado["id"]." actualizada con exito"
                 ));
             }else{
                 echo json_encode(array(
