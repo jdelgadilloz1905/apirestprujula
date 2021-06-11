@@ -108,7 +108,6 @@ class ControllerAds{
                     "statusCode" => 400,
                     "adsInfo"=>"",
                     "error" => true,
-                    "algolia"=>$algolia,
                     "mensaje" =>"Error al crear el anuncio, contacte con el administrador",
                 ));
             }
@@ -470,6 +469,36 @@ class ControllerAds{
                     "mensaje" =>"Error al crear el anuncio, contacte con el administrador",
                 ));
             }
+        }
+    }
+
+    static public function ctrUserPublications($data){
+
+        $tabla = "anuncios";
+
+        $item  ="id_user";
+
+        $valor = $data["conIdUser"];
+
+        $respuesta = ModelsAds::mdlUserPublications($tabla,$item,$valor);
+
+        //$resultado2 = self::ctrPrepararMatrizJson($respuesta);
+
+        if($respuesta){
+
+            echo json_encode(array(
+                "statusCode" => 200,
+                "error" => false,
+                "userPublic" =>$respuesta,
+                "mensaje" =>""
+            ));
+        }else{
+            echo json_encode(array(
+                "statusCode" => 400,
+                "error" => true,
+                "userPublic" =>"",
+                "mensaje" =>"No se encontraron registros"
+            ));
         }
     }
 }
