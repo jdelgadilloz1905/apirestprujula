@@ -501,4 +501,36 @@ class ControllerAds{
             ));
         }
     }
+
+    static public function crtDeletePublication($data){
+
+
+        $resultado = ModelsAds::mdlDeletePublication("anuncios","id",$data);
+
+        if($resultado == "ok"){
+
+            //elimino del aloglia
+            ControllerAlgolia::ctrDeletePublications($data);
+
+            echo json_encode(array(
+                "statusCode" => 200,
+                "error" => false,
+                "mensaje" =>"Orden # ".$data["id"]." eliminada con exito"
+            ));
+
+        }else{
+            echo json_encode(array(
+                "statusCode" => 400,
+                "adsInfo"=>"",
+                "error" => true,
+                "mensaje" =>"Error eliminado publicacion, contacte con el administrador",
+            ));
+
+        }
+    }
+
+    static public function ctrBookPublications(){
+
+
+    }
 }

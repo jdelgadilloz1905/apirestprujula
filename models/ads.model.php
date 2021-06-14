@@ -288,4 +288,25 @@ class ModelsAds{
 
         $stmt = null;
     }
+
+    static public function mdlDeletePublication($tabla,$item,$valor){
+
+        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+
+        $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+        if($stmt -> execute()){
+
+            return "ok";
+
+        }else{
+
+            return "error";
+
+        }
+
+        $stmt -> close();
+
+        $stmt = null;
+    }
 }

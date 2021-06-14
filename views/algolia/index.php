@@ -21,6 +21,14 @@ switch ($method){
 
         break;
 
+    case  "deletepublications":
+
+        $respuesta = ControllerAlgolia::ctrDeletePublications($obj);
+
+        echo $respuesta;
+
+        break;
+
     default:
         echo json_encode(
             array(

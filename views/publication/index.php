@@ -87,6 +87,14 @@ switch ($method){
 
         break;
 
+    case "bookpublications":
+
+        $respuesta = ControllerAds::ctrBookPublications($obj);
+
+        echo $respuesta;
+
+        break;
+
     default:
         echo json_encode(
             array(
