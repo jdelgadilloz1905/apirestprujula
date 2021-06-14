@@ -235,5 +235,19 @@ class ControllerAlgolia{
         return $index;
     }
 
+    static  public function ctrDeletePublications($data){
+
+        $client = Ruta::apiAlgolia();
+        $index = $client->initIndex('publications');
+        $index->deleteObject($data["id"]);
+
+        echo json_encode(array(
+            "statusCode" => 200,
+            "resultado" =>$index,
+            "error" => false,
+
+        ));
+    }
+
 
 }

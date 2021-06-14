@@ -273,4 +273,40 @@ class ModelsAds{
 
         $stmt = null;
     }
+
+    static public function mdlUserPublications($tabla,$item,$valor){
+
+        $stmt = Conexion::conectar()->prepare("SELECT a.id_user idUser,a.title,a.price,a.price_offer,a.description,a.half,a.people,a.offer,a.discount_amount, a.id_category, c.nombre nombre_categoria FROM $tabla a left join categorias c on a.id_category = c.id
+                                                            WHERE a.estado = 1 
+                                                            and a.id_user = $valor ORDER BY a.id DESC ");
+
+        $stmt -> execute();
+
+        return $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt -> close();
+
+        $stmt = null;
+    }
+
+    static public function mdlDeletePublication($tabla,$item,$valor){
+
+        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+
+        $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+        if($stmt -> execute()){
+
+            return "ok";
+
+        }else{
+
+            return "error";
+
+        }
+
+        $stmt -> close();
+
+        $stmt = null;
+    }
 }

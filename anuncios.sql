@@ -14,86 +14,32 @@
 
 
 -- Volcando estructura de base de datos para estudio5_prujula
--- Volcando estructura para tabla estudio5_prujula.anuncios
-DROP TABLE IF EXISTS `anuncios`;
-CREATE TABLE IF NOT EXISTS `anuncios` (
+DROP DATABASE IF EXISTS `estudio5_prujula`;
+CREATE DATABASE IF NOT EXISTS `estudio5_prujula` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
+USE `estudio5_prujula`;
+
+-- Volcando estructura para tabla estudio5_prujula.banner
+DROP TABLE IF EXISTS `banner`;
+CREATE TABLE IF NOT EXISTS `banner` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_user` int(11) NOT NULL DEFAULT 0,
-  `title` text NOT NULL,
-  `price` float NOT NULL DEFAULT 0,
-  `description` text NOT NULL COMMENT 'debe estar incluida la API de google MAPS',
-  `half` text DEFAULT NULL,
-  `people` int(11) NOT NULL DEFAULT 0,
-  `offer` int(11) NOT NULL DEFAULT 0,
-  `discount_amount` float NOT NULL DEFAULT 0,
-  `id_category` int(11) NOT NULL DEFAULT 0,
-  `address` text NOT NULL,
-  `country` text NOT NULL,
-  `country_code` text NOT NULL,
-  `county` text NOT NULL,
-  `municipality` text NOT NULL,
-  `state` text NOT NULL,
-  `lat` float NOT NULL DEFAULT 0,
-  `lng` float NOT NULL DEFAULT 0,
-  `address_reference` text NOT NULL,
-  `phone` text NOT NULL,
-  `picture_url` text DEFAULT NULL,
-  `picture_url_offer` text DEFAULT NULL,
-  `picture_galery` text DEFAULT NULL,
-  `calificacion` float NOT NULL DEFAULT 0 COMMENT '0.5-1-1.5-2-2.5-3-3.5-4-4.5-5',
-  `estado` int(11) NOT NULL DEFAULT 1 COMMENT '1 = activo 0 = inactivo ',
-  `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `vistas` int(11) NOT NULL DEFAULT 0,
-  `reservaciones` int(11) NOT NULL DEFAULT 0,
-  `fin_oferta` datetime DEFAULT NULL COMMENT 'fin de la promocion ',
-  `fechas_desactivada` text DEFAULT NULL,
-  `camping_mochila` tinyint(4) DEFAULT 0,
-  `camping_baul` tinyint(4) DEFAULT 0,
-  `agua` tinyint(4) DEFAULT 0,
-  `luz` tinyint(4) DEFAULT 0,
-  `tocador` tinyint(4) DEFAULT 0,
-  `cocinas` tinyint(4) DEFAULT 0,
-  `bbq` tinyint(4) DEFAULT 0,
-  `fogata` tinyint(4) DEFAULT 0,
-  `historico` tinyint(4) DEFAULT 0,
-  `ecologia` tinyint(4) DEFAULT 0,
-  `agricola` tinyint(4) DEFAULT 0,
-  `reactivo_pasivo` tinyint(4) DEFAULT 0,
-  `reactivo_activo` tinyint(4) DEFAULT 0,
-  `recreacion_piscinas` tinyint(4) DEFAULT 0,
-  `recreacion_acuaticas` tinyint(4) DEFAULT 0,
-  `recreacion_veredas` tinyint(4) DEFAULT 0,
-  `recreacion_espeleologia` tinyint(4) DEFAULT 0,
-  `recreacion_kayac_paddle_balsas` tinyint(4) DEFAULT 0,
-  `recreacion_cocina` tinyint(4) DEFAULT 0,
-  `recreacion_pajaros` tinyint(4) DEFAULT 0,
-  `recreacion_alpinismo` tinyint(4) DEFAULT 0,
-  `recreacion_zipline` tinyint(4) DEFAULT 0,
-  `paracaidas` tinyint(4) DEFAULT 0,
-  `recreacion_areas` tinyint(4) DEFAULT 0,
-  `recreacion_animales` tinyint(4) DEFAULT 0,
-  `equipos_mesas` tinyint(4) DEFAULT 0,
-  `equipos_sillas` tinyint(4) DEFAULT 0,
-  `equipos_estufas` tinyint(4) DEFAULT 0,
-  PRIMARY KEY (`id`,`id_category`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+  `ruta` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `tipo` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `image` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `estado` int(11) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
-
--- Volcando estructura para disparador estudio5_prujula.anuncios_before_update
-DROP TRIGGER IF EXISTS `anuncios_before_update`;
-SET @OLDTMP_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO';
-DELIMITER //
-CREATE TRIGGER `anuncios_before_update` BEFORE UPDATE ON `anuncios` FOR EACH ROW BEGIN
-	IF NEW.fin_oferta >= CURRENT_DATE() THEN
-		SET NEW.offer = 1;
-	ELSEIF NEW.fin_oferta < CURRENT_DATE() THEN
-		SET NEW.offer = 0;
-	ELSEIF NEW.fin_oferta = NULL THEN
-		SET NEW.offer = 0;	
-	END IF;
-END//
-DELIMITER ;
-SET SQL_MODE=@OLDTMP_SQL_MODE;
+-- Volcando datos para la tabla estudio5_prujula.banner: ~3 rows (aproximadamente)
+/*!40000 ALTER TABLE `banner` DISABLE KEYS */;
+INSERT INTO `banner` (`id`, `ruta`, `tipo`, `image`, `estado`, `fecha`) VALUES
+	(1, 'sin-categoria', 'sin-categoria', 'views/img/banner/default.jpg', 0, '2021-06-14 13:58:05'),
+	(3, 'desarrollo-web', 'subcategorias', 'views/img/banner/web.jpg', 0, '2021-06-14 13:58:00'),
+	(4, 'calzado', 'categorias', 'views/img/banner/ropaHombre.jpg', 0, '2021-06-14 13:57:56'),
+	(5, 'camping', 'camping', 'views/img/banner/banner1.jpeg', 1, '2021-06-14 13:57:52'),
+	(6, 'camping', 'camping', 'views/img/banner/banner2.jpeg', 1, '2021-06-14 13:57:52'),
+	(7, 'camping', 'camping', 'views/img/banner/banner3.jpeg', 1, '2021-06-14 13:57:52');
+/*!40000 ALTER TABLE `banner` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
