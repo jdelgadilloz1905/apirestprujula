@@ -5,28 +5,9 @@ class ControllerAds{
 
         if(isset($data["regTitle"])){
             //insertar los registros y posteriormente insertar las imagenes
-            /*=============================================
-                GENERAR CONTRASEÑA ALEATORIA
-                =============================================*/
 
-            function generarPassword($longitud){
 
-                $key = "";
-                $pattern = "1234567890abcdefghijklmnopqrstuvwxyz";
-
-                $max = strlen($pattern)-1;
-
-                for($i = 0; $i < $longitud; $i++){
-
-                    $key .= $pattern[mt_rand(0,$max)];
-
-                }
-
-                return $key;
-
-            }
-
-            $nuevaForenKey = generarPassword(30);
+            $nuevaForenKey = self::generarPassword(30);
 
 
             $datos = array(
@@ -529,8 +510,66 @@ class ControllerAds{
         }
     }
 
-    static public function ctrBookPublications(){
+    static public function ctrBookPublications($data){
 
+        if(isset($data["idAnuncio"])){
+
+            $nuevaForenKey = self::generarPassword(30);
+
+            $datos = array(
+                "id_anuncio"=>$data["idAnuncio"],
+                "id_user"=>$data["idUser"],
+                "cantidad_personas"=>$data["cantPersonas"],
+                "cantidad_dias"=>$data["cantDias"],
+                "fecha_desde"=>$data["fechaInicio"],
+                "fecha_hasta"=>$data["fechaFin"],
+                "precio"=>$data["precioXNoche"],
+                "impuesto"=>$data["impuesto"],
+                "descuento"=>$data["descuento"],
+                "total"=>$data["total"],
+                "rowid" =>$nuevaForenKey
+            );
+
+            $resultado = ModelsAds::mdlBookPublications("reservaciones",$datos);
+
+            if($resultado == "ok"){
+
+                echo json_encode(array(
+                    "statusCode" => 200,
+                    "error" => false,
+                    "mensaje" =>"Reservacion creada con exito"
+                ));
+
+            }else{
+                echo json_encode(array(
+                    "statusCode" => 400,
+                    "adsInfo"=>"",
+                    "error" => true,
+                    "mensaje" =>"Error reservando el anuncio, contacte con el administrador",
+                ));
+
+            }
+        }
+    }
+
+    /*=============================================
+                GENERAR CONTRASEÑA ALEATORIA
+                =============================================*/
+
+    static public function generarPassword($longitud){
+
+        $key = "";
+        $pattern = "1234567890abcdefghijklmnopqrstuvwxyz";
+
+        $max = strlen($pattern)-1;
+
+        for($i = 0; $i < $longitud; $i++){
+
+            $key .= $pattern[mt_rand(0,$max)];
+
+        }
+
+        return $key;
 
     }
 }

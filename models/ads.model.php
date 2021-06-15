@@ -309,4 +309,37 @@ class ModelsAds{
 
         $stmt = null;
     }
+
+    static public function mdlBookPublications($tabla,$datos){
+
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_anuncio,id_user,cantidad_personas, cantidad_dias,fecha_desde,fecha_hasta,precio,impuesto,descuento,total,rowid)
+                                                                    VALUES (:id_anuncio,:id_user,:cantidad_personas, :cantidad_dias,:fecha_desde,:fecha_hasta,:precio,:impuesto,:descuento,:total,:rowid)");
+
+        $stmt->bindParam(":id_anuncio", $datos["id_anuncio"], PDO::PARAM_STR);
+        $stmt->bindParam(":id_user", $datos["id_user"], PDO::PARAM_STR);
+        $stmt->bindParam(":cantidad_personas", $datos["cantidad_personas"], PDO::PARAM_STR);
+        $stmt->bindParam(":cantidad_dias", $datos["cantidad_dias"], PDO::PARAM_STR);
+        $stmt->bindParam(":fecha_desde", $datos["fecha_desde"], PDO::PARAM_STR);
+        $stmt->bindParam(":fecha_hasta", $datos["fecha_hasta"], PDO::PARAM_STR);
+        $stmt->bindParam(":precio", $datos["precio"], PDO::PARAM_STR);
+        $stmt->bindParam(":impuesto", $datos["impuesto"], PDO::PARAM_STR);
+        $stmt->bindParam(":descuento", $datos["descuento"], PDO::PARAM_STR);
+        $stmt->bindParam(":total", $datos["total"], PDO::PARAM_STR);
+        $stmt->bindParam(":rowid", $datos["rowid"], PDO::PARAM_STR);
+
+
+        if($stmt->execute()){
+
+            return "ok";
+
+        }else{
+
+            return "error";
+
+        }
+
+        $stmt->close();
+
+        $stmt = null;
+    }
 }
