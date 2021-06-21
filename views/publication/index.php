@@ -87,9 +87,33 @@ switch ($method){
 
         break;
 
+    case "userreservations":
+
+        $respuesta = ControllerAds::ctrUserReservations($obj);
+
+        echo $respuesta;
+
+        break;
+
     case "bookpublications":
 
         $respuesta = ControllerAds::ctrBookPublications($obj);
+
+        echo $respuesta;
+
+        break;
+
+    case "offerpublication":
+
+        $respuesta = ControllerAds::ctrOfferxPublication($obj);
+
+        echo $respuesta;
+
+        break;
+
+    case "updatepublication":
+
+        $respuesta = ControllerAds::ctrUpdateReservation($obj);
 
         echo $respuesta;
 

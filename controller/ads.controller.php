@@ -99,6 +99,8 @@ class ControllerAds{
 
         $data = ModelsAds::mdlShowAdsId("anuncios","id",$datos["conId"]);
 
+        $fechasArray = ModelsAds::mdlDateReservadas("reservaciones","id_anuncio",$data["id"]);
+
         if($data){
             $resultado = array(
                 "id"=>$data["id"],
@@ -166,7 +168,8 @@ class ControllerAds{
                     "equipos_mesas"=>$data["equipos_mesas"],
                     "equipos_sillas"=>$data["equipos_sillas"],
                     "equipos_estufas"=>$data["equipos_estufas"],
-                )
+                ),
+                "disable_dates"=>self::ctrPreparaDisabledDates($fechasArray)
 
             );
 
@@ -260,6 +263,11 @@ class ControllerAds{
 
         foreach ($valores as $key => $data){
 
+            //busco las fchas reservadas de cada anuncio si las tiene y creo un objeto y aqui las agrego
+
+            $fechasArray = ModelsAds::mdlDateReservadas("reservaciones","id_anuncio",$data["id"]);
+
+
             $resultado[$key] = array(
                 "id"=>$data["id"],
                 "id_user"=>$data["id_user"],
@@ -327,11 +335,25 @@ class ControllerAds{
                     "equipos_sillas"=>$data["equipos_sillas"],
                     "equipos_estufas"=>$data["equipos_estufas"],
                 ),
+                "disable_dates"=>self::ctrPreparaDisabledDates($fechasArray)
 
             );
         }
 
         return $resultado;
+    }
+
+    static public function ctrPreparaDisabledDates($valores){
+
+        foreach ($valores as $key => $data){
+            $resultado[$key] = array(
+                "start"=>$data["fecha_desde"],
+                "end"=>$data["fecha_hasta"]
+            );
+
+        }
+        return $resultado;
+
     }
 
     /*============================================
@@ -447,13 +469,15 @@ class ControllerAds{
                     "statusCode" => 400,
                     "adsInfo"=>"",
                     "error" => true,
-                    "mensaje" =>"Error al crear el anuncio, contacte con el administrador",
+                    "mensaje" =>"Error actualizando el anuncio, contacte con el administrador",
                 ));
             }
         }
     }
 
     static public function ctrUserPublications($data){
+
+        //SON LAS PUBLICACIONES QUE ESTAN CREADAS POR EL PUBLICADOR, SOLO EL VERA LOS USUARIOS QUE HAN OFERTADO A SUS ANUNCIOS
 
         $tabla = "anuncios";
 
@@ -463,14 +487,14 @@ class ControllerAds{
 
         $respuesta = ModelsAds::mdlUserPublications($tabla,$item,$valor);
 
-        //$resultado2 = self::ctrPrepararMatrizJson($respuesta);
+        $resultado2 = self::ctrPrepararMatrizUserPublicationJson($respuesta);
 
         if($respuesta){
 
             echo json_encode(array(
                 "statusCode" => 200,
                 "error" => false,
-                "userPublic" =>$respuesta,
+                "userPublic" =>$resultado2,
                 "mensaje" =>""
             ));
         }else{
@@ -481,6 +505,62 @@ class ControllerAds{
                 "mensaje" =>"No se encontraron registros"
             ));
         }
+    }
+
+    static public function ctrUserReservations($data){
+
+        //SON LAS RESERVACIONES QUE ESTAN OFERTADAS POR LOS USUARIOS QUE DISFRUTAN DE LOS SERVICIOS
+
+        $tabla = "reservaciones";
+
+        $item  ="id_user";
+
+        $valor = $data["conIdUser"];
+
+        $pending = ModelsAds::mdlShowReservation($tabla,$item,$valor,0);
+
+        $approved = ModelsAds::mdlShowReservation($tabla,$item,$valor,1);
+
+        $cancel = ModelsAds::mdlShowReservation($tabla,$item,$valor,2);
+
+
+        echo json_encode(array(
+            "statusCode" => 200,
+            "error" => false,
+            "userReservationPending" =>$pending,
+            "userReservationApproved" =>$approved,
+            "userReservationCancel" =>$cancel,
+            "mensaje" =>""
+        ));
+    }
+
+    static public function ctrPrepararMatrizUserPublicationJson($valores){
+
+        foreach ($valores as $key => $data){
+
+            //BUSCAR POR ESTATUS LAS RESERVACIONES
+
+            $resultado[$key] = array(
+                "id_anuncio"=>$data["id"],
+                "idUser"=>$data["idUser"],
+                "title"=>$data["title"],
+                "price"=>$data["price"],
+                "price_offer"=>$data["price_offer"],
+                "description"=>$data["description"],
+                "half"=>$data["half"],
+                "people"=>$data["people"],
+                "offer"=>$data["offer"],
+                "discount_amount"=>$data["discount_amount"],
+                "id_category"=>$data["id_category"],
+                "nombre_categoria"=>$data["nombre_categoria"],
+                "pending"=>ModelsAds::mdlShowReservation("reservaciones","id_anuncio",$data["id"],0),
+                "approved"=>ModelsAds::mdlShowReservation("reservaciones","id_anuncio",$data["id"],1),
+                "canceled"=>ModelsAds::mdlShowReservation("reservaciones","id_anuncio",$data["id"],2),
+
+            );
+        }
+
+        return $resultado;
     }
 
     static public function crtDeletePublication($data){
@@ -509,6 +589,32 @@ class ControllerAds{
 
         }
     }
+
+    static public function ctrOfferxPublication($data){
+
+        $resultado = ModelsAds::mdlOfferxPublication("reservaciones", "id_anuncio", $data["conIdAnuncio"]);
+
+        if($resultado == "ok"){
+
+            echo json_encode(array(
+                "statusCode" => 200,
+                "error" => false,
+                "infoOfferPublic" =>$resultado,
+                "mensaje" =>""
+            ));
+
+        }else{
+            echo json_encode(array(
+                "statusCode" => 400,
+                "infoOfferPublic"=>$resultado,
+                "error" => true,
+                "mensaje" =>"No se encontraron registros",
+            ));
+
+        }
+    }
+
+
 
     static public function ctrBookPublications($data){
 
@@ -553,8 +659,8 @@ class ControllerAds{
     }
 
     /*=============================================
-                GENERAR CONTRASEÑA ALEATORIA
-                =============================================*/
+        GENERAR CONTRASEÑA ALEATORIA
+    =============================================*/
 
     static public function generarPassword($longitud){
 
@@ -571,5 +677,133 @@ class ControllerAds{
 
         return $key;
 
+    }
+
+    static public function ctrUpdateReservation($data){
+
+        $resultado = ModelsAds::mdlUpdateReservation("reservaciones",$data);
+
+        if($resultado == "ok"){
+
+            //busco los datos del usuario
+
+            $datos = ModelsAds::mdlShowAdsReservation("reservaciones","id",$data["updId"]);
+
+            ///enviar email dependiendo del estatus
+
+
+            $url = Ruta::ctrRutaFront();
+
+            date_default_timezone_set("America/Bogota");
+
+            $mail = new PHPMailer;
+
+            $mail->CharSet = 'UTF-8';
+
+            $mail->isMail();
+
+            $mail->setFrom('hola@prujula.com', 'PRUJULA');
+
+            $mail->addReplyTo('hola@prujula.com', 'PRUJULA');
+
+
+            if($data["updEstatus"]==1){
+
+
+                $mail->Subject = "Felicidades ha sido aprobado tu oferta";
+
+                $mail->addAddress($datos["email"]);
+
+                $mail->msgHTML('<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
+
+								<center>
+
+									<img style="padding:20px; width:10%" src="">
+
+								</center>
+
+								<div style="position:relative; margin:auto; width:600px; background:white; padding:20px">
+
+									<center>
+
+									<img style="padding:20px; width:15%" src="http://tutorialesatualcance.com/tienda/icon-pass.png">
+
+									<h3 style="font-weight:100; color:#999">TU SOLICITUD HA SIDO APROBADA</h3>
+
+									<hr style="border:1px solid #ccc; width:80%">
+
+
+									<a href="'.$url.'" target="_blank" style="text-decoration:none">
+
+									<div style="line-height:60px; background:#450E10; width:60%; color:white">Ingrese nuevamente al sitio</div>
+
+									</a>
+
+									<br>
+
+									<hr style="border:1px solid #ccc; width:80%">
+
+									<h5 style="font-weight:100; color:#999">Si no se inscribió en esta cuenta, puede ignorar este correo electrónico y la cuenta se eliminará.</h5>
+
+									</center>
+
+								</div>
+
+							</div>');
+
+                $mail->Send();
+
+
+            }elseif($data["updEstatus"]==2){
+
+                $mail->Subject = "Tu solicitud ha sido rechada";
+
+                $mail->addAddress($datos["email"]);
+
+                $mail->msgHTML('<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
+
+								<center>
+
+									<img style="padding:20px; width:10%" src="">
+
+								</center>
+
+								<div style="position:relative; margin:auto; width:600px; background:white; padding:20px">
+
+									<center>
+
+									<img style="padding:20px; width:15%" src="http://tutorialesatualcance.com/tienda/icon-pass.png">
+
+									<h3 style="font-weight:100; color:#999">TU SOLICITUD HA SIDO RECHAZADA</h3>
+
+									<hr style="border:1px solid #ccc; width:80%">
+
+									<br>
+
+									<hr style="border:1px solid #ccc; width:80%">
+
+									<h5 style="font-weight:100; color:#999">Si no se inscribió en esta cuenta, puede ignorar este correo electrónico y la cuenta se eliminará.</h5>
+
+									</center>
+
+								</div>
+
+							</div>');
+
+                $mail->Send();
+            }
+
+            echo json_encode(array(
+                "statusCode" => 200,
+                "error" => false,
+                "mensaje" =>"Genial se ha actualizado la publicacion "
+            ));
+        }else{
+            echo json_encode(array(
+                "statusCode" => 400,
+                "error" => true,
+                "mensaje" =>"Error actualizando estatus del anuncio, contacte con el administrador",
+            ));
+        }
     }
 }

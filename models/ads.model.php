@@ -276,7 +276,7 @@ class ModelsAds{
 
     static public function mdlUserPublications($tabla,$item,$valor){
 
-        $stmt = Conexion::conectar()->prepare("SELECT a.id_user idUser,a.title,a.price,a.price_offer,a.description,a.half,a.people,a.offer,a.discount_amount, a.id_category, c.nombre nombre_categoria FROM $tabla a left join categorias c on a.id_category = c.id
+        $stmt = Conexion::conectar()->prepare("SELECT a.id,a.id_user idUser,a.title,a.price,a.price_offer,a.description,a.half,a.people,a.offer,a.discount_amount, a.id_category, c.nombre nombre_categoria FROM $tabla a left join categorias c on a.id_category = c.id
                                                             WHERE a.estado = 1 
                                                             and a.id_user = $valor ORDER BY a.id DESC ");
 
@@ -342,4 +342,93 @@ class ModelsAds{
 
         $stmt = null;
     }
+
+    static public function mdlDateReservadas($tabla,$item,$valor){
+
+        $stmt = Conexion::conectar()->prepare("SELECT  id_anuncio, fecha_desde, fecha_hasta from $tabla where $item = :$item and estatus = 1 order by id desc  ");
+
+        $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+        $stmt -> execute();
+
+        return $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt -> close();
+
+        $stmt = null;
+    }
+
+    static public function mdlOfferxPublication($tabla,$item,$valor){
+
+        $stmt = Conexion::conectar()->query("SELECT r.*, u.nombre, u.apellido, u.foto from $tabla r LEFT JOIN usuarios u ON r.id_user = u.id where r.id_anuncio = $valor AND r.estatus = 0 order by r.id desc ");
+
+        //$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+        $stmt -> execute();
+
+        return $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt -> close();
+
+        $stmt = null;
+    }
+
+    /***************************************
+        MOSTRAR LAS RESERVACIONS DE MIS PUBLICACIONES
+    **************************************/
+
+    static public function mdlShowReservation($tabla,$item,$valor,$estatus){
+
+        $stmt = Conexion::conectar()->prepare("SELECT  r.*, u.nombre, u.apellido from $tabla r left join usuarios u on u.id = r.id_user where r.$item = :$item AND r.estatus = :estatus order by r.id desc  ");
+
+        $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+        $stmt -> bindParam(":estatus", $estatus, PDO::PARAM_STR);
+
+        $stmt -> execute();
+
+        return $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt -> close();
+
+        $stmt = null;
+    }
+
+    static public function mdlUpdateReservation($tabla,$data){
+
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET estatus = :estatus WHERE id = :id");
+
+        $stmt->bindParam(":estatus", $data["updEstatus"], PDO::PARAM_INT);
+        $stmt->bindParam(":id", $data["updId"], PDO::PARAM_STR);
+
+        if($stmt->execute()){
+
+            return "ok";
+
+        }else{
+
+            return "error";
+        }
+
+        $stmt->close();
+
+        $stmt = null;
+    }
+
+    static public function mdlShowAdsReservation($tabla,$item,$valor){
+
+        $stmt = Conexion::conectar()->prepare("SELECT  r.*, u.nombre, u.apellido, u.email from $tabla r left join usuarios u on u.id = r.id_user where r.$item = :$item ");
+
+        $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+
+        $stmt -> execute();
+
+        return $stmt -> fetch(PDO::FETCH_ASSOC);
+
+        $stmt -> close();
+
+        $stmt = null;
+    }
+
+
 }
