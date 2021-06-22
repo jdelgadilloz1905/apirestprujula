@@ -49,4 +49,11 @@ class ControllerConfig{
 
         ));
     }
+
+    static public function ctrGetConfig(){
+
+        $respuesta = ModelsConfig::mdlConfig();
+
+        echo $respuesta;
+    }
 }

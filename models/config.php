@@ -5,10 +5,14 @@ class ModelsConfig{
 
     static public function mdlConfig(){
 
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM config");
+        $stmt = Conexion::conectar()->query("SELECT * FROM config");
 
         $stmt -> execute();
 
-        return $stmt -> fetch();
+        return $stmt -> fetch(PDO::FETCH_ASSOC);
+
+        $stmt -> close();
+
+        $stmt = null;
     }
 }

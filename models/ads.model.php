@@ -312,8 +312,8 @@ class ModelsAds{
 
     static public function mdlBookPublications($tabla,$datos){
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_anuncio,id_user,cantidad_personas, cantidad_dias,fecha_desde,fecha_hasta,precio,impuesto,descuento,total,rowid)
-                                                                    VALUES (:id_anuncio,:id_user,:cantidad_personas, :cantidad_dias,:fecha_desde,:fecha_hasta,:precio,:impuesto,:descuento,:total,:rowid)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_anuncio,id_user,cantidad_personas, cantidad_dias,fecha_desde,fecha_hasta,fecha_vencimiento,precio,impuesto,descuento,total,rowid)
+                                                                    VALUES (:id_anuncio,:id_user,:cantidad_personas, :cantidad_dias,:fecha_desde,:fecha_hasta,:fecha_vencimiento,:precio,:impuesto,:descuento,:total,:rowid)");
 
         $stmt->bindParam(":id_anuncio", $datos["id_anuncio"], PDO::PARAM_STR);
         $stmt->bindParam(":id_user", $datos["id_user"], PDO::PARAM_STR);
@@ -321,6 +321,7 @@ class ModelsAds{
         $stmt->bindParam(":cantidad_dias", $datos["cantidad_dias"], PDO::PARAM_STR);
         $stmt->bindParam(":fecha_desde", $datos["fecha_desde"], PDO::PARAM_STR);
         $stmt->bindParam(":fecha_hasta", $datos["fecha_hasta"], PDO::PARAM_STR);
+        $stmt->bindParam(":fecha_vencimiento", $datos["fecha_vencimiento"], PDO::PARAM_STR);
         $stmt->bindParam(":precio", $datos["precio"], PDO::PARAM_STR);
         $stmt->bindParam(":impuesto", $datos["impuesto"], PDO::PARAM_STR);
         $stmt->bindParam(":descuento", $datos["descuento"], PDO::PARAM_STR);

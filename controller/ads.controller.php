@@ -622,6 +622,12 @@ class ControllerAds{
 
             $nuevaForenKey = self::generarPassword(30);
 
+            $cantDias = ModelsConfig::mdlConfig();
+
+            $fecha_actual = date("Y-m-d");
+
+            $fechaCaducidad = date("Y-m-d",strtotime($fecha_actual."+ ".$cantDias["dias_vencimiento"]." days"));
+
             $datos = array(
                 "id_anuncio"=>$data["idAnuncio"],
                 "id_user"=>$data["idUser"],
@@ -633,6 +639,7 @@ class ControllerAds{
                 "impuesto"=>$data["impuesto"],
                 "descuento"=>$data["descuento"],
                 "total"=>$data["total"],
+                "fecha_vencimiento" =>$fechaCaducidad,
                 "rowid" =>$nuevaForenKey
             );
 
