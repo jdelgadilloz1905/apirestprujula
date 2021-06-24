@@ -622,6 +622,12 @@ class ControllerAds{
 
             $nuevaForenKey = self::generarPassword(30);
 
+            $cantDias = ModelsConfig::mdlConfig();
+
+            $fecha_actual = date("Y-m-d");
+
+            $fechaCaducidad = date("Y-m-d",strtotime($fecha_actual."+ ".$cantDias["dias_vencimiento"]." days"));
+
             $datos = array(
                 "id_anuncio"=>$data["idAnuncio"],
                 "id_user"=>$data["idUser"],
@@ -633,6 +639,7 @@ class ControllerAds{
                 "impuesto"=>$data["impuesto"],
                 "descuento"=>$data["descuento"],
                 "total"=>$data["total"],
+                "fecha_vencimiento" =>$fechaCaducidad,
                 "rowid" =>$nuevaForenKey
             );
 
@@ -692,7 +699,7 @@ class ControllerAds{
             ///enviar email dependiendo del estatus
 
 
-            $url = Ruta::ctrRutaFront();
+            $url = Ruta::ctrRutaEnvioEmailConfirm();
 
             date_default_timezone_set("America/Bogota");
 
@@ -733,9 +740,11 @@ class ControllerAds{
 									<hr style="border:1px solid #ccc; width:80%">
 
 
-									<a href="'.$url.'" target="_blank" style="text-decoration:none">
+									<a href="'.$url.$data["updId"].'" target="_blank" style="text-decoration:none">
 
-									<div style="line-height:60px; background:#450E10; width:60%; color:white">Ingrese nuevamente al sitio</div>
+									<div style="line-height:60px; background:#450E10; width:60%; color:white">Ingrese nuevamente al sitio para realizar el pago </div>
+									
+									<div style="line-height:60px; background:#450E10; width:60%; color:white">Posee 5 dias para realizar el pago, de lo contrario su reservación sera liberada </div>
 
 									</a>
 
@@ -805,5 +814,28 @@ class ControllerAds{
                 "mensaje" =>"Error actualizando estatus del anuncio, contacte con el administrador",
             ));
         }
+    }
+
+    static public function ctrConfirmReservation($data){
+
+        $respuesta = ModelsAds::mdlConfirmReservation("reservaciones","id",$data["conIdUser"]);
+
+        if($respuesta){
+
+            echo json_encode(array(
+                "statusCode" => 200,
+                "error" => false,
+                "infoReser" => $respuesta,
+                "mensaje" =>" "
+            ));
+        }else{
+
+            echo json_encode(array(
+                "statusCode" => 400,
+                "error" => true,
+                "mensaje" =>"NO existe reservacion "
+            ));
+        }
+
     }
 }

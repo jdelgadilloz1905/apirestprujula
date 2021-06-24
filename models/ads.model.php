@@ -312,8 +312,8 @@ class ModelsAds{
 
     static public function mdlBookPublications($tabla,$datos){
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_anuncio,id_user,cantidad_personas, cantidad_dias,fecha_desde,fecha_hasta,precio,impuesto,descuento,total,rowid)
-                                                                    VALUES (:id_anuncio,:id_user,:cantidad_personas, :cantidad_dias,:fecha_desde,:fecha_hasta,:precio,:impuesto,:descuento,:total,:rowid)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_anuncio,id_user,cantidad_personas, cantidad_dias,fecha_desde,fecha_hasta,fecha_vencimiento,precio,impuesto,descuento,total,rowid)
+                                                                    VALUES (:id_anuncio,:id_user,:cantidad_personas, :cantidad_dias,:fecha_desde,:fecha_hasta,:fecha_vencimiento,:precio,:impuesto,:descuento,:total,:rowid)");
 
         $stmt->bindParam(":id_anuncio", $datos["id_anuncio"], PDO::PARAM_STR);
         $stmt->bindParam(":id_user", $datos["id_user"], PDO::PARAM_STR);
@@ -321,6 +321,7 @@ class ModelsAds{
         $stmt->bindParam(":cantidad_dias", $datos["cantidad_dias"], PDO::PARAM_STR);
         $stmt->bindParam(":fecha_desde", $datos["fecha_desde"], PDO::PARAM_STR);
         $stmt->bindParam(":fecha_hasta", $datos["fecha_hasta"], PDO::PARAM_STR);
+        $stmt->bindParam(":fecha_vencimiento", $datos["fecha_vencimiento"], PDO::PARAM_STR);
         $stmt->bindParam(":precio", $datos["precio"], PDO::PARAM_STR);
         $stmt->bindParam(":impuesto", $datos["impuesto"], PDO::PARAM_STR);
         $stmt->bindParam(":descuento", $datos["descuento"], PDO::PARAM_STR);
@@ -345,7 +346,7 @@ class ModelsAds{
 
     static public function mdlDateReservadas($tabla,$item,$valor){
 
-        $stmt = Conexion::conectar()->prepare("SELECT  id_anuncio, fecha_desde, fecha_hasta from $tabla where $item = :$item and estatus = 1 order by id desc  ");
+        $stmt = Conexion::conectar()->prepare("SELECT  id_anuncio, fecha_desde, fecha_hasta from $tabla where $item = :$item order by id desc  ");
 
         $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -374,12 +375,12 @@ class ModelsAds{
     }
 
     /***************************************
-        MOSTRAR LAS RESERVACIONS DE MIS PUBLICACIONES
-    **************************************/
+    MOSTRAR LAS RESERVACIONS DE MIS PUBLICACIONES
+     **************************************/
 
     static public function mdlShowReservation($tabla,$item,$valor,$estatus){
 
-        $stmt = Conexion::conectar()->prepare("SELECT  r.*, u.nombre, u.apellido from $tabla r left join usuarios u on u.id = r.id_user where r.$item = :$item AND r.estatus = :estatus order by r.id desc  ");
+        $stmt = Conexion::conectar()->prepare("SELECT  r.*, u.nombre, u.apellido, a. from $tabla r left join usuarios u on u.id = r.id_user where r.$item = :$item AND r.estatus = :estatus order by r.id desc  ");
 
         $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
         $stmt -> bindParam(":estatus", $estatus, PDO::PARAM_STR);
@@ -417,6 +418,28 @@ class ModelsAds{
     static public function mdlShowAdsReservation($tabla,$item,$valor){
 
         $stmt = Conexion::conectar()->prepare("SELECT  r.*, u.nombre, u.apellido, u.email from $tabla r left join usuarios u on u.id = r.id_user where r.$item = :$item ");
+
+        $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+
+        $stmt -> execute();
+
+        return $stmt -> fetch(PDO::FETCH_ASSOC);
+
+        $stmt -> close();
+
+        $stmt = null;
+    }
+
+    static public function mdlConfirmReservation($tabla,$item,$valor){ //busco los datos del usuario si existe, reservacion y datos del anuncio
+
+        $stmt = Conexion::conectar()->prepare("SELECT  r.*, u.nombre, u.apellido, u.email, a.title 
+                                                            from $tabla r 
+                                                            left join usuarios u 
+                                                            on u.id = r.id_user
+                                                            left join anuncios a
+                                                            on a.id = r.id_anuncio 
+                                                            where r.$item = :$item ");
 
         $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 

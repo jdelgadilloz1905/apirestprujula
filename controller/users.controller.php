@@ -101,7 +101,7 @@ class ControllerUsers{
                         "statusCode" => 200,
                         "error" => false,
                         "userInfo" =>$answer,
-                        "mensaje" =>""
+                        "mensaje" =>"Bienvenido ".$answer["nombre"]
                     ));
                 }else{
                     echo json_encode(array(

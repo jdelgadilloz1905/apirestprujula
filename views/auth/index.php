@@ -64,13 +64,13 @@ switch ($method){
 
         break;
 
+
     default:
         echo json_encode(
             array(
                 "error" => true,
                 "statusCode"=>"400",
-                "metodo" =>$method,
-                "variables" =>$obj
+                "metodo" =>$method
             ));
 }
 

@@ -11,9 +11,16 @@ class Ruta{
 		return "https://prujula-site.herokuapp.com/auth/";
 
 	}
+
+	static public function ctrRutaEnvioEmailConfirm(){
+
+        return "https://prujula-site.herokuapp.com/profile/payment/confirm-reservation/";
+    }
+
     static public function ctrRutaFront(){
 
         //return "https://www.prujula.pr/";
+        //return "https://www.prujula.estudio57.net/";
         return "https://prujula-site.herokuapp.com/";
 
     }
@@ -25,6 +32,8 @@ class Ruta{
         return "https://www.estudio57.net/apirestprujula/";
 
     }
+
+
 
     static public function apiAlgolia(){
 
