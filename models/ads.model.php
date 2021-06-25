@@ -440,7 +440,9 @@ class ModelsAds{
 
     static public function mdlConfirmReservation($tabla,$item,$valor){ //busco los datos del usuario si existe, reservacion y datos del anuncio
 
-        $stmt = Conexion::conectar()->prepare("SELECT  r.*, u.nombre, u.apellido, u.email, a.title 
+        $stmt = Conexion::conectar()->prepare("SELECT  r.*, a.title , u.id id_user,u.email, u.nombre, u.apellido, u.foto, 
+                                                                    u.estado, u.ultimo_login, u.fecha_creacion,u.telefono,u.idioma,u.modo,
+                                                                     u.email_encriptado,u.verificacion 
                                                             from $tabla r 
                                                             left join usuarios u 
                                                             on u.id = r.id_user
