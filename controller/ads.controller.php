@@ -638,6 +638,7 @@ class ControllerAds{
                 "precio"=>$data["precioXNoche"],
                 "impuesto"=>$data["impuesto"],
                 "descuento"=>$data["descuento"],
+                "comision"=>$data["comision"],
                 "total"=>$data["total"],
                 "fecha_vencimiento" =>$fechaCaducidad,
                 "rowid" =>$nuevaForenKey
@@ -818,7 +819,7 @@ class ControllerAds{
 
     static public function ctrConfirmReservation($data){
 
-        $respuesta = ModelsAds::mdlConfirmReservation("reservaciones","id",$data["conIdUser"]);
+        $respuesta = ModelsAds::mdlConfirmReservation("reservaciones","rowid",$data["conRowid"]);
 
         if($respuesta){
 

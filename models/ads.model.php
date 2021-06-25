@@ -312,8 +312,8 @@ class ModelsAds{
 
     static public function mdlBookPublications($tabla,$datos){
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_anuncio,id_user,cantidad_personas, cantidad_dias,fecha_desde,fecha_hasta,fecha_vencimiento,precio,impuesto,descuento,total,rowid)
-                                                                    VALUES (:id_anuncio,:id_user,:cantidad_personas, :cantidad_dias,:fecha_desde,:fecha_hasta,:fecha_vencimiento,:precio,:impuesto,:descuento,:total,:rowid)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_anuncio,id_user,cantidad_personas, cantidad_dias,fecha_desde,fecha_hasta,fecha_vencimiento,precio,impuesto,descuento,comision,total,rowid)
+                                                                    VALUES (:id_anuncio,:id_user,:cantidad_personas, :cantidad_dias,:fecha_desde,:fecha_hasta,:fecha_vencimiento,:precio,:impuesto,:descuento,:comision, :total,:rowid)");
 
         $stmt->bindParam(":id_anuncio", $datos["id_anuncio"], PDO::PARAM_STR);
         $stmt->bindParam(":id_user", $datos["id_user"], PDO::PARAM_STR);
@@ -325,6 +325,7 @@ class ModelsAds{
         $stmt->bindParam(":precio", $datos["precio"], PDO::PARAM_STR);
         $stmt->bindParam(":impuesto", $datos["impuesto"], PDO::PARAM_STR);
         $stmt->bindParam(":descuento", $datos["descuento"], PDO::PARAM_STR);
+        $stmt->bindParam(":comision", $datos["comision"], PDO::PARAM_STR);
         $stmt->bindParam(":total", $datos["total"], PDO::PARAM_STR);
         $stmt->bindParam(":rowid", $datos["rowid"], PDO::PARAM_STR);
 
@@ -380,7 +381,13 @@ class ModelsAds{
 
     static public function mdlShowReservation($tabla,$item,$valor,$estatus){
 
-        $stmt = Conexion::conectar()->prepare("SELECT  r.*, u.nombre, u.apellido, a. from $tabla r left join usuarios u on u.id = r.id_user where r.$item = :$item AND r.estatus = :estatus order by r.id desc  ");
+        $stmt = Conexion::conectar()->prepare("SELECT  r.*, u.nombre, u.apellido, a.title 
+                                                         from $tabla r 
+                                                         left join usuarios u 
+                                                         on u.id = r.id_user 
+                                                         left join anuncios a 
+                                                         on a.id = r.id_anuncio
+                                                         where r.$item = :$item AND r.estatus = :estatus order by r.id desc  ");
 
         $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
         $stmt -> bindParam(":estatus", $estatus, PDO::PARAM_STR);
