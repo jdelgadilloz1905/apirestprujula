@@ -462,8 +462,9 @@ class ControllerAds{
                 //Enviar el registro en algolia
 
                 $algolia= ControllerAlgolia::ctrUpdateAdsAlgolia($idUltimoAnuncio);
-
                 //Enviar el registro en algolia
+
+
                 echo json_encode(array(
                     "statusCode" => 200,
                     "adsInfo"=>"",
