@@ -480,14 +480,22 @@ class ControllerAds{
 
 
             if($resultado == "ok"){
-                $idInsertado = ModelsAds::mdlGetLastId("anuncios");
+                //$idInsertado = ModelsAds::mdlGetLastId("anuncios");
+
+                $idUltimoAnuncio = ModelsAds::mdlShowAdsId("anuncios","id",$data["updId"]);
 
                 //Enviar el registro en algolia
+
+                $algolia= ControllerAlgolia::ctrUpdateAdsAlgolia($idUltimoAnuncio);
+                //Enviar el registro en algolia
+
+
                 echo json_encode(array(
                     "statusCode" => 200,
                     "adsInfo"=>"",
+                    "algolia"=>$algolia,
                     "error" => false,
-                    "mensaje" =>"Genial orden # ".$idInsertado["id"]." actualizada con exito"
+                    "mensaje" =>"Genial orden # ".$data["updId"]." actualizada con exito"
                 ));
             }else{
                 echo json_encode(array(
@@ -497,6 +505,14 @@ class ControllerAds{
                     "mensaje" =>"Error actualizando el anuncio, contacte con el administrador",
                 ));
             }
+        }else{
+
+            echo json_encode(array(
+                "statusCode" => 400,
+                "adsInfo"=>"",
+                "error" => true,
+                "mensaje" =>"NO se estan recibiendo los datos adecuados, verifique las variables del JSON",
+            ));
         }
     }
 

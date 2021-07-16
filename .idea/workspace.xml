@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8273652a-aba0-4fbe-a199-8ecc6ede21d3" name="Default Changelist" comment="documentac">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
-    <list id="9e7d19b9-9cfa-4edf-a921-db06acff9a7f" name="Revert &quot;cambios en json de mostrar detalle, unificando las amenidades&quot;" comment="Revert &quot;cambios en json de mostrar detalle, unificando las amenidades&quot;&#10;&#10;This reverts commit 05b5e332">
-      <change beforePath="$PROJECT_DIR$/controller/ads.controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/ads.controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/ads.model.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/ads.model.php" afterDir="false" />
-    </list>
+    <list default="true" id="8273652a-aba0-4fbe-a199-8ecc6ede21d3" name="Default Changelist" comment="documentac" />
+    <list id="9e7d19b9-9cfa-4edf-a921-db06acff9a7f" name="Revert &quot;cambios en json de mostrar detalle, unificando las amenidades&quot;" comment="Revert &quot;cambios en json de mostrar detalle, unificando las amenidades&quot;&#10;&#10;This reverts commit 05b5e332" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,51 +43,53 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/algolia/index.php">
+        <entry file="file://$PROJECT_DIR$/controller/ads.controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="54" lean-forward="true" selection-start-line="17" selection-start-column="54" selection-end-line="17" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/controller/algolia.controller.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="100" column="46" lean-forward="true" selection-start-line="100" selection-start-column="46" selection-end-line="100" selection-end-column="46" />
+            <state relative-caret-position="264">
+              <caret line="468" column="76" lean-forward="true" selection-start-line="468" selection-start-column="76" selection-end-line="468" selection-end-column="76" />
               <folding>
-                <element signature="e#1896#2422#1#PHP" />
+                <element signature="n#crtDeletePublication#0;n#ControllerAds#0;n#!!top" />
+                <element signature="n#ctrOfferxPublication#0;n#ControllerAds#0;n#!!top" />
+                <element signature="n#generarPassword#0;n#ControllerAds#0;n#!!top" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller/category.controller.php">
+        <entry file="file://$PROJECT_DIR$/controller/algolia.controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="28" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="28" />
+            <state relative-caret-position="134">
+              <caret line="499" column="37" lean-forward="true" selection-start-line="499" selection-start-column="37" selection-end-line="499" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/algolia.model.php">
+      <file pinned="true" current-in-tab="false">
+        <entry file="remoteDeploymentFS://&lt;67d591b8-c6b3-411f-8d84-8afed72280c9&gt;/controller/algolia.controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="51" lean-forward="true" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
+            <state relative-caret-position="153">
+              <caret line="9" lean-forward="true" selection-end-line="525" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/controller/ads.controller.php">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/controller/paymets.controller.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="340">
-              <caret line="26" column="56" selection-start-line="26" selection-start-column="56" selection-end-line="26" selection-end-column="56" />
+              <caret line="20" column="48" lean-forward="true" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="true" current-in-tab="false">
+        <entry file="remoteDeploymentFS://&lt;67d591b8-c6b3-411f-8d84-8afed72280c9&gt;/controller/paymets.controller.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="109">
+              <caret line="84" column="18" lean-forward="true" selection-end-line="110" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -246,7 +243,26 @@
               <item name="apirestprujula" type="b2602c69:ProjectViewProjectNode" />
               <item name="apirestprujula" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="algolia" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="apirestprujula" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apirestprujula" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+              <item name="category" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="apirestprujula" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apirestprujula" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="payments" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="apirestprujula" type="b2602c69:ProjectViewProjectNode" />
+              <item name="apirestprujula" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="publication" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -370,13 +386,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="138970000" />
+    <option name="totallyTimeSpent" value="139111000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14845759" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15231362" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -630,8 +645,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controller/ads.controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="26" column="56" selection-start-line="26" selection-start-column="56" selection-end-line="26" selection-end-column="56" />
+        <state relative-caret-position="264">
+          <caret line="468" column="76" lean-forward="true" selection-start-line="468" selection-start-column="76" selection-end-line="468" selection-end-column="76" />
+          <folding>
+            <element signature="n#crtDeletePublication#0;n#ControllerAds#0;n#!!top" />
+            <element signature="n#ctrOfferxPublication#0;n#ControllerAds#0;n#!!top" />
+            <element signature="n#generarPassword#0;n#ControllerAds#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -693,11 +713,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controller/algolia.controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="100" column="46" lean-forward="true" selection-start-line="100" selection-start-column="46" selection-end-line="100" selection-end-column="46" />
-          <folding>
-            <element signature="e#1896#2422#1#PHP" />
-          </folding>
+        <state relative-caret-position="134">
+          <caret line="499" column="37" lean-forward="true" selection-start-line="499" selection-start-column="37" selection-end-line="499" selection-end-column="37" />
         </state>
       </provider>
     </entry>

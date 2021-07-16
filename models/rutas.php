@@ -37,9 +37,16 @@ class Ruta{
 
     static public function apiAlgolia(){
 
-        $client = \Algolia\AlgoliaSearch\SearchClient::create('RK5WGMMT2Y', '5faaffff77e964237ab79653cb5057ba');
+        $client = \Algolia\AlgoliaSearch\SearchClient::create('05MH8B5SSN', '9dec337c2fcc9a7915066dd1dfd4bb7a'); //desarrollo
+
+        //$client = \Algolia\AlgoliaSearch\SearchClient::create('RK5WGMMT2Y', '5faaffff77e964237ab79653cb5057ba'); //produccion
 
         return $client;
+    }
+
+    static public function apiAccepta(){
+
+        return "https://api.ezpaycenters.net/api/cc";
     }
 
 }

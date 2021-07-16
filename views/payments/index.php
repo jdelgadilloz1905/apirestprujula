@@ -18,6 +18,14 @@ switch ($method){
 
         break;
 
+    case "pay":
+
+        $respuesta = ControllerPayments::ctrPay($obj);
+
+        echo $respuesta;
+
+        break;
+
     default:
         echo json_encode(
             array(
