@@ -35,8 +35,6 @@ class ControllerAds{
                 "picture_url"=>json_encode($data["regMainImage"]),
                 "picture_url_offer"=>json_encode($data["regDealImage"]),
                 "picture_galery"=>json_encode($data["regImageGallery"]),
-                "camping_mochila"=>$data["regAmenities"]["camping_mochila"],
-                "camping_baul"=>$data["regAmenities"]["camping_baul"],
                 "agua"=>$data["regAmenities"]["agua"],
                 "luz"=>$data["regAmenities"]["luz"],
                 "tocador"=>$data["regAmenities"]["tocador"],
@@ -63,6 +61,14 @@ class ControllerAds{
                 "equipos_mesas"=>$data["regAmenities"]["equipos_mesas"],
                 "equipos_sillas"=>$data["regAmenities"]["equipos_sillas"],
                 "equipos_estufas"=>$data["regAmenities"]["equipos_estufas"],
+                "casetas_acampar"=>$data["regAmenities"]["casetas_acampar"],
+                "toldos"=>$data["regAmenities"]["toldos"],
+                "estufas_gas"=>$data["regAmenities"]["estufas_gas"],
+                "tanques_gas"=>$data["regAmenities"]["tanques_gas"],
+                "lena"=>$data["regAmenities"]["lena"],
+                "carbon"=>$data["regAmenities"]["carbon"],
+                "se_admiten_mascotas"=>$data["regAmenities"]["se_admiten_mascotas"],
+                "perros_servicios"=>$data["regAmenities"]["perros_servicios"],
                 "rowid"=> $nuevaForenKey
             );
 
@@ -140,8 +146,6 @@ class ControllerAds{
                 "reservaciones"=>$data["reservaciones"],
                 "fin_oferta"=>$data["fin_oferta"],
                 "amenidades"=> array(
-                    "camping_mochila"=>$data["camping_mochila"],
-                    "camping_baul"=>$data["camping_baul"],
                     "agua"=>$data["agua"],
                     "luz"=>$data["luz"],
                     "tocador"=>$data["tocador"],
@@ -168,6 +172,14 @@ class ControllerAds{
                     "equipos_mesas"=>$data["equipos_mesas"],
                     "equipos_sillas"=>$data["equipos_sillas"],
                     "equipos_estufas"=>$data["equipos_estufas"],
+                    "casetas_acampar"=>$data["casetas_acampar"],
+                    "toldos"=>$data["toldos"],
+                    "estufas_gas"=>$data["estufas_gas"],
+                    "tanques_gas"=>$data["tanques_gas"],
+                    "lena"=>$data["lena"],
+                    "carbon"=>$data["carbon"],
+                    "se_admiten_mascotas"=>$data["se_admiten_mascotas"],
+                    "perros_servicios"=>$data["perros_servicios"],
                 ),
                 "disable_dates"=>self::ctrPreparaDisabledDates($fechasArray)
 
@@ -306,8 +318,6 @@ class ControllerAds{
                 "reservaciones"=>$data["reservaciones"],
                 "fin_oferta"=>$data["fin_oferta"],
                 "amenidades"=> array(
-                    "camping_mochila"=>$data["camping_mochila"],
-                    "camping_baul"=>$data["camping_baul"],
                     "agua"=>$data["agua"],
                     "luz"=>$data["luz"],
                     "tocador"=>$data["tocador"],
@@ -334,6 +344,15 @@ class ControllerAds{
                     "equipos_mesas"=>$data["equipos_mesas"],
                     "equipos_sillas"=>$data["equipos_sillas"],
                     "equipos_estufas"=>$data["equipos_estufas"],
+                    "casetas_acampar"=>$data["casetas_acampar"],
+                    "toldos"=>$data["toldos"],
+                    "estufas_gas"=>$data["estufas_gas"],
+                    "tanques_gas"=>$data["tanques_gas"],
+                    "lena"=>$data["lena"],
+                    "carbon"=>$data["carbon"],
+                    "se_admiten_mascotas"=>$data["se_admiten_mascotas"],
+                    "perros_servicios"=>$data["perros_servicios"],
+
                 ),
                 "disable_dates"=>self::ctrPreparaDisabledDates($fechasArray)
 
@@ -421,8 +440,6 @@ class ControllerAds{
                 "picture_url"=>json_encode($data["updMainImage"]),
                 "picture_url_offer"=>json_encode($data["updDealImage"]),
                 "picture_galery"=>json_encode($data["updImageGallery"]),
-                "camping_mochila"=>$data["updAmenities"]["camping_mochila"],
-                "camping_baul"=>$data["updAmenities"]["camping_baul"],
                 "agua"=>$data["updAmenities"]["agua"],
                 "luz"=>$data["updAmenities"]["luz"],
                 "tocador"=>$data["updAmenities"]["tocador"],
@@ -448,7 +465,15 @@ class ControllerAds{
                 "recreacion_animales"=>$data["updAmenities"]["recreacion_animales"],
                 "equipos_mesas"=>$data["updAmenities"]["equipos_mesas"],
                 "equipos_sillas"=>$data["updAmenities"]["equipos_sillas"],
-                "equipos_estufas"=>$data["updAmenities"]["equipos_estufas"]
+                "equipos_estufas"=>$data["updAmenities"]["equipos_estufas"],
+                "casetas_acampar"=>$data["updAmenities"]["casetas_acampar"],
+                "toldos"=>$data["updAmenities"]["toldos"],
+                "estufas_gas"=>$data["updAmenities"]["estufas_gas"],
+                "tanques_gas"=>$data["updAmenities"]["tanques_gas"],
+                "lena"=>$data["updAmenities"]["lena"],
+                "carbon"=>$data["updAmenities"]["carbon"],
+                "se_admiten_mascotas"=>$data["updAmenities"]["se_admiten_mascotas"],
+                "perros_servicios"=>$data["updAmenities"]["perros_servicios"],
             );
 
             $resultado = ModelsAds::mdlUpdateAd("anuncios",$datos);

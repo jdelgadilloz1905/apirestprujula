@@ -7,13 +7,13 @@ class ModelsAds{
     static public function mdlCreateAd($tabla,$datos){
 
         $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_user,title,price,price_offer,description,half,people,offer,discount_amount,id_category,address,country,country_code,county,city,municipality,state,lat,lng,address_reference,phone,picture_url,picture_url_offer,picture_galery,
-                                                                            camping_mochila,camping_baul,agua,luz,tocador,cocinas,bbq,fogata,historico,ecologia,agricola,reactivo_pasivo,reactivo_activo,recreacion_piscinas,recreacion_acuaticas,recreacion_veredas,
+                                                                            agua,luz,tocador,cocinas,bbq,fogata,historico,ecologia,agricola,reactivo_pasivo,reactivo_activo,recreacion_piscinas,recreacion_acuaticas,recreacion_veredas,
                                                                             recreacion_espeleologia,recreacion_kayac_paddle_balsas,recreacion_cocina,recreacion_pajaros,recreacion_alpinismo,recreacion_zipline,paracaidas,recreacion_areas,recreacion_animales,
-                                                                            equipos_mesas,equipos_sillas,equipos_estufas, rowid)
+                                                                            equipos_mesas,equipos_sillas,equipos_estufas,casetas_acampar,toldos,estufas_gas,tanques_gas,lena,carbon,se_admiten_mascotas,perros_servicios, rowid)
                                                                     VALUES (:id_user,:title,:price,:price_offer,:description,:half,:people,:offer,:discount_amount,:id_category,:address,:country,:country_code,:county,:city,:municipality,:state,:lat,:lng,:address_reference,:phone,:picture_url,:picture_url_offer,:picture_galery,
-                                                                            :camping_mochila,:camping_baul,:agua,:luz,:tocador,:cocinas,:bbq,:fogata,:historico,:ecologia,:agricola,:reactivo_pasivo,:reactivo_activo,:recreacion_piscinas,:recreacion_acuaticas,:recreacion_veredas,
+                                                                            :agua,:luz,:tocador,:cocinas,:bbq,:fogata,:historico,:ecologia,:agricola,:reactivo_pasivo,:reactivo_activo,:recreacion_piscinas,:recreacion_acuaticas,:recreacion_veredas,
                                                                             :recreacion_espeleologia,:recreacion_kayac_paddle_balsas,:recreacion_cocina,:recreacion_pajaros,:recreacion_alpinismo,:recreacion_zipline,:paracaidas,:recreacion_areas,:recreacion_animales,
-                                                                            :equipos_mesas,:equipos_sillas,:equipos_estufas, :rowid)");
+                                                                            :equipos_mesas,:equipos_sillas,:equipos_estufas,:casetas_acampar,:toldos,:estufas_gas,:tanques_gas,:lena,:carbon,:se_admiten_mascotas,:perros_servicios, :rowid)");
 
         $stmt->bindParam(":id_user", $datos["id_user"], PDO::PARAM_STR);
         $stmt->bindParam(":title", $datos["title"], PDO::PARAM_STR);
@@ -39,8 +39,6 @@ class ModelsAds{
         $stmt->bindParam(":picture_url", $datos["picture_url"]);
         $stmt->bindParam(":picture_url_offer", $datos["picture_url_offer"], PDO::PARAM_STR);
         $stmt->bindParam(":picture_galery", $datos["picture_galery"], PDO::PARAM_STR);
-        $stmt->bindParam(":camping_mochila", $datos["camping_mochila"], PDO::PARAM_STR);
-        $stmt->bindParam(":camping_baul", $datos["camping_baul"], PDO::PARAM_STR);
         $stmt->bindParam(":agua", $datos["agua"], PDO::PARAM_STR);
         $stmt->bindParam(":luz", $datos["luz"], PDO::PARAM_STR);
         $stmt->bindParam(":tocador", $datos["tocador"], PDO::PARAM_STR);
@@ -67,6 +65,15 @@ class ModelsAds{
         $stmt->bindParam(":equipos_mesas", $datos["equipos_mesas"], PDO::PARAM_STR);
         $stmt->bindParam(":equipos_sillas", $datos["equipos_sillas"], PDO::PARAM_STR);
         $stmt->bindParam(":equipos_estufas", $datos["equipos_estufas"], PDO::PARAM_STR);
+        $stmt->bindParam(":casetas_acampar", $datos["casetas_acampar"], PDO::PARAM_STR);
+        $stmt->bindParam(":toldos", $datos["toldos"], PDO::PARAM_STR);
+        $stmt->bindParam(":estufas_gas", $datos["estufas_gas"], PDO::PARAM_STR);
+        $stmt->bindParam(":tanques_gas", $datos["tanques_gas"], PDO::PARAM_STR);
+        $stmt->bindParam(":lena", $datos["lena"], PDO::PARAM_STR);
+        $stmt->bindParam(":carbon", $datos["carbon"], PDO::PARAM_STR);
+        $stmt->bindParam(":se_admiten_mascotas", $datos["se_admiten_mascotas"], PDO::PARAM_STR);
+        $stmt->bindParam(":perros_servicios", $datos["perros_servicios"], PDO::PARAM_STR);
+
         $stmt->bindParam(":rowid", $datos["rowid"], PDO::PARAM_STR);
 
 
@@ -199,11 +206,11 @@ class ModelsAds{
 
         $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_user= :id_user,title= :title,price= :price, price_offer= :price_offer,description= :description,half= :half,people= :people,offer= :offer,discount_amount= :discount_amount,id_category= :id_category,address= :address,
                                                                             country= :country,country_code= :country_code,county= :county,city= :city,municipality= :municipality,state= :state,lat= :lat,lng= :lng,address_reference= :address_reference,phone= :phone,
-                                                                            picture_url= :picture_url,picture_url_offer= :picture_url_offer,picture_galery = :picture_galery,camping_mochila= :camping_mochila,camping_baul = :camping_baul,agua = :agua,luz = :luz,tocador = :tocador,
-                                                                            cocinas = :cocinas,bbq = :bbq,fogata = :fogata,historico = :historico,ecologia = :ecologia,agricola = :agricola,reactivo_pasivo = :reactivo_pasivo,reactivo_activo = :reactivo_activo,recreacion_piscinas = :recreacion_piscinas,
-                                                                            recreacion_acuaticas = :recreacion_acuaticas,recreacion_veredas = :recreacion_veredas, recreacion_espeleologia = :recreacion_espeleologia,recreacion_kayac_paddle_balsas = :recreacion_kayac_paddle_balsas,
-                                                                            recreacion_cocina = :recreacion_cocina,recreacion_pajaros = :recreacion_pajaros,recreacion_alpinismo = :recreacion_alpinismo,recreacion_zipline = :recreacion_zipline,paracaidas = :paracaidas,
-                                                                            recreacion_areas = :recreacion_areas,recreacion_animales = :recreacion_animales, equipos_mesas = :equipos_mesas,equipos_sillas = :equipos_sillas,equipos_estufas = :equipos_estufas
+                                                                            picture_url= :picture_url,picture_url_offer= :picture_url_offer,picture_galery = :picture_galery,agua = :agua,luz = :luz,tocador = :tocador,cocinas = :cocinas,bbq = :bbq,fogata = :fogata,historico = :historico,ecologia = :ecologia,
+                                                                            agricola = :agricola,reactivo_pasivo = :reactivo_pasivo,reactivo_activo = :reactivo_activo,recreacion_piscinas = :recreacion_piscinas, recreacion_acuaticas = :recreacion_acuaticas,recreacion_veredas = :recreacion_veredas, 
+                                                                            recreacion_espeleologia = :recreacion_espeleologia,recreacion_kayac_paddle_balsas = :recreacion_kayac_paddle_balsas,recreacion_cocina = :recreacion_cocina,recreacion_pajaros = :recreacion_pajaros,recreacion_alpinismo = :recreacion_alpinismo,
+                                                                            recreacion_zipline = :recreacion_zipline,paracaidas = :paracaidas, recreacion_areas = :recreacion_areas,recreacion_animales = :recreacion_animales, equipos_mesas = :equipos_mesas,equipos_sillas = :equipos_sillas,equipos_estufas = :equipos_estufas,
+                                                                            casetas_acampar = :casetas_acampar,toldos = :toldos,estufas_gas = :estufas_gas, tanques_gas = :tanques_gas, lena = :lena, carbon = :carbon,se_admiten_mascotas = :se_admiten_mascotas, perros_servicios = :perros_servicios
                                                                             WHERE id = :id");
 
         $stmt->bindParam(":id", $datos["id"], PDO::PARAM_STR);
@@ -231,8 +238,6 @@ class ModelsAds{
         $stmt->bindParam(":picture_url", $datos["picture_url"]);
         $stmt->bindParam(":picture_url_offer", $datos["picture_url_offer"], PDO::PARAM_STR);
         $stmt->bindParam(":picture_galery", $datos["picture_galery"], PDO::PARAM_STR);
-        $stmt->bindParam(":camping_mochila", $datos["camping_mochila"], PDO::PARAM_STR);
-        $stmt->bindParam(":camping_baul", $datos["camping_baul"], PDO::PARAM_STR);
         $stmt->bindParam(":agua", $datos["agua"], PDO::PARAM_STR);
         $stmt->bindParam(":luz", $datos["luz"], PDO::PARAM_STR);
         $stmt->bindParam(":tocador", $datos["tocador"], PDO::PARAM_STR);
@@ -259,6 +264,14 @@ class ModelsAds{
         $stmt->bindParam(":equipos_mesas", $datos["equipos_mesas"], PDO::PARAM_STR);
         $stmt->bindParam(":equipos_sillas", $datos["equipos_sillas"], PDO::PARAM_STR);
         $stmt->bindParam(":equipos_estufas", $datos["equipos_estufas"], PDO::PARAM_STR);
+        $stmt->bindParam(":casetas_acampar", $datos["casetas_acampar"], PDO::PARAM_STR);
+        $stmt->bindParam(":toldos", $datos["toldos"], PDO::PARAM_STR);
+        $stmt->bindParam(":estufas_gas", $datos["estufas_gas"], PDO::PARAM_STR);
+        $stmt->bindParam(":tanques_gas", $datos["tanques_gas"], PDO::PARAM_STR);
+        $stmt->bindParam(":lena", $datos["lena"], PDO::PARAM_STR);
+        $stmt->bindParam(":carbon", $datos["carbon"], PDO::PARAM_STR);
+        $stmt->bindParam(":se_admiten_mascotas", $datos["se_admiten_mascotas"], PDO::PARAM_STR);
+        $stmt->bindParam(":perros_servicios", $datos["perros_servicios"], PDO::PARAM_STR);
 
         if($stmt->execute()){
 
