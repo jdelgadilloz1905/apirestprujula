@@ -181,7 +181,7 @@ class ControllerAds{
                     "se_admiten_mascotas"=>$data["se_admiten_mascotas"],
                     "perros_servicios"=>$data["perros_servicios"],
                 ),
-                "disable_dates"=>self::ctrPreparaDisabledDates($fechasArray)
+                "disable_dates"=> ""        //self::ctrPreparaDisabledDates($fechasArray)
 
             );
 
@@ -354,7 +354,7 @@ class ControllerAds{
                     "perros_servicios"=>$data["perros_servicios"],
 
                 ),
-                "disable_dates"=>self::ctrPreparaDisabledDates($fechasArray)
+                "disable_dates"=> ""        //self::ctrPreparaDisabledDates($fechasArray)
 
             );
         }
