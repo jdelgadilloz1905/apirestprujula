@@ -5,11 +5,13 @@ class ControllerCategory{
 
         $tabla = "categorias";
 
-        $respuesta = ModelsCategory::mdlShowCategory($tabla,$item, $valor);
+        $respuesta = ModelsCategory::mdlShowCategory($tabla,$item, $valor,1);
+        $respuesta2 = ModelsCategory::mdlShowCategory($tabla,$item, $valor,2);
 
         echo json_encode(array(
             "statusCode" => 200,
             "cateInfo"=>$respuesta,
+            "cateInfo2"=>$respuesta2,
             "error" => false,
             "mensaje" =>"",
         ));

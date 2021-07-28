@@ -3,7 +3,7 @@ require_once "conexion.php";
 
 class ModelsCategory{
 
-    static public function mdlShowCategory($tabla, $item, $valor){
+    static public function mdlShowCategory($tabla, $item, $valor,$grupo){
 
         if($item != null){
 
@@ -17,7 +17,9 @@ class ModelsCategory{
 
         }else{
 
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE estado = 1 ORDER BY id DESC");
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE estado = 1 and grupo = :grupo ORDER BY id DESC");
+
+            $stmt -> bindParam(":grupo", $grupo, PDO::PARAM_STR);
 
             $stmt -> execute();
 

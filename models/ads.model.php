@@ -6,11 +6,11 @@ class ModelsAds{
 
     static public function mdlCreateAd($tabla,$datos){
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_user,title,price,price_offer,description,half,people,offer,discount_amount,id_category,address,country,country_code,county,city,municipality,state,lat,lng,address_reference,phone,picture_url,picture_url_offer,picture_galery,
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_user,title,price,price_offer,description,half,people,offer,discount_amount,id_category,id_category2,address,country,country_code,county,city,municipality,state,lat,lng,address_reference,phone,picture_url,picture_url_offer,picture_galery,
                                                                             agua,luz,tocador,cocinas,bbq,fogata,historico,ecologia,agricola,reactivo_pasivo,reactivo_activo,recreacion_piscinas,recreacion_acuaticas,recreacion_veredas,
                                                                             recreacion_espeleologia,recreacion_kayac_paddle_balsas,recreacion_cocina,recreacion_pajaros,recreacion_alpinismo,recreacion_zipline,paracaidas,recreacion_areas,recreacion_animales,
                                                                             equipos_mesas,equipos_sillas,equipos_estufas,casetas_acampar,toldos,estufas_gas,tanques_gas,lena,carbon,se_admiten_mascotas,perros_servicios, rowid)
-                                                                    VALUES (:id_user,:title,:price,:price_offer,:description,:half,:people,:offer,:discount_amount,:id_category,:address,:country,:country_code,:county,:city,:municipality,:state,:lat,:lng,:address_reference,:phone,:picture_url,:picture_url_offer,:picture_galery,
+                                                                    VALUES (:id_user,:title,:price,:price_offer,:description,:half,:people,:offer,:discount_amount,:id_category,:id_category2,:address,:country,:country_code,:county,:city,:municipality,:state,:lat,:lng,:address_reference,:phone,:picture_url,:picture_url_offer,:picture_galery,
                                                                             :agua,:luz,:tocador,:cocinas,:bbq,:fogata,:historico,:ecologia,:agricola,:reactivo_pasivo,:reactivo_activo,:recreacion_piscinas,:recreacion_acuaticas,:recreacion_veredas,
                                                                             :recreacion_espeleologia,:recreacion_kayac_paddle_balsas,:recreacion_cocina,:recreacion_pajaros,:recreacion_alpinismo,:recreacion_zipline,:paracaidas,:recreacion_areas,:recreacion_animales,
                                                                             :equipos_mesas,:equipos_sillas,:equipos_estufas,:casetas_acampar,:toldos,:estufas_gas,:tanques_gas,:lena,:carbon,:se_admiten_mascotas,:perros_servicios, :rowid)");
@@ -25,6 +25,7 @@ class ModelsAds{
         $stmt->bindParam(":offer", $datos["offer"], PDO::PARAM_STR);
         $stmt->bindParam(":discount_amount", $datos["discount_amount"], PDO::PARAM_STR);
         $stmt->bindParam(":id_category", $datos["id_category"], PDO::PARAM_STR);
+        $stmt->bindParam(":id_category2", $datos["id_category2"], PDO::PARAM_STR);
         $stmt->bindParam(":address", $datos["address"], PDO::PARAM_STR);
         $stmt->bindParam(":country", $datos["country"], PDO::PARAM_STR);
         $stmt->bindParam(":country_code", $datos["country_code"], PDO::PARAM_STR);
@@ -94,7 +95,13 @@ class ModelsAds{
 
     static public function mdlShowAdsId($tabla,$item,$valor){
 
-        $stmt = Conexion::conectar()->prepare("SELECT  a.*, c.nombre nombre_categoria from $tabla a left join categorias c on a.id_category = c.id where a.estado =1 and a.$item = :$item");
+        $stmt = Conexion::conectar()->prepare("SELECT  a.*, c.nombre nombre_categoria,  ca.nombre nombre_categoria2
+                                                            from $tabla a 
+                                                            left join categorias c 
+                                                            on a.id_category = c.id 
+                                                            left join categorias ca 
+                                                            on a.id_category2 = ca.id 
+                                                          where a.estado =1 and a.$item = :$item");
 
         $stmt->bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -109,7 +116,13 @@ class ModelsAds{
 
     static public function mdlShowAllAds($tabla){
 
-        $stmt = Conexion::conectar()->query("SELECT  a.*, c.nombre nombre_categoria from $tabla a left join categorias c on a.id_category = c.id where a.estado =1 order by a.id desc  ");
+        $stmt = Conexion::conectar()->query("SELECT  a.*, c.nombre nombre_categoria,  ca.nombre nombre_categoria2
+                                                        from $tabla a 
+                                                        left join categorias c 
+                                                        on a.id_category = c.id 
+                                                        left join categorias ca 
+                                                        on a.id_category2 = ca.id 
+                                                        where a.estado =1 order by a.id desc  ");
 
         $stmt -> execute();
 
@@ -158,7 +171,11 @@ class ModelsAds{
 
         $fechaActual = date("Y-m-d");
 
-        $stmt = Conexion::conectar()->prepare("SELECT a.*, c.nombre nombre_categoria FROM $tabla a left join categorias c on a.id_category = c.id WHERE a.offer = 1 and a.estado = 1 ORDER BY a.id $modo LIMIT $base, $tope");
+        $stmt = Conexion::conectar()->prepare("SELECT a.*, c.nombre nombre_categoria,  ca.nombre nombre_categoria2
+                                                          FROM $tabla a 
+                                                          left join categorias c on a.id_category = c.id 
+                                                          left join categorias ca on a.id_category2 = ca.id 
+                                                          WHERE a.offer = 1 and a.estado = 1 ORDER BY a.id $modo LIMIT $base, $tope");
 
         $stmt -> execute();
 
@@ -174,7 +191,11 @@ class ModelsAds{
 
         $fechaActual = date("Y-m-d");
 
-        $stmt = Conexion::conectar()->prepare("SELECT a.*, c.nombre nombre_categoria FROM $tabla a left join categorias c on a.id_category = c.id WHERE a.$item = :$item AND (a.offer = 0 or a.fin_oferta is null ) ORDER BY $ordenar $modo LIMIT $base, $tope");
+        $stmt = Conexion::conectar()->prepare("SELECT a.*,  c.nombre nombre_categoria,  ca.nombre nombre_categoria2
+                                                          FROM $tabla a 
+                                                          left join categorias c on a.id_category = c.id 
+                                                          left join categorias ca on a.id_category2 = ca.id 
+                                                          WHERE a.$item = :$item AND (a.offer = 0 or a.fin_oferta is null ) ORDER BY $ordenar $modo LIMIT $base, $tope");
 
         $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -189,7 +210,10 @@ class ModelsAds{
 
     static public function mdlShowSearchAds($tabla,$valor){
 
-        $stmt = Conexion::conectar()->prepare("SELECT a.*, c.nombre nombre_categoria FROM $tabla a left join categorias c on a.id_category = c.id
+        $stmt = Conexion::conectar()->prepare("SELECT a.*, c.nombre nombre_categoria,  ca.nombre nombre_categoria2
+                                                          FROM $tabla a 
+                                                          left join categorias c on a.id_category = c.id
+                                                          left join categorias ca on a.id_category2 = ca.id 
                                                             WHERE a.estado = 1 
                                                             and (a.title LIKE '%$valor%' or a.description LIKE '%$valor%') ORDER BY a.id DESC ");
 
@@ -204,7 +228,7 @@ class ModelsAds{
 
     static public function mdlUpdateAd($tabla,$datos){
 
-        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_user= :id_user,title= :title,price= :price, price_offer= :price_offer,description= :description,half= :half,people= :people,offer= :offer,discount_amount= :discount_amount,id_category= :id_category,address= :address,
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_user= :id_user,title= :title,price= :price, price_offer= :price_offer,description= :description,half= :half,people= :people,offer= :offer,discount_amount= :discount_amount,id_category= :id_category, id_category2= :id_category2,address= :address,
                                                                             country= :country,country_code= :country_code,county= :county,city= :city,municipality= :municipality,state= :state,lat= :lat,lng= :lng,address_reference= :address_reference,phone= :phone,
                                                                             picture_url= :picture_url,picture_url_offer= :picture_url_offer,picture_galery = :picture_galery,agua = :agua,luz = :luz,tocador = :tocador,cocinas = :cocinas,bbq = :bbq,fogata = :fogata,historico = :historico,ecologia = :ecologia,
                                                                             agricola = :agricola,reactivo_pasivo = :reactivo_pasivo,reactivo_activo = :reactivo_activo,recreacion_piscinas = :recreacion_piscinas, recreacion_acuaticas = :recreacion_acuaticas,recreacion_veredas = :recreacion_veredas, 
@@ -224,6 +248,7 @@ class ModelsAds{
         $stmt->bindParam(":offer", $datos["offer"], PDO::PARAM_STR);
         $stmt->bindParam(":discount_amount", $datos["discount_amount"], PDO::PARAM_STR);
         $stmt->bindParam(":id_category", $datos["id_category"], PDO::PARAM_STR);
+        $stmt->bindParam(":id_category2", $datos["id_category2"], PDO::PARAM_STR);
         $stmt->bindParam(":address", $datos["address"], PDO::PARAM_STR);
         $stmt->bindParam(":country", $datos["country"], PDO::PARAM_STR);
         $stmt->bindParam(":country_code", $datos["country_code"], PDO::PARAM_STR);
@@ -289,7 +314,11 @@ class ModelsAds{
 
     static public function mdlUserPublications($tabla,$item,$valor){
 
-        $stmt = Conexion::conectar()->prepare("SELECT a.id,a.id_user idUser,a.title,a.price,a.price_offer,a.description,a.half,a.people,a.offer,a.discount_amount, a.id_category, c.nombre nombre_categoria FROM $tabla a left join categorias c on a.id_category = c.id
+        $stmt = Conexion::conectar()->prepare("SELECT a.id,a.id_user idUser,a.title,a.price,a.price_offer,a.description,a.half,a.people,a.offer,a.discount_amount, 
+                                                          a.id_category, c.nombre nombre_categoria , ca.nombre nombre_categoria2
+                                                          FROM $tabla a 
+                                                          left join categorias c on a.id_category = c.id
+                                                          left join categorias ca on a.id_category2 = ca.id 
                                                             WHERE a.estado = 1 
                                                             and a.id_user = $valor ORDER BY a.id DESC ");
 
