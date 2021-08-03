@@ -490,7 +490,9 @@ class ControllerAds{
 
                 //Enviar el registro en algolia
 
-                $algolia= ControllerAlgolia::ctrUpdateAdsAlgolia($idUltimoAnuncio);
+                //$algolia= ControllerAlgolia::ctrUpdateAdsAlgolia($idUltimoAnuncio);
+
+                $algolia= ControllerAlgolia::ctrCreateAdsAlgolia($idUltimoAnuncio);
                 //Enviar el registro en algolia
 
 
