@@ -95,12 +95,8 @@ class ModelsAds{
 
     static public function mdlShowAdsId($tabla,$item,$valor){
 
-        $stmt = Conexion::conectar()->prepare("SELECT  a.*, c.nombre nombre_categoria,  ca.nombre nombre_categoria2
-                                                            from $tabla a 
-                                                            left join categorias c 
-                                                            on a.id_category = c.id 
-                                                            left join categorias ca 
-                                                            on a.id_category2 = ca.id 
+        $stmt = Conexion::conectar()->prepare("SELECT  a.*
+                                                            from $tabla a  
                                                           where a.estado =1 and a.$item = :$item");
 
         $stmt->bindParam(":".$item, $valor, PDO::PARAM_STR);
@@ -116,12 +112,8 @@ class ModelsAds{
 
     static public function mdlShowAllAds($tabla){
 
-        $stmt = Conexion::conectar()->query("SELECT  a.*, c.nombre nombre_categoria,  ca.nombre nombre_categoria2
-                                                        from $tabla a 
-                                                        left join categorias c 
-                                                        on a.id_category = c.id 
-                                                        left join categorias ca 
-                                                        on a.id_category2 = ca.id 
+        $stmt = Conexion::conectar()->query("SELECT  a.*
+                                                        from $tabla a  
                                                         where a.estado =1 order by a.id desc  ");
 
         $stmt -> execute();
@@ -171,10 +163,8 @@ class ModelsAds{
 
         $fechaActual = date("Y-m-d");
 
-        $stmt = Conexion::conectar()->prepare("SELECT a.*, c.nombre nombre_categoria,  ca.nombre nombre_categoria2
-                                                          FROM $tabla a 
-                                                          left join categorias c on a.id_category = c.id 
-                                                          left join categorias ca on a.id_category2 = ca.id 
+        $stmt = Conexion::conectar()->prepare("SELECT a.*
+                                                          FROM $tabla a  
                                                           WHERE a.offer = 1 and a.estado = 1 ORDER BY a.id $modo LIMIT $base, $tope");
 
         $stmt -> execute();
@@ -191,10 +181,8 @@ class ModelsAds{
 
         $fechaActual = date("Y-m-d");
 
-        $stmt = Conexion::conectar()->prepare("SELECT a.*,  c.nombre nombre_categoria,  ca.nombre nombre_categoria2
-                                                          FROM $tabla a 
-                                                          left join categorias c on a.id_category = c.id 
-                                                          left join categorias ca on a.id_category2 = ca.id 
+        $stmt = Conexion::conectar()->prepare("SELECT a.*
+                                                          FROM $tabla a  
                                                           WHERE a.$item = :$item AND (a.offer = 0 or a.fin_oferta is null ) ORDER BY $ordenar $modo LIMIT $base, $tope");
 
         $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
@@ -210,10 +198,8 @@ class ModelsAds{
 
     static public function mdlShowSearchAds($tabla,$valor){
 
-        $stmt = Conexion::conectar()->prepare("SELECT a.*, c.nombre nombre_categoria,  ca.nombre nombre_categoria2
-                                                          FROM $tabla a 
-                                                          left join categorias c on a.id_category = c.id
-                                                          left join categorias ca on a.id_category2 = ca.id 
+        $stmt = Conexion::conectar()->prepare("SELECT a.*
+                                                          FROM $tabla a  
                                                             WHERE a.estado = 1 
                                                             and (a.title LIKE '%$valor%' or a.description LIKE '%$valor%') ORDER BY a.id DESC ");
 
@@ -315,10 +301,8 @@ class ModelsAds{
     static public function mdlUserPublications($tabla,$item,$valor){
 
         $stmt = Conexion::conectar()->prepare("SELECT a.id,a.id_user idUser,a.title,a.price,a.price_offer,a.description,a.half,a.people,a.offer,a.discount_amount, 
-                                                          a.id_category, c.nombre nombre_categoria , ca.nombre nombre_categoria2
-                                                          FROM $tabla a 
-                                                          left join categorias c on a.id_category = c.id
-                                                          left join categorias ca on a.id_category2 = ca.id 
+                                                          a.id_category, a.id_category2
+                                                          FROM $tabla a  
                                                             WHERE a.estado = 1 
                                                             and a.id_user = $valor ORDER BY a.id DESC ");
 

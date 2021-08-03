@@ -6,9 +6,7 @@ class ControllerAds{
         if(isset($data["regTitle"])){
             //insertar los registros y posteriormente insertar las imagenes
 
-
             $nuevaForenKey = self::generarPassword(30);
-
 
             $datos = array(
                 "id_user"=>$data["regIdUser"],
@@ -20,8 +18,8 @@ class ControllerAds{
                 "people"=>$data["regPeople"],
                 "offer"=>$data["regOffer"],
                 "discount_amount"=>$data["regDiscountAmount"],
-                "id_category"=>$data["regIdCategory"],
-                "id_category2"=>$data["regIdCategory2"],
+                "id_category"=>implode(",",$data["regIdCategory"]),
+                "id_category2"=>implode(",",$data["regIdCategory2"]),
                 "address"=>$data["regAddress"]["completeAddress"],
                 "country"=>$data["regAddress"]["country"],
                 "country_code"=>$data["regAddress"]["countryCode"],
@@ -120,8 +118,8 @@ class ControllerAds{
                 "people"=>$data["people"],
                 "offer"=>$data["offer"],
                 "discount_amount"=>$data["discount_amount"],
-                "id_category"=>$data["id_category"],
-                "id_category2"=>$data["id_category2"],
+                "id_category"=>implode(",",$data["regIdCategory"]),
+                "id_category2"=>implode(",",$data["regIdCategory2"]),
                 "nombre_categoria"=>$data["nombre_categoria"],
                 "completeAddress" => array(
                     "address"=>$data["address"],
@@ -428,8 +426,8 @@ class ControllerAds{
                 "people"=>$data["updPeople"],
                 "offer"=>$data["updOffer"],
                 "discount_amount"=>$data["updDiscountAmount"],
-                "id_category"=>$data["updIdCategory"],
-                "id_category2"=>$data["updIdCategory2"],
+                "id_category"=>implode(",",$data["regIdCategory"]),
+                "id_category2"=>implode(",",$data["regIdCategory2"]),
                 "address"=>$data["updAddress"]["completeAddress"],
                 "country"=>$data["updAddress"]["country"],
                 "country_code"=>$data["updAddress"]["countryCode"],
@@ -598,9 +596,8 @@ class ControllerAds{
                 "people"=>$data["people"],
                 "offer"=>$data["offer"],
                 "discount_amount"=>$data["discount_amount"],
-                "id_category"=>$data["id_category"],
-                "id_category2"=>$data["id_category2"],
-                "nombre_categoria"=>$data["nombre_categoria"],
+                "categorias"=>explode(",",$data["id_category"]),
+                "vistas"=>explode(",",$data["id_category2"]),
                 "pending"=>ModelsAds::mdlShowReservation("reservaciones","id_anuncio",$data["id"],0),
                 "approved"=>ModelsAds::mdlShowReservation("reservaciones","id_anuncio",$data["id"],1),
                 "canceled"=>ModelsAds::mdlShowReservation("reservaciones","id_anuncio",$data["id"],2),
