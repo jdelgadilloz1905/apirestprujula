@@ -733,6 +733,90 @@ class ControllerUsers{
         }
     }
 
+    static public function ctrSendEmailContact($data){
+
+        if(isset($data["email"])){
+
+            //almaceno la informacion en la base de dato, tabla contacto
+            date_default_timezone_set("America/Bogota");
+
+            $mail = new PHPMailer;
+
+            $mail->CharSet = 'UTF-8';
+
+            $mail->isMail();
+
+            $mail->setFrom('hola@prujula.com', 'PRUJULA');
+
+            $mail->addReplyTo('hola@prujula.com', 'PRUJULA');
+
+            $mail->Subject = "Formulario de contacto";
+
+            $mail->addAddress($data["regEmail"]);
+
+            $mail->msgHTML('
+                                    <div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
+
+                                        <div style="position:relative; margin:auto; width:600px; background:white; padding:20px">
+                
+                                            <center>
+                
+                                                <img style="padding:20px; width:15%" src="http://tutorialesatualcance.com/tienda/icon-email.png">
+                    
+                                                <h3 style="font-weight:100; color:#999">VERIFIQUE SU DIRECCIÓN DE CORREO ELECTRÓNICO</h3>
+                    
+                                                <hr style="border:1px solid #ccc; width:80%">
+                    
+                                                <h4 style="font-weight:100; color:#999; padding:0 20px">Para comenzar a usar su cuenta de Prujula, debe confirmar su dirección de correo electrónico</h4>
+                    
+                                                <a href="' . $url . 'register-sucess/' . $encriptarEmail . '" target="_blank" style="text-decoration:none">
+                    
+                                                <div style="line-height:60px; background:#450E10; width:60%; color:white">Verifique su dirección de correo electrónico</div>
+                    
+                                                </a>
+                    
+                                                <br>
+                    
+                                                <hr style="border:1px solid #ccc; width:80%">
+                    
+                                                <h5 style="font-weight:100; color:#999">Si no se inscribió en esta cuenta, puede ignorar este correo electrónico y la cuenta se eliminará.</h5>
+                
+                                            </center>
+                
+                                        </div>
+                                    </div>'
+            );
+
+            $envio = $mail->Send();
+
+            if (!$envio) {
+
+                echo json_encode(array(
+                    "statusCode" => 400,
+                    "error" => false,
+                    "mensaje" =>"¡Ha ocurrido un problema enviando el email, contacte con el administrador " . $mail->ErrorInfo . "!"
+                ));
+
+            } else {
+
+                echo json_encode(array(
+                    "statusCode" => 200,
+                    "error" => false,
+                    "mensaje" =>"¡Excelente trabajo, se envio el email!",
+                ));
+
+
+            }
+        }else{
+
+            echo json_encode(array(
+                "statusCode" => 400,
+                "error" => true,
+                "mensaje" =>"¡Error debe ingresar en email valido!",
+            ));
+        }
+    }
+
     /*=============================================
         FUNCIONES
     =============================================*/
