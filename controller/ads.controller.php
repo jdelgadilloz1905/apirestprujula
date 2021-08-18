@@ -85,6 +85,7 @@ class ControllerAds{
                 echo json_encode(array(
                     "statusCode" => 200,
                     "adsInfo"=>$idUltimoAnuncio["id"],
+                    "rowid"=> $nuevaForenKey,
                     "error" => false,
                     "algolia"=>$algolia,
                     "mensaje" =>"Genial orden # ".$idUltimoAnuncio["id"]." creada con exito"
@@ -105,6 +106,43 @@ class ControllerAds{
         $data = ModelsAds::mdlShowAdsId("anuncios","id",$datos["conId"]);
 
         $fechasArray = ModelsAds::mdlDateReservadas("reservaciones","id_anuncio",$data["id"]);
+
+
+        //BUSCO LAS CALIFICACIONES
+
+        $idAnuncio = array(
+            "idAnuncio"=>$data["id"]
+        );
+
+        $respuesta = ModelsAds::mdlShowCalification("calificacion",$idAnuncio);
+
+        if($respuesta){
+
+            //PREPARO LA MATRIZ
+
+            foreach ($respuesta as $key => $data1){
+
+                //BUSCAR POR ESTATUS LAS RESERVACIONES
+
+                $infoCalificacion[$key] = array(
+                    "id"=>$data1["id"],
+                    "idAnuncio"=>$data1["id_anuncio"],
+                    "idUser"=>$data1["id_user"],
+                    "idReservacion"=>$data1["id_reservacion"],
+                    "commentary"=>$data1["comentario"],
+                    "answers"=>json_decode($data1["encuesta"]),
+                    "calification"=>$data1["calificacion"],
+                    "mensaje"=>""
+                );
+            }
+
+        }else{
+
+            echo json_encode(array(
+                "calification"=>0,
+                "mensaje" =>"No tiene calificaciones este anuncio"
+            ));
+        }
 
         if($data){
             $resultado = array(
@@ -138,7 +176,7 @@ class ControllerAds{
                     "picture_url_offer"=>json_decode($data["picture_url_offer"] , true),
                     "picture_galery"=>json_decode($data["picture_galery"], true)
                 ),
-                "calificacion"=>$data["calificacion"],
+                "calification"=>$infoCalificacion,
                 "estado"=>$data["estado"],
                 "fecha_creacion"=>$data["fecha_creacion"],
                 "vistas"=>$data["vistas"],
@@ -882,5 +920,82 @@ class ControllerAds{
             ));
         }
 
+    }
+
+    static public function ctrCalificationUser($data){
+
+        //primero valido que no se haya registrado una calificacion con el anuncio y reservacion
+
+        $resultado = ModelsAds::mdlBuscarAnuncioReservacion($data);
+
+        if(!$resultado){
+
+            $respuesta = ModelsAds::mdlCalificationUser("calificacion",$data);
+
+            if($respuesta){
+
+                echo json_encode(array(
+                    "statusCode" => 200,
+                    "error" => false,
+                    "infoReser" => $respuesta,
+                    "mensaje" =>" "
+                ));
+            }else{
+
+                echo json_encode(array(
+                    "statusCode" => 400,
+                    "error" => true,
+                    "mensaje" =>"Problema para insertar la calificacion, contacte con el administrador"
+                ));
+            }
+
+
+        }else{
+
+            echo json_encode(array(
+                "statusCode" => 400,
+                "error" => true,
+                "mensaje" =>"Ya existe una calificacion para la reservacion # ".$data["idReservacion"]." y anuncio # ".$data["idAnuncio"]
+            ));
+        }
+    }
+
+    static public function ctrShowCalification($data){
+
+        $respuesta = ModelsAds::mdlShowCalification("calificacion",$data);
+
+        if($respuesta){
+
+            //PREPARO LA MATRIZ
+
+            foreach ($respuesta as $key => $data){
+
+                //BUSCAR POR ESTATUS LAS RESERVACIONES
+
+                $resultado[$key] = array(
+                    "id"=>$data["id"],
+                    "idAnuncio"=>$data["id_anuncio"],
+                    "idUser"=>$data["id_user"],
+                    "idReservacion"=>$data["id_reservacion"],
+                    "commentary"=>$data["comentario"],
+                    "answers"=>json_decode($data["encuesta"]),
+                    "calification"=>$data["calificacion"],
+                );
+            }
+
+            echo json_encode(array(
+                "statusCode" => 200,
+                "error" => false,
+                "infoCalif" => $resultado,
+                "mensaje" =>" "
+            ));
+        }else{
+
+            echo json_encode(array(
+                "statusCode" => 400,
+                "error" => true,
+                "mensaje" =>"No se encontraron registros "
+            ));
+        }
     }
 }

@@ -48,6 +48,14 @@ switch ($method){
         
         break;
 
+    case "verifyemail":
+
+        $respuesta = ControllerUsers::ctrVerifyUser($obj);
+
+        echo $respuesta;
+
+        break;
+
     case "datosuser":
 
         $respuesta = ControllerUsers::ctrGetShowUser("id",$obj["conId"]);
@@ -59,14 +67,6 @@ switch ($method){
     case "updateuser":
 
         $respuesta = ControllerUsers::ctrUpdateUser($obj);
-
-        echo $respuesta;
-
-        break;
-
-    case "contactemail":
-
-        $respuesta = ControllerUsers::ctrSendEmailContact($obj);
 
         echo $respuesta;
 

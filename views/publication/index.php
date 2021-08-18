@@ -127,6 +127,22 @@ switch ($method){
 
         break;
 
+    case "calificationuser":
+
+        $respuesta = ControllerAds::ctrCalificationUser($obj);
+
+        echo $respuesta;
+
+        break;
+
+    case "showcalification":
+
+        $respuesta = ControllerAds::ctrShowCalification($obj);
+
+        echo $respuesta;
+
+        break;
+
     default:
         echo json_encode(
             array(

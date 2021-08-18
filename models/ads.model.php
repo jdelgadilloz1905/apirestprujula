@@ -488,5 +488,66 @@ class ModelsAds{
         $stmt = null;
     }
 
+    static public function mdlCalificationUser($tabla, $datos){
+
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_anuncio,id_user,id_reservacion,comentario, encuesta,calificacion)
+                                                                    VALUES (:id_anuncio,:id_user,:id_reservacion,:comentario, :encuesta,:calificacion)");
+
+        $answers = json_encode($datos["answers"]);
+
+        $stmt->bindParam(":id_anuncio", $datos["idAnuncio"], PDO::PARAM_STR);
+        $stmt->bindParam(":id_user", $datos["idUser"], PDO::PARAM_STR);
+        $stmt->bindParam(":id_reservacion", $datos["idReservacion"], PDO::PARAM_STR);
+        $stmt->bindParam(":comentario", $datos["commentary"], PDO::PARAM_STR);
+        $stmt->bindParam(":encuesta", $answers, PDO::PARAM_STR);
+        $stmt->bindParam(":calificacion", $datos["ratingUser"], PDO::PARAM_STR);
+
+        if($stmt->execute()){
+
+            return "ok";
+
+        }else{
+
+            return "error";
+
+        }
+
+        $stmt->close();
+
+        $stmt = null;
+    }
+
+    static public function mdlShowCalification($tabla,$datos){
+
+        $stmt = Conexion::conectar()->prepare("SELECT  * from $tabla where id_anuncio = :id_anuncio order by id desc  ");
+
+        $stmt -> bindParam(":id_anuncio", $datos["idAnuncio"], PDO::PARAM_STR);
+
+        $stmt -> execute();
+
+        return $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt -> close();
+
+        $stmt = null;
+    }
+
+    static public function mdlBuscarAnuncioReservacion($datos){
+
+        $stmt = Conexion::conectar()->prepare("SELECT  * from calificacion where id_anuncio = :id_anuncio and id_reservacion = :id_reservacion");
+
+        $stmt -> bindParam(":id_anuncio", $datos["idAnuncio"], PDO::PARAM_STR);
+
+        $stmt -> bindParam(":id_reservacion", $datos["idReservacion"], PDO::PARAM_STR);
+
+        $stmt -> execute();
+
+        return $stmt -> fetch(PDO::FETCH_ASSOC);
+
+        $stmt -> close();
+
+        $stmt = null;
+    }
+
 
 }
