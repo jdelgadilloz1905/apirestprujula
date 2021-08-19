@@ -549,5 +549,26 @@ class ModelsAds{
         $stmt = null;
     }
 
+    static public function mdlUpdateCalificacion($data){
+
+        $stmt = Conexion::conectar()->prepare("UPDATE anuncios SET calificacion = :calificacion WHERE id = :id");
+
+        $stmt->bindParam(":calificacion", $data["calificacion"], PDO::PARAM_STR);
+        $stmt->bindParam(":id", $data["idAnuncio"], PDO::PARAM_STR);
+
+        if($stmt->execute()){
+
+            return "ok";
+
+        }else{
+
+            return "error";
+        }
+
+        $stmt->close();
+
+        $stmt = null;
+    }
+
 
 }

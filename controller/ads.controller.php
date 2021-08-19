@@ -110,39 +110,8 @@ class ControllerAds{
 
         //BUSCO LAS CALIFICACIONES
 
-        $idAnuncio = array(
-            "idAnuncio"=>$data["id"]
-        );
+        //$calificacion = self::ctrPrepararCalificacion($data["id"]);
 
-        $respuesta = ModelsAds::mdlShowCalification("calificacion",$idAnuncio);
-
-        if($respuesta){
-
-            //PREPARO LA MATRIZ
-
-            foreach ($respuesta as $key => $data1){
-
-                //BUSCAR POR ESTATUS LAS RESERVACIONES
-
-                $infoCalificacion[$key] = array(
-                    "id"=>$data1["id"],
-                    "idAnuncio"=>$data1["id_anuncio"],
-                    "idUser"=>$data1["id_user"],
-                    "idReservacion"=>$data1["id_reservacion"],
-                    "commentary"=>$data1["comentario"],
-                    "answers"=>json_decode($data1["encuesta"]),
-                    "calification"=>$data1["calificacion"],
-                    "mensaje"=>""
-                );
-            }
-
-        }else{
-
-            echo json_encode(array(
-                "calification"=>0,
-                "mensaje" =>"No tiene calificaciones este anuncio"
-            ));
-        }
 
         if($data){
             $resultado = array(
@@ -176,7 +145,7 @@ class ControllerAds{
                     "picture_url_offer"=>json_decode($data["picture_url_offer"] , true),
                     "picture_galery"=>json_decode($data["picture_galery"], true)
                 ),
-                "calification"=>$infoCalificacion,
+                "calification"=>$data["calificacion"],
                 "estado"=>$data["estado"],
                 "fecha_creacion"=>$data["fecha_creacion"],
                 "vistas"=>$data["vistas"],
@@ -314,7 +283,7 @@ class ControllerAds{
 
             //busco las fchas reservadas de cada anuncio si las tiene y creo un objeto y aqui las agrego
 
-            $fechasArray = ModelsAds::mdlDateReservadas("reservaciones","id_anuncio",$data["id"]);
+            //$fechasArray = ModelsAds::mdlDateReservadas("reservaciones","id_anuncio",$data["id"]);
 
 
             $resultado[$key] = array(
@@ -697,7 +666,6 @@ class ControllerAds{
     }
 
 
-
     static public function ctrBookPublications($data){
 
         if(isset($data["idAnuncio"])){
@@ -934,12 +902,32 @@ class ControllerAds{
 
             if($respuesta){
 
+                //si la calificacion es correcta actualizo la calificacion general en el anuncio y despues en algolia
+
+                $calificacion  = self::ctrPrepararCalificacion($data["idAnuncio"]);
+
+                //actualizo la calificacion general
+
+                $datosCalificacion = array(
+                    "idAnuncio" =>  $data["idAnuncio"],
+                    "calificacion" => $calificacion
+                );
+
+                ModelsAds::mdlUpdateCalificacion($datosCalificacion);
+
+                //busco el anuncio completo para actualizar
+
+                $data = ModelsAds::mdlShowAdsId("anuncios","id",$data["idAnuncio"]);
+
+
+                ControllerAlgolia::ctrCreateAdsAlgolia($data);
+
                 echo json_encode(array(
                     "statusCode" => 200,
                     "error" => false,
-                    "infoReser" => $respuesta,
-                    "mensaje" =>" "
+                    "mensaje" =>"Buen trabajo, calificacion registrada con exito."
                 ));
+
             }else{
 
                 echo json_encode(array(
@@ -997,5 +985,78 @@ class ControllerAds{
                 "mensaje" =>"No se encontraron registros "
             ));
         }
+    }
+
+    static public function ctrPrepararCalificacion($id_anuncio){
+
+        $idAnuncio = array(
+            "idAnuncio"=>$id_anuncio
+        );
+
+        $respuesta = ModelsAds::mdlShowCalification("calificacion",$idAnuncio);
+
+        if($respuesta){
+
+            $acumulado = 0;
+            foreach ($respuesta as $key => $data1){
+
+                //BUSCAR POR ESTATUS LAS RESERVACIONES
+                $acumulado = $acumulado + $data1["calificacion"];
+            }
+
+            $promedio = round($acumulado / count($respuesta),1);
+
+            if($promedio >= 0 && $promedio < 0.5){
+
+                $calificacion = 0;
+
+            }else if($promedio >= 0.5 && $promedio < 1){
+
+                $calificacion = 0.5;
+
+            }else if($promedio >= 1 && $promedio < 1.5){
+
+                $calificacion = 1;
+
+            }else if($promedio >= 1.5 && $promedio < 2){
+
+                $calificacion = 1.5;
+
+            }else if($promedio >= 2 && $promedio < 2.5){
+
+                $calificacion = 2;
+
+            }else if($promedio >= 2.5 && $promedio < 3){
+
+                $calificacion = 2.5;
+
+            }else if($promedio >= 3 && $promedio < 3.5){
+
+                $calificacion = 3;
+
+            }else if($promedio >= 3.5 && $promedio < 4){
+
+                $calificacion = 3.5;
+
+            }else if($promedio >= 4 && $promedio < 4.5){
+
+                $calificacion = 4;
+
+            }else if($promedio >= 4.5 && $promedio < 5){
+
+                $calificacion = 4.5;
+
+            }else{
+
+                $calificacion = 5;
+            }
+
+        }else{
+
+            $calificacion = 0.5;
+        }
+
+        return $calificacion;
+
     }
 }
