@@ -407,13 +407,15 @@ class ModelsAds{
 
     static public function mdlShowReservation($tabla,$item,$valor,$estatus){
 
-        $stmt = Conexion::conectar()->prepare("SELECT  r.*, u.nombre, u.apellido, a.title 
-                                                         from $tabla r 
-                                                         left join usuarios u 
-                                                         on u.id = r.id_user 
-                                                         left join anuncios a 
-                                                         on a.id = r.id_anuncio
-                                                         where r.$item = :$item AND r.estatus = :estatus order by r.id desc  ");
+        $stmt = Conexion::conectar()->prepare("SELECT  r.*, u.nombre, u.apellido, a.title, (case when c.id IS NOT NULL then 1 else 0 end ) calificado
+                                                          from $tabla r 
+                                                            left join usuarios u 
+                                                            on u.id = r.id_user 
+                                                            left join anuncios a 
+                                                            on a.id = r.id_anuncio
+                                                            left join calificacion c
+                                                            on r.id = c.id_reservacion
+                                                            where r.$item = :$item AND r.estatus = :estatus order by r.id desc  ");
 
         $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
         $stmt -> bindParam(":estatus", $estatus, PDO::PARAM_STR);
@@ -566,6 +568,27 @@ class ModelsAds{
         }
 
         $stmt->close();
+
+        $stmt = null;
+    }
+
+    static public function mdlBuscarAnuncioReservacionUser($datos){
+
+        $stmt = Conexion::conectar()->prepare("SELECT r.*,u.email, u.nombre, u.apellido 
+                                                          from reservaciones r 
+                                                          left join usuarios u 
+                                                          on r.id_user = u.id 
+                                                          where r.id_anuncio = :id_anuncio and r.id = :id_reservacion");
+
+        $stmt -> bindParam(":id_anuncio", $datos["idAnuncio"], PDO::PARAM_STR);
+
+        $stmt -> bindParam(":id_reservacion", $datos["idReservacion"], PDO::PARAM_STR);
+
+        $stmt -> execute();
+
+        return $stmt -> fetch(PDO::FETCH_ASSOC);
+
+        $stmt -> close();
 
         $stmt = null;
     }

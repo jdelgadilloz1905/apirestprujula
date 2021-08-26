@@ -784,7 +784,7 @@ class ControllerAds{
 
 									<center>
 
-									<img style="padding:20px; width:15%" src="http://tutorialesatualcance.com/tienda/icon-pass.png">
+									<img style="padding:20px; width:15%" src="https://prujula.com/static/media/main-logo.4bb1f751.png">
 
 									<h3 style="font-weight:100; color:#999">TU SOLICITUD HA SIDO APROBADA</h3>
 
@@ -793,9 +793,9 @@ class ControllerAds{
 
 									<a href="'.$url.$data["updId"].'" target="_blank" style="text-decoration:none">
 
-									<div style="line-height:60px; background:#450E10; width:60%; color:white">Ingrese nuevamente al sitio para realizar el pago </div>
+									<div style="line-height:60px; background:#336722; width:60%; color:white">Ingrese nuevamente al sitio para realizar el pago </div>
 									
-									<div style="line-height:60px; background:#450E10; width:60%; color:white">Posee 5 dias para realizar el pago, de lo contrario su reservación sera liberada </div>
+									<div style="line-height:60px; background:#336722; width:60%; color:white">Posee 5 dias para realizar el pago, de lo contrario su reservación sera liberada </div>
 
 									</a>
 
@@ -1058,5 +1058,81 @@ class ControllerAds{
 
         return $calificacion;
 
+    }
+
+    static public function ctrSendEmailRatePost($data){
+
+        //Busco el rowid de la reservacion a traves del ID_RESERVACION
+
+        $respuesta = ModelsAds::mdlBuscarAnuncioReservacionUser($data);
+
+        //prepara el email para enviar al cliente
+
+        $url = Ruta::ctrRutaEnvioEmailCalificar();
+
+        date_default_timezone_set("America/Bogota");
+
+        $mail = new PHPMailer;
+
+        $mail->CharSet = 'UTF-8';
+
+        $mail->isMail();
+
+        $mail->setFrom('hola@prujula.com', 'PRUJULA');
+
+        $mail->addReplyTo('hola@prujula.com', 'PRUJULA');
+
+
+        $mail->Subject = "Encuesta de satisfacción de Prujula";
+
+        $mail->addAddress($respuesta["email"]);
+
+        $mail->msgHTML('<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
+
+                <center>
+
+                    <img style="padding:20px; width:10%" src="">
+
+                </center>
+
+                <div style="position:relative; margin:auto; width:600px; background:white; padding:20px">
+
+                    <center>
+
+                    <img style="padding:20px; width:15%" src="https://prujula.com/static/media/main-logo.4bb1f751.png">
+
+                    <h3 style="font-weight:100; color:#999">ENCUESTA DE SATISFACCION </h3>
+
+                    <hr style="border:1px solid #ccc; width:80%">
+
+
+                    
+
+                    <div style="line-height:20px; background:#fff; width:60%; color:black">aprovechamos la oportunidad de hacerle una breve encuesta, la cual no tomará más de 2 minutos, 
+                    que nos ayudará a mejorar la atención a nuestros clientes así como la calidad de nuestro servicio, para ello agradecemos pueda hacer clic en 
+                    <a href="'.$url.$respuesta["rowid"].'" target="_blank" style="text-decoration:none"> Encuesta de Satisfacción </a>
+                    </div>
+                    
+                    
+
+                    <br>
+
+                    <hr style="border:1px solid #ccc; width:80%">
+
+                    <h5 style="font-weight:100; color:#999">Si no se inscribió en esta cuenta, puede ignorar este correo electrónico y la cuenta se eliminará.</h5>
+
+                    </center>
+
+                </div>
+
+            </div>');
+
+        $mail->Send();
+
+        echo json_encode(array(
+            "statusCode" => 200,
+            "error" => false,
+            "mensaje" =>"Se envio el correo exitosamente "
+        ));
     }
 }

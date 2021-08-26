@@ -143,6 +143,14 @@ switch ($method){
 
         break;
 
+    case "ratepost":
+
+        $respuesta = ControllerAds::ctrSendEmailRatePost($obj);
+
+        echo $respuesta;
+
+        break;
+
     default:
         echo json_encode(
             array(

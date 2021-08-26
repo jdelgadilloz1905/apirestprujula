@@ -19,6 +19,12 @@ class Ruta{
         //return "https://prujula.com/profile/payment/confirm-reservation/";
     }
 
+    static public function ctrRutaEnvioEmailCalificar(){
+
+        return "https://prujula-develop.herokuapp.com/reviews/send/";
+        //return "https://prujula.com/profile/payment/confirm-reservation/";
+    }
+
     static public function ctrRutaFront(){
 
         //return "https://www.prujula.pr/";
