@@ -151,6 +151,14 @@ switch ($method){
 
         break;
 
+    case "showreservation":
+
+        $respuesta = ControllerAds::ctrShowReservation($obj);
+
+        echo $respuesta;
+
+        break;
+
     default:
         echo json_encode(
             array(

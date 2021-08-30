@@ -72,6 +72,13 @@ switch ($method){
 
         break;
 
+    case "sendemail":
+
+        $respuesta = ControllerUsers::ctrSendEmailContact($obj);
+
+        echo $respuesta;
+
+        break;
 
     default:
         echo json_encode(

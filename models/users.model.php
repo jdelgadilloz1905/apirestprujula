@@ -163,4 +163,34 @@ class ModelUsers{
         $stmt = null;
 
     }
+
+    static public function mdlRegisterContacto($datos){
+
+
+        $stmt = Conexion::conectar()->prepare("INSERT INTO contactos (email, nombre, mensaje) 
+                                                                    VALUES (:email, :nombre, :mensaje)");
+
+
+        $stmt->bindParam(":email", $datos["email"], PDO::PARAM_STR);
+
+        $stmt->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
+
+        $stmt->bindParam(":mensaje", $datos["mensaje"], PDO::PARAM_STR);
+
+
+
+        if($stmt->execute()){
+
+            return "ok";
+
+        }else{
+
+            return "error";
+
+        }
+
+        $stmt->close();
+
+        $stmt = null;
+    }
 }

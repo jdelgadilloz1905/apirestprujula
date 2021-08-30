@@ -108,10 +108,9 @@ class ControllerAds{
         $fechasArray = ModelsAds::mdlDateReservadas("reservaciones","id_anuncio",$data["id"]);
 
 
-        //BUSCO LAS CALIFICACIONES
+        //BUSCO LAS CALIFICACIONES DETALLADAS CON SU INFO DE CLIENTES
 
-        //$calificacion = self::ctrPrepararCalificacion($data["id"]);
-
+        $comentarios = ModelsAds::mdlShowReservationUser($datos["conId"]);
 
         if($data){
             $resultado = array(
@@ -146,6 +145,10 @@ class ControllerAds{
                     "picture_galery"=>json_decode($data["picture_galery"], true)
                 ),
                 "calification"=>$data["calificacion"],
+                "detailCalification"=> array(
+                    "id_calificacion" => $comentarios["id"],
+                    "id_anuncio" => $comentarios["id_anuncio"],
+                ) ,
                 "estado"=>$data["estado"],
                 "fecha_creacion"=>$data["fecha_creacion"],
                 "vistas"=>$data["vistas"],
@@ -1134,5 +1137,29 @@ class ControllerAds{
             "error" => false,
             "mensaje" =>"Se envio el correo exitosamente "
         ));
+    }
+
+    static public function ctrShowReservation($data){
+
+
+        $respuesta = ModelsAds::mdlShowAdsReservation("reservaciones","rowid",$data["conRowid"]);
+
+        if($respuesta){
+
+            echo json_encode(array(
+                "statusCode" => 200,
+                "error" => false,
+                "infoReserv" => $respuesta,
+                "mensaje" =>" "
+            ));
+        }else{
+
+            echo json_encode(array(
+                "statusCode" => 400,
+                "error" => true,
+                "mensaje" =>"No se encontraron registros "
+            ));
+        }
+
     }
 }

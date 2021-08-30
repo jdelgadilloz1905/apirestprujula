@@ -734,6 +734,126 @@ class ControllerUsers{
     }
 
     /*=============================================
+    ENVIO DE EMAIL DE CONTACTO Y SE REGISTRA
+    ===============================================*/
+
+    static public function ctrSendEmailContact($data){
+
+       if (isset($data["regEmail"])) {
+
+            if (preg_match('/^[^0-9][a-zA-Z0-9_.*-]+([.][a-zA-Z0-9_.*-]+)*[@][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[.][a-zA-Z]{2,4}$/', $data["regEmail"])
+            ) {
+
+
+                $datos = array(
+                    "nombre" => $data["regName"],
+                    "email" => $data["regEmail"],
+                    "mensaje" => $data["regMessage"]
+                );
+
+                //INSERTO EL REGISTRO EN LA TABLA CONTACTOS Y POSTERIORMENTE ENVIO EL CORREO
+                $resultado = ModelUsers::mdlRegisterContacto($datos);
+
+
+                if($resultado == 'ok'){
+
+                    /*=============================================
+                        VERIFICACIÓN CORREO ELECTRÓNICO
+                        =============================================*/
+
+                    date_default_timezone_set("America/Bogota");
+
+                    $url = Ruta::ctrRutaEnvioEmailAuth();
+
+                    $mail = new PHPMailer;
+
+                    $mail->CharSet = 'UTF-8';
+
+                    $mail->isMail();
+
+                    $mail->setFrom($data["regEmail"], $data["regName"]);
+
+                    $mail->addReplyTo('hola@prujula.com', 'PRUJULA');
+
+                    $mail->Subject = "Email del contacto ".$data["regName"];
+
+                    $mail->addAddress($data["regEmail"]);
+
+                    $mail->msgHTML('
+                                <div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
+
+                                    <div style="position:relative; margin:auto; width:600px; background:white; padding:20px">
+            
+                                        <center>
+            
+                                            <img style="padding:20px; width:15%" src="http://tutorialesatualcance.com/tienda/icon-email.png">
+                
+                                            <h3 style="font-weight:100; color:#999">CLIENTE '.$data["regName"].' DESEA CONTACTARSE CON USTEDES</h3>
+                    
+                                            <hr style="border:1px solid #ccc; width:80%">
+                
+                                            <h4 style="font-weight:100; color:#999; padding:0 20px">'.$data["regMessage"].'</h4>
+                
+                                            
+                
+                                            <br>
+                
+                                            <hr style="border:1px solid #ccc; width:80%">
+                
+                                            <h5 style="font-weight:100; color:#999">Si no se inscribió en esta cuenta, puede ignorar este correo electrónico y la cuenta se eliminará.</h5>
+            
+                                        </center>
+            
+                                    </div>
+                                </div>'
+                    );
+
+                    $envio = $mail->Send();
+
+                    if (!$envio) {
+
+                        echo json_encode(array(
+                            "statusCode" => 400,
+                            "error" => false,
+                            "mensaje" =>"¡Ha ocurrido un problema enviando el correo electrónico a " . $data["regEmail"] . $mail->ErrorInfo . "!"
+                        ));
+
+                    } else {
+
+                        echo json_encode(array(
+                            "statusCode" => 200,
+                            "error" => false,
+                            "mensaje" =>"¡Excelente trabajo " . $data["regName"] . ", pronto nos pondremos en contacto con usted!",
+                        ));
+
+
+                    }
+
+                }else{
+
+                    echo json_encode(array(
+                        "statusCode" => 400,
+                        "error" => true,
+                        "mensaje" =>"¡Error enviando el correo, intente mas tarde!",
+                    ));
+
+                }
+            } else {
+
+                echo json_encode(array(
+                    "statusCode" => 400,
+                    "error" => true,
+                    "mensaje" =>"¡Error al enviar el email, no se permiten caracteres especiales, verifique e intente de nuevo!",
+                ));
+
+
+            }
+
+       }
+
+    }
+
+    /*=============================================
         FUNCIONES
     =============================================*/
 

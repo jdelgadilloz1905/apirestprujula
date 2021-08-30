@@ -593,5 +593,22 @@ class ModelsAds{
         $stmt = null;
     }
 
+    static public function mdlShowReservationUser($valor){
 
+        $stmt = Conexion::conectar()->prepare("SELECT r.*,u.email, u.nombre, u.apellido 
+                                                          from calificacion r 
+                                                          left join usuarios u 
+                                                          on r.id_user = u.id 
+                                                          where r.id_anuncio = :id_anuncio");
+
+        $stmt -> bindParam(":id_anuncio", $valor, PDO::PARAM_STR);
+
+        $stmt -> execute();
+
+        return $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt -> close();
+
+        $stmt = null;
+    }
 }
