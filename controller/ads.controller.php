@@ -1148,6 +1148,7 @@ class ControllerAds{
 
             echo json_encode(array(
                 "statusCode" => 200,
+                "calificado" => 1,
                 "error" => false,
                 "infoReserv" => $respuesta,
                 "mensaje" =>" "
@@ -1156,6 +1157,7 @@ class ControllerAds{
 
             echo json_encode(array(
                 "statusCode" => 400,
+                "calificado" => 0,
                 "error" => true,
                 "mensaje" =>"No se encontraron registros "
             ));

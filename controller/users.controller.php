@@ -877,4 +877,58 @@ class ControllerUsers{
 
         ModelUsers::mdlUpdateUser($tabla, $item1, $valor1, $item2, $valor2);
     }
+
+    /*=============================================
+	ACTUALIZA PASSWORD
+	=============================================*/
+
+    static public function ctrActualizarPassword($data){
+
+        if(isset($data["updEmailEncriptado"])){
+
+            $passwordNuevo = crypt($data["updNewPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+            $tabla = "usuarios";
+            $item = "email_encriptado";
+            $valor = $data["updEmailEncriptado"];
+
+            $respuesta =  ModelUsers::mdlShowUsers($tabla,$item,$valor);
+
+            if($respuesta["email_encriptado"] == $data["updEmailEncriptado"] ){
+
+                $datos = array(
+                       "id"=>$respuesta["id"],
+                       "password"=>$passwordNuevo
+                );
+                $resp = ModelUsers::mdlActualizarPassword($tabla, $datos);
+
+                if($resp == "ok"){
+
+                    echo json_encode(array(
+                        "statusCode" => 200,
+                        "error" => false,
+                        "mensaje" =>"Excelente trabajo, Tu contraseña ha sido cambiada exitosamente.",
+                    ));
+
+                }else{
+
+                    echo json_encode(array(
+                        "statusCode" => 400,
+                        "error" => true,
+                        "mensaje" =>"¡Error al cambiar su contraseña, contacte con el administrador!",
+                    ));
+
+                }
+
+            }else{
+
+                echo json_encode(array(
+                    "statusCode" => 400,
+                    "error" => true,
+                    "mensaje" =>"¡Si tiene problema para recuperar su contraseña, contacte con el administrador!",
+                ));
+
+            }
+        }
+
+    }
 }
