@@ -145,10 +145,7 @@ class ControllerAds{
                     "picture_galery"=>json_decode($data["picture_galery"], true)
                 ),
                 "calification"=>$data["calificacion"],
-                "detailCalification"=> array(
-                    "id_calificacion" => $comentarios["id"],
-                    "id_anuncio" => $comentarios["id_anuncio"],
-                ) ,
+                "detailCalification"=> $comentarios,
                 "estado"=>$data["estado"],
                 "fecha_creacion"=>$data["fecha_creacion"],
                 "vistas"=>$data["vistas"],
@@ -1163,5 +1160,46 @@ class ControllerAds{
             ));
         }
 
+    }
+
+    /*============================================
+    ELIMINAR O INACTIVAR ANUNCIOS
+    ==============================================*/
+    static public function ctrDeleteAnuncio($data){
+
+        if($data["allDelete"] == "si"){
+
+            //elimino reservaciones, anuncios, pagos, calificaciones
+
+            ModelsAds::mdlDeleteRecord("reservaciones","id_anuncio",$data["idAnuncio"]);
+
+            ModelsAds::mdlDeleteRecord("pagos","id_anuncio",$data["idAnuncio"]);
+
+            ModelsAds::mdlDeleteRecord("calificacion","id_anuncio",$data["idAnuncio"]);
+
+            ModelsAds::mdlDeleteRecord("anuncios","id",$data["idAnuncio"]);
+
+
+            echo json_encode(array(
+                "statusCode" => 200,
+                "error" => false,
+                "mensaje" =>"Anuncio eliminada"
+            ));
+
+        }else{
+            $datos = array(
+                "id" => $data["idAnuncio"],
+                "estado" => $data["estado"]
+            );
+            ModelsAds::mdlActualizarAnuncio("anuncios",$datos);
+
+            $respuesta = $data["estado"]== 1 ? "Activada": "Desactivada";
+
+            echo json_encode(array(
+                "statusCode" => 200,
+                "error" => false,
+                "mensaje" =>"Anuncio ".$respuesta
+            ));
+        }
     }
 }

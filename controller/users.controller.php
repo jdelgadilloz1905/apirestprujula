@@ -931,4 +931,51 @@ class ControllerUsers{
         }
 
     }
+
+
+    /*============================================
+    ELIMINAR O INACTIVAR USUARIOS
+    ==============================================*/
+
+    static public function ctrDeleteUser($data){
+
+        if($data["allDelete"] == "si"){
+
+            //elimino reservaciones, anuncios, pagos, calificaciones, usuarios
+
+            ModelUsers::mdlDeleteRecord("reservaciones","id_user",$data["idUser"]);
+
+            ModelUsers::mdlDeleteRecord("pagos","id_user",$data["idUser"]);
+
+            ModelUsers::mdlDeleteRecord("calificacion","id_user",$data["idUser"]);
+
+            ModelUsers::mdlDeleteRecord("anuncios","id_user",$data["idUser"]);
+
+            ModelUsers::mdlDeleteRecord("usuarios","id",$data["idUser"]);
+
+            echo json_encode(array(
+                "statusCode" => 200,
+                "error" => false,
+                "mensaje" =>"Cuenta eliminada"
+            ));
+
+        }else{
+            $datos = array(
+                "id" => $data["idUser"],
+                "estado" => $data["estado"]
+            );
+            ModelUsers::mdlActualizarPerfil("usuarios",$datos);
+
+            $respuesta = $data["estado"]== 1 ? "Activada": "Desactivada";
+
+            echo json_encode(array(
+                "statusCode" => 200,
+                "error" => false,
+                "mensaje" =>"Cuenta ".$respuesta
+            ));
+        }
+
+
+    }
+
 }

@@ -20,10 +20,20 @@ class ControllerCategory{
     /*=============================================
       INSERTAR CATEGORIA
       =============================================*/
+    static public function ctrCreateCategory($data){
 
+
+    }
     /*=============================================
     ACTUALIZAR NOMBRE O ESTADO DE LA CATEGORIA
     =============================================*/
+
+    static public function ctrEditCategory($obj){
+
+
+    }
+
+
 
     /*=============================================
     ELIMINAR CATEGORIA QUE NO ESTAN ASOCIADO A UN ANUNCIO

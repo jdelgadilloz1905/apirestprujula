@@ -88,12 +88,30 @@ switch ($method){
 
         break;
 
+    case "all":
+
+        $respuesta = ControllerUsers::ctrGetShowUser(null,null);
+
+        echo $respuesta;
+
+        break;
+
+
+    case "deleteuser":
+
+        $respuesta = ControllerUsers::ctrDeleteUser($obj);
+
+        echo $respuesta;
+
+        break;
+
     default:
         echo json_encode(
             array(
                 "error" => true,
                 "statusCode"=>"400",
-                "metodo" =>$method
+                "metodo" =>$method,
+                "valores"=>$obj
             ));
 }
 

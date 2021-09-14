@@ -41,7 +41,7 @@ switch ($method){
 
     case "deletead": //el anuncio se eliminara si no tiene algun movimiento historico
 
-        $respuesta = "";
+        $respuesta = ControllerAds::ctrDeleteAnuncio($obj);
 
         echo $respuesta;
 

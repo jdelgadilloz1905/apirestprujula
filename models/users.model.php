@@ -220,4 +220,54 @@ class ModelUsers{
         $stmt = null;
 
     }
+
+    /*=============================================
+	ELIMINAR REGISTROS DE TABLAS
+	=============================================*/
+
+    static public function mdlDeleteRecord($tabla, $item,  $valor){
+
+        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE $item = :$item");
+
+        $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+        if($stmt -> execute()){
+
+            return "ok";
+
+        }else{
+
+            return "error";
+
+        }
+
+        $stmt -> close();
+
+        $stmt = null;
+
+
+    }
+
+    static public function mdlActualizarPerfil($tabla, $datos){
+
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET estado = :estado WHERE id = :id");
+
+        $stmt -> bindParam(":id", $datos["id"], PDO::PARAM_INT);
+        $stmt -> bindParam(":estado", $datos["estado"], PDO::PARAM_STR);
+
+        if($stmt -> execute()){
+
+            return "ok";
+
+        }else{
+
+            return "error";
+
+        }
+
+        $stmt-> close();
+
+        $stmt = null;
+
+    }
 }

@@ -19,6 +19,23 @@ switch ($method){
 
         break;
 
+    case "createcategory":
+
+        $respuesta = ControllerCategory::ctrCreateCategory($obj);
+
+        echo $respuesta;
+
+        break;
+
+    case "editcategory":
+
+        $respuesta = ControllerCategory::ctrEditCategory($obj);
+
+        echo $respuesta;
+
+        break;
+
+
     default:
         echo json_encode(
             array(
