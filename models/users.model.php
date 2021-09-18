@@ -69,7 +69,7 @@ class ModelUsers{
 
         $stmt = Conexion::conectar()->prepare(
 
-            "UPDATE $tabla SET email = :email, nombre = :nombre, apellido = :apellido, foto = :foto, telefono = :telefono,email_encriptado = :email_encriptado  WHERE id = :id");
+            "UPDATE $tabla SET email = :email, nombre = :nombre, apellido = :apellido, foto = :foto, telefono = :telefono,email_encriptado = :email_encriptado, perfil = :perfil  WHERE id = :id");
 
         $stmt -> bindParam(":id", $data["id"], PDO::PARAM_STR);
         $stmt -> bindParam(":email", $data["email"], PDO::PARAM_STR);
@@ -78,6 +78,7 @@ class ModelUsers{
         $stmt -> bindParam(":foto", $data["foto"], PDO::PARAM_STR);
         $stmt -> bindParam(":telefono", $data["telefono"], PDO::PARAM_STR);
         $stmt -> bindParam(":email_encriptado", $data["email_encriptado"], PDO::PARAM_STR);
+        $stmt -> bindParam(":perfil", $data["perfil"], PDO::PARAM_INT);
 
 
         if($stmt -> execute()){

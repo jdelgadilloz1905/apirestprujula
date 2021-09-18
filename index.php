@@ -18,7 +18,6 @@ require_once "controller/config.controller.php";
 require_once "controller/algolia.controller.php";
 
 
-
 /*=============================
     MODELS
 ===============================*/

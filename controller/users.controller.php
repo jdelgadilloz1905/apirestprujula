@@ -687,6 +687,7 @@ class ControllerUsers{
                         "email" => $data["updEmail"],
                         "telefono" => $data["updPhone"],
                         "foto" => $data["updFoto"],
+                        "perfil" => $data["updPerfil"],
                         "idioma" => isset($data["updIdioma"]) ? $data["updIdioma"] : 'en',
                         "email_encriptado" => $encriptarEmail);
 
