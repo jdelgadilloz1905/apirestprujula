@@ -159,6 +159,22 @@ switch ($method){
 
         break;
 
+    case "editreservation":
+
+        $respuesta = ControllerAds::ctrShowReservation($obj);
+
+        echo $respuesta;
+
+        break;
+
+    case "deletereservation":
+
+        $respuesta = ControllerAds::ctrDeleteReservation($obj);
+
+        echo $respuesta;
+
+        break;
+
     default:
         echo json_encode(
             array(

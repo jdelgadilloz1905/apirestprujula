@@ -1202,4 +1202,72 @@ class ControllerAds{
             ));
         }
     }
+
+    static public function ctrUpdateRecordReservation($data){
+
+        $cantDias = ModelsConfig::mdlConfig();
+
+        $fecha_actual = date("Y-m-d");
+
+        $fechaCaducidad = date("Y-m-d",strtotime($fecha_actual."+ ".$cantDias["dias_vencimiento"]." days"));
+
+        $datos = array(
+            "id"=>$data["id"],
+            "id_anuncio"=>$data["idAnuncio"],
+            "id_user"=>$data["idUser"],
+            "cantidad_personas"=>$data["cantPersonas"],
+            "cantidad_dias"=>$data["cantDias"],
+            "fecha_desde"=>$data["fechaInicio"],
+            "fecha_hasta"=>$data["fechaFin"],
+            "precio"=>$data["precioXNoche"],
+            "impuesto"=>$data["impuesto"],
+            "descuento"=>$data["descuento"],
+            "comision"=>$data["comision"],
+            "total"=>$data["total"],
+            "fecha_vencimiento" =>$fechaCaducidad
+        );
+
+        $resultado = ModelsAds::mdlUpdateRecordReservation("reservaciones",$datos);
+
+        if($resultado == "ok"){
+
+            echo json_encode(array(
+                "statusCode" => 200,
+                "error" => false,
+                "mensaje" =>"Reservacion editada con exito"
+            ));
+
+        }else{
+            echo json_encode(array(
+                "statusCode" => 400,
+                "adsInfo"=>"",
+                "error" => true,
+                "mensaje" =>"Error editando la reservcaion, contacte con el administrador",
+            ));
+
+        }
+    }
+
+    static public function ctrDeleteReservation($data){
+
+        $resultado = ModelsAds::mdlDeletePublication("reservaciones","id",$data);
+
+        if($resultado == "ok"){
+
+            echo json_encode(array(
+                "statusCode" => 200,
+                "error" => false,
+                "mensaje" =>"Reservacion # ".$data["id"]." eliminada con exito"
+            ));
+
+        }else{
+            echo json_encode(array(
+                "statusCode" => 400,
+                "adsInfo"=>"",
+                "error" => true,
+                "mensaje" =>"Error eliminado reservacion, contacte con el administrador",
+            ));
+
+        }
+    }
 }

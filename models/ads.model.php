@@ -661,4 +661,42 @@ class ModelsAds{
         $stmt = null;
 
     }
+
+
+    static public function mdlUpdateRecordReservation($tabla,$data){
+
+
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla 
+                                                            SET id_anuncio = :id_anuncio, id_user = :id_user, cantidad_personas = :cantidad_personas,cantidad_dias = :cantidad_dias,
+                                                            fecha_desde = :fecha_desde, fecha_hasta = :fecha_hasta, precio = :precio, impuesto = :impuesto, descuento = :descuento,
+                                                            comision = :comision,  total = :total, fecha_vencimiento = :fecha_vencimiento
+                                                          WHERE id = :id");
+
+        $stmt->bindParam(":id", $data["id"], PDO::PARAM_INT);
+        $stmt->bindParam(":id_anuncio", $data["id_anuncio"], PDO::PARAM_INT);
+        $stmt->bindParam(":cantidad_personas", $data["cantidad_personas"], PDO::PARAM_INT);
+        $stmt->bindParam(":cantidad_dias", $data["cantidad_dias"], PDO::PARAM_INT);
+        $stmt->bindParam(":fecha_desde", $data["fecha_desde"], PDO::PARAM_STR);
+        $stmt->bindParam(":fecha_hasta", $data["fecha_hasta"], PDO::PARAM_STR);
+        $stmt->bindParam(":precio", $data["precio"], PDO::PARAM_INT);
+        $stmt->bindParam(":impuesto", $data["impuesto"], PDO::PARAM_INT);
+        $stmt->bindParam(":descuento", $data["descuento"], PDO::PARAM_INT);
+        $stmt->bindParam(":comision", $data["comision"], PDO::PARAM_INT);
+        $stmt->bindParam(":total", $data["total"], PDO::PARAM_INT);
+        $stmt->bindParam(":fecha_vencimiento", $data["fecha_vencimiento"], PDO::PARAM_STR);
+
+
+        if($stmt->execute()){
+
+            return "ok";
+
+        }else{
+
+            return "error";
+        }
+
+        $stmt->close();
+
+        $stmt = null;
+    }
 }

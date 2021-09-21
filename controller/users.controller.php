@@ -979,4 +979,109 @@ class ControllerUsers{
 
     }
 
+
+    /*============================================
+    MOSTRAR REGISTROS EN BLOG
+    ==============================================*/
+
+    static public function ctrGetShowBlog($item,$valor){
+
+        $tabla = "blog";
+
+        $respuesta = ModelUsers::mdlShowBlog($tabla,$item,$valor);
+
+        if($respuesta){
+
+            echo json_encode(array(
+                "statusCode" => 200,
+                "error" => false,
+                "blogInfo" =>$respuesta,
+                "mensaje" =>""
+            ));
+        }else{
+            echo json_encode(array(
+                "statusCode" => 400,
+                "error" => true,
+                "blogInfo" =>"",
+                "mensaje" =>"No se encontraron registros"
+            ));
+        }
+
+
+    }
+
+    /*============================================
+    ELIMINAR REGISTRO BLOG
+    ==============================================*/
+
+    static public function ctrDeleteBlog($data){
+
+           $respuesta = ModelUsers::mdlDeleteRecordBlog("blog","id",$data["id"]);
+
+        if($respuesta){
+
+            echo json_encode(array(
+                "statusCode" => 200,
+                "error" => false,
+                "mensaje" =>"registro eliminado exitosamente"
+            ));
+        }else{
+
+            echo json_encode(array(
+                "statusCode" => 400,
+                "error" => false,
+                "mensaje" =>"Error, consulte con el administrador del sistema"
+            ));
+        }
+
+
+    }
+
+    /*===========================================
+    EDITAR BLOG
+    =============================================*/
+
+     static public function ctrEditBlog($data){
+
+         $respuesta = ModelUsers::mdlUpdateRecordBlog("blog",$data);
+
+         if($respuesta == "ok"){
+
+             echo json_encode(array(
+                 "statusCode" => 200,
+                 "error" => false,
+                 "mensaje" =>"registro editado exitosamente"
+             ));
+         }else{
+
+             echo json_encode(array(
+                 "statusCode" => 400,
+                 "error" => false,
+                 "mensaje" =>"Error, consulte con el administrador del sistema"
+             ));
+         }
+     }
+
+     static public function ctrCreateBlog($data){
+
+         $respuesta = ModelUsers::mdlCreateRecordBlog("blog",$data);
+
+         if($respuesta == "ok"){
+
+             echo json_encode(array(
+                 "statusCode" => 200,
+                 "error" => false,
+                 "mensaje" =>"registro creado exitosamente"
+             ));
+         }else{
+
+             echo json_encode(array(
+                 "statusCode" => 400,
+                 "error" => false,
+                 "mensaje" =>"Error, consulte con el administrador del sistema"
+             ));
+         }
+
+     }
+
 }
