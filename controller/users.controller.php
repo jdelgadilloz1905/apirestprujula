@@ -444,131 +444,118 @@ class ControllerUsers{
 
             if (isset($data["regEmail"])) {
 
-                if (preg_match('/^[^0-9][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[@][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[.][a-zA-Z]{2,4}$/', $data["regEmail"]) &&
-                    preg_match('/^[a-zA-Z0-9.,*]+$/', $data["regPassword"])
-                ) {
+                $encriptar = crypt($data["regPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
-                    $encriptar = crypt($data["regPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+                $encriptarEmail = md5($data["regEmail"]);
 
-                    $encriptarEmail = md5($data["regEmail"]);
+                $datos = array(
+                    "nombre" => $data["regName"],
+                    "apellido" => $data["regLast"],
+                    "password" => $encriptar,
+                    "email" => $data["regEmail"],
+                    "foto" => "",
+                    "modo" => "directo",
+                    "verificacion"=> 1,
+                    "perfil"=> $data["regPerfil"],
+                    "emailEncriptado" => $encriptarEmail);
 
-                    $datos = array(
-                        "nombre" => $data["regName"],
-                        "apellido" => $data["regLast"],
-                        "password" => $encriptar,
-                        "email" => $data["regEmail"],
-                        "foto" => "",
-                        "modo" => "directo",
-                        "verificacion"=> 1,
-                        "emailEncriptado" => $encriptarEmail);
+                //ANTES REALIZO UNA VALIDACION SI EL USUARIO EXISTE NUEVAMENTE PARA EVITAR DUPLICIDAD
+                $result = self::ctrShowUsers("email",trim($data["regEmail"])) ;
 
-                    //ANTES REALIZO UNA VALIDACION SI EL USUARIO EXISTE NUEVAMENTE PARA EVITAR DUPLICIDAD
-                    $result = self::ctrShowUsers("email",trim($data["regEmail"])) ;
-
-                    if(isset($result["email"])){
-
-                        echo json_encode(array(
-                            "statusCode" => 400,
-                            "error" => true,
-                            "mensaje" =>"¡El correo electrónico ya existe en la base de datos, por favor ingrese otro diferente!",
-                        ));
-
-                    }else{
-
-                        $tabla = "usuarios";
-
-                        $respuesta = ModelUsers::mdlUserRegister($tabla, $datos);
-
-
-                        if ($respuesta == "ok") {
-
-                            /*=============================================
-                            VERIFICACIÓN CORREO ELECTRÓNICO
-                            =============================================*/
-
-                            date_default_timezone_set("America/Bogota");
-
-                            $url = Ruta::ctrRutaEnvioEmailAuth();
-
-                            $mail = new PHPMailer;
-
-                            $mail->CharSet = 'UTF-8';
-
-                            $mail->isMail();
-
-                            $mail->setFrom('hola@prujula.com', 'PRUJULA');
-
-                            $mail->addReplyTo('hola@prujula.com', 'PRUJULA');
-
-                            $mail->Subject = "Por favor verifique su dirección de correo electrónico";
-
-                            $mail->addAddress($data["regEmail"]);
-
-                            $mail->msgHTML('
-                                    <div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
-
-                                        <div style="position:relative; margin:auto; width:600px; background:white; padding:20px">
-                
-                                            <center>
-                
-                                                <img style="padding:20px; width:15%" src="http://tutorialesatualcance.com/tienda/icon-email.png">
-                    
-                                                <h3 style="font-weight:100; color:#999">VERIFIQUE SU DIRECCIÓN DE CORREO ELECTRÓNICO</h3>
-                    
-                                                <hr style="border:1px solid #ccc; width:80%">
-                    
-                                                <h4 style="font-weight:100; color:#999; padding:0 20px">Para comenzar a usar su cuenta de Prujula, debe confirmar su dirección de correo electrónico</h4>
-                    
-                                                <a href="' . $url . 'register-sucess/' . $encriptarEmail . '" target="_blank" style="text-decoration:none">
-                    
-                                                <div style="line-height:60px; background:#450E10; width:60%; color:white">Verifique su dirección de correo electrónico</div>
-                    
-                                                </a>
-                    
-                                                <br>
-                    
-                                                <hr style="border:1px solid #ccc; width:80%">
-                    
-                                                <h5 style="font-weight:100; color:#999">Si no se inscribió en esta cuenta, puede ignorar este correo electrónico y la cuenta se eliminará.</h5>
-                
-                                            </center>
-                
-                                        </div>
-                                    </div>'
-                            );
-
-                            $envio = $mail->Send();
-
-                            if (!$envio) {
-
-                                echo json_encode(array(
-                                    "statusCode" => 400,
-                                    "error" => false,
-                                    "mensaje" =>"¡Ha ocurrido un problema enviando verificación de correo electrónico a " . $data["regEmail"] . $mail->ErrorInfo . "!"
-                                ));
-
-                            } else {
-
-                                echo json_encode(array(
-                                    "statusCode" => 200,
-                                    "error" => false,
-                                    "mensaje" =>"¡Excelente trabajo " . $data["regName"] . ", ahora podras disfrutar de nuestras promociones!",
-                                ));
-
-
-                            }
-
-                        }
-
-                    }
-                } else {
+                if(isset($result["email"])){
 
                     echo json_encode(array(
                         "statusCode" => 400,
                         "error" => true,
-                        "mensaje" =>"¡Error al registrar el usuario, no se permiten caracteres especiales!",
+                        "mensaje" =>"¡El correo electrónico ya existe en la base de datos, por favor ingrese otro diferente!",
                     ));
 
+                }else{
+
+                    $tabla = "usuarios";
+
+                    $respuesta = ModelUsers::mdlUserRegister($tabla, $datos);
+
+
+                    if ($respuesta == "ok") {
+
+                        /*=============================================
+                        VERIFICACIÓN CORREO ELECTRÓNICO
+                        =============================================*/
+
+                        date_default_timezone_set("America/Bogota");
+
+                        $url = Ruta::ctrRutaEnvioEmailAuth();
+
+                        $mail = new PHPMailer;
+
+                        $mail->CharSet = 'UTF-8';
+
+                        $mail->isMail();
+
+                        $mail->setFrom('hola@prujula.com', 'PRUJULA');
+
+                        $mail->addReplyTo('hola@prujula.com', 'PRUJULA');
+
+                        $mail->Subject = "Por favor verifique su dirección de correo electrónico";
+
+                        $mail->addAddress($data["regEmail"]);
+
+                        $mail->msgHTML('
+                                <div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
+
+                                    <div style="position:relative; margin:auto; width:600px; background:white; padding:20px">
+            
+                                        <center>
+            
+                                            <img style="padding:20px; width:15%" src="http://tutorialesatualcance.com/tienda/icon-email.png">
+                
+                                            <h3 style="font-weight:100; color:#999">VERIFIQUE SU DIRECCIÓN DE CORREO ELECTRÓNICO</h3>
+                
+                                            <hr style="border:1px solid #ccc; width:80%">
+                
+                                            <h4 style="font-weight:100; color:#999; padding:0 20px">Para comenzar a usar su cuenta de Prujula, debe confirmar su dirección de correo electrónico</h4>
+                
+                                            <a href="' . $url . 'register-sucess/' . $encriptarEmail . '" target="_blank" style="text-decoration:none">
+                
+                                            <div style="line-height:60px; background:#450E10; width:60%; color:white">Verifique su dirección de correo electrónico</div>
+                
+                                            </a>
+                
+                                            <br>
+                
+                                            <hr style="border:1px solid #ccc; width:80%">
+                
+                                            <h5 style="font-weight:100; color:#999">Si no se inscribió en esta cuenta, puede ignorar este correo electrónico y la cuenta se eliminará.</h5>
+            
+                                        </center>
+            
+                                    </div>
+                                </div>'
+                        );
+
+                        $envio = $mail->Send();
+
+                        if (!$envio) {
+
+                            echo json_encode(array(
+                                "statusCode" => 400,
+                                "error" => false,
+                                "mensaje" =>"¡Ha ocurrido un problema enviando verificación de correo electrónico a " . $data["regEmail"] . $mail->ErrorInfo . "!"
+                            ));
+
+                        } else {
+
+                            echo json_encode(array(
+                                "statusCode" => 200,
+                                "error" => false,
+                                "mensaje" =>"¡Excelente trabajo " . $data["regName"] . ", ahora podras disfrutar de nuestras promociones!",
+                            ));
+
+
+                        }
+
+                    }
 
                 }
 
@@ -669,66 +656,51 @@ class ControllerUsers{
 
         if (isset($data["updId"])) {
 
-            if (preg_match('/^[^0-9][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[@][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[.][a-zA-Z]{2,4}$/', $data["updEmail"])
-            ) {
+            //$encriptar = crypt($data["updPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
-                //$encriptar = crypt($data["updPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+            $encriptarEmail = md5($data["updEmail"]);
 
-                $encriptarEmail = md5($data["updEmail"]);
+            //ANTES REALIZO UNA VALIDACION SI EL USUARIO EXISTE NUEVAMENTE PARA EVITAR DUPLICIDAD
+            $result = self::ctrShowUsers("email",trim($data["updEmail"])) ;
 
-                //ANTES REALIZO UNA VALIDACION SI EL USUARIO EXISTE NUEVAMENTE PARA EVITAR DUPLICIDAD
-                $result = self::ctrShowUsers("email",trim($data["updEmail"])) ;
+            if($result["id"] == $data["updId"]){
+                $datos = array(
+                    "id" => $data["updId"],
+                    "nombre" => $data["updName"],
+                    "apellido" => $data["updLast"],
+                    "email" => $data["updEmail"],
+                    "telefono" => $data["updPhone"],
+                    "foto" => $data["updFoto"],
+                    "perfil" => $data["updPerfil"],
+                    "idioma" => isset($data["updIdioma"]) ? $data["updIdioma"] : 'en',
+                    "email_encriptado" => $encriptarEmail);
 
-                if($result["id"] == $data["updId"]){
-                    $datos = array(
-                        "id" => $data["updId"],
-                        "nombre" => $data["updName"],
-                        "apellido" => $data["updLast"],
-                        "email" => $data["updEmail"],
-                        "telefono" => $data["updPhone"],
-                        "foto" => $data["updFoto"],
-                        "perfil" => $data["updPerfil"],
-                        "idioma" => isset($data["updIdioma"]) ? $data["updIdioma"] : 'en',
-                        "email_encriptado" => $encriptarEmail);
+                $tabla = "usuarios";
 
-                    $tabla = "usuarios";
+                $respuesta = ModelUsers::mdlUpdateUser2($tabla, $datos);
+                if($respuesta){
 
-                    $respuesta = ModelUsers::mdlUpdateUser2($tabla, $datos);
-                    if($respuesta){
-
-                        echo json_encode(array(
-                            "statusCode" => 200,
-                            "error" => false,
-                            "mensaje" =>"Datos actualizados",
-                            "datos" =>$datos
-                        ));
-                    }else{
-                        echo json_encode(array(
-                            "statusCode" => 400,
-                            "error" => true,
-                            "mensaje" =>"¡Error actualizando los datos del usuario, contacte con el administrador!",
-                        ));
-                    }
-
+                    echo json_encode(array(
+                        "statusCode" => 200,
+                        "error" => false,
+                        "mensaje" =>"Datos actualizados",
+                        "datos" =>$datos
+                    ));
                 }else{
-
                     echo json_encode(array(
                         "statusCode" => 400,
                         "error" => true,
-                        "mensaje" =>"El email ingresado, se encuentra en uso",
+                        "mensaje" =>"¡Error actualizando los datos del usuario, contacte con el administrador!",
                     ));
                 }
 
-
-            } else {
+            }else{
 
                 echo json_encode(array(
                     "statusCode" => 400,
                     "error" => true,
-                    "mensaje" =>"¡Error actualizando los datos del usuario, no se permiten caracteres especiales!",
+                    "mensaje" =>"El email ingresado, se encuentra en uso",
                 ));
-
-
             }
 
         }

@@ -104,7 +104,8 @@ class ModelUsers{
     static public function mdlUserRegister($tabla, $datos)
     {
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(email, nombre, apellido, password, foto, modo, email_encriptado, verificacion) VALUES (:email, :nombre, :apellido, :password, :foto, :modo, :email_encriptado, :verificacion)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(email, nombre, apellido, password, foto, modo, email_encriptado, verificacion, perfil) 
+                                                          VALUES (:email, :nombre, :apellido, :password, :foto, :modo, :email_encriptado, :verificacion, :perfil)");
 
 
         $stmt->bindParam(":email", $datos["email"], PDO::PARAM_STR);
@@ -122,6 +123,8 @@ class ModelUsers{
         $stmt->bindParam(":email_encriptado", $datos["emailEncriptado"], PDO::PARAM_STR);
 
         $stmt->bindParam(":verificacion", $datos["verificacion"], PDO::PARAM_STR);
+
+        $stmt->bindParam(":perfil", $datos["perfil"], PDO::PARAM_STR);
 
         if($stmt->execute()){
 
