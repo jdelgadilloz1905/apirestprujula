@@ -455,7 +455,7 @@ class ControllerUsers{
                     "email" => $data["regEmail"],
                     "foto" => "",
                     "modo" => "directo",
-                    "verificacion"=> 1,
+                    "verificacion"=> $data["regVerificacion"],
                     "perfil"=> $data["regPerfil"],
                     "emailEncriptado" => $encriptarEmail);
 
