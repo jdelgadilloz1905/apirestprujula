@@ -466,6 +466,20 @@ class ModelsAds{
         $stmt = null;
     }
 
+    static public function mdlAllReservation($tabla){
+
+        $stmt = Conexion::conectar()->query("SELECT  * from $tabla order by id desc ");
+
+        $stmt -> execute();
+
+        return $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt -> close();
+
+        $stmt = null;
+    }
+
+
     static public function mdlConfirmReservation($tabla,$item,$valor){ //busco los datos del usuario si existe, reservacion y datos del anuncio
 
         $stmt = Conexion::conectar()->prepare("SELECT  r.*, a.title , u.id id_user,u.email, u.nombre, u.apellido, u.foto, 

@@ -159,6 +159,14 @@ switch ($method){
 
         break;
 
+    case "allreservation":
+
+        $respuesta = ControllerAds::ctrAllReservation();
+
+        echo $respuesta;
+
+        break;
+
     case "editreservation":
 
         $respuesta = ControllerAds::ctrShowReservation($obj);
