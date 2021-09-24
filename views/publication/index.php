@@ -119,6 +119,14 @@ switch ($method){
 
         break;
 
+    case "updateestadopublication":
+
+        $respuesta = ControllerAds::ctrEstadoPublication($obj);
+
+        echo $respuesta;
+
+        break;
+
     case "confirmreservation":
 
         $respuesta = ControllerAds::ctrConfirmReservation($obj);

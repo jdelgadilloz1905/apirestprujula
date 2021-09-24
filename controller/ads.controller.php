@@ -277,98 +277,6 @@ class ControllerAds{
 
     }
 
-    static public function ctrPrepararMatrizJson($valores){
-
-        foreach ($valores as $key => $data){
-
-            //busco las fchas reservadas de cada anuncio si las tiene y creo un objeto y aqui las agrego
-
-            //$fechasArray = ModelsAds::mdlDateReservadas("reservaciones","id_anuncio",$data["id"]);
-
-
-            $resultado[$key] = array(
-                "id"=>$data["id"],
-                "id_user"=>$data["id_user"],
-                "title"=>$data["title"],
-                "price"=>$data["price"],
-                "price_offer"=>$data["price_offer"],
-                "description"=>$data["description"],
-                "half"=>$data["half"],
-                "people"=>$data["people"],
-                "offer"=>$data["offer"],
-                "discount_amount"=>$data["discount_amount"],
-                "id_category"=>$data["id_category"],
-                "id_category2"=>$data["id_category2"],
-                "nombre_categoria"=>$data["nombre_categoria"],
-                "completeAddress" => array(
-                    "address"=>$data["address"],
-                    "country"=>$data["country"],
-                    "country_code"=>$data["country_code"],
-                    "county"=>$data["county"],
-                    "city"=>$data["city"],
-                    "municipality"=>$data["municipality"],
-                    "state"=>$data["state"],
-                    "lat"=>$data["lat"],
-                    "lng"=>$data["lng"],
-                    "address_reference"=>$data["address_reference"],
-                ),
-                "phone"=>$data["phone"],
-                "picture" => array(
-                    "picture_url"=>json_decode($data["picture_url"] , true),
-                    "picture_url_offer"=>json_decode($data["picture_url_offer"] , true),
-                    "picture_galery"=>json_decode($data["picture_galery"], true)
-                ),
-                "calificacion"=>$data["calificacion"],
-                "estado"=>$data["estado"],
-                "fecha_creacion"=>$data["fecha_creacion"],
-                "vistas"=>$data["vistas"],
-                "reservaciones"=>$data["reservaciones"],
-                "fin_oferta"=>$data["fin_oferta"],
-                "amenidades"=> array(
-                    "agua"=>$data["agua"],
-                    "luz"=>$data["luz"],
-                    "tocador"=>$data["tocador"],
-                    "cocinas"=>$data["cocinas"],
-                    "bbq"=>$data["bbq"],
-                    "fogata"=>$data["fogata"],
-                    "historico"=>$data["historico"],
-                    "ecologia"=>$data["ecologia"],
-                    "agricola"=>$data["agricola"],
-                    "reactivo_pasivo"=>$data["reactivo_pasivo"],
-                    "reactivo_activo"=>$data["reactivo_activo"],
-                    "recreacion_piscinas"=>$data["recreacion_piscinas"],
-                    "recreacion_acuaticas"=>$data["recreacion_acuaticas"],
-                    "recreacion_veredas"=>$data["recreacion_veredas"],
-                    "recreacion_espeleologia"=>$data["recreacion_espeleologia"],
-                    "recreacion_kayac_paddle_balsas"=>$data["recreacion_kayac_paddle_balsas"],
-                    "recreacion_cocina"=>$data["recreacion_cocina"],
-                    "recreacion_pajaros"=>$data["recreacion_pajaros"],
-                    "recreacion_alpinismo"=>$data["recreacion_alpinismo"],
-                    "recreacion_zipline"=>$data["recreacion_zipline"],
-                    "paracaidas"=>$data["paracaidas"],
-                    "recreacion_areas"=>$data["recreacion_areas"],
-                    "recreacion_animales"=>$data["recreacion_animales"],
-                    "equipos_mesas"=>$data["equipos_mesas"],
-                    "equipos_sillas"=>$data["equipos_sillas"],
-                    "equipos_estufas"=>$data["equipos_estufas"],
-                    "casetas_acampar"=>$data["casetas_acampar"],
-                    "toldos"=>$data["toldos"],
-                    "estufas_gas"=>$data["estufas_gas"],
-                    "tanques_gas"=>$data["tanques_gas"],
-                    "lena"=>$data["lena"],
-                    "carbon"=>$data["carbon"],
-                    "se_admiten_mascotas"=>$data["se_admiten_mascotas"],
-                    "perros_servicios"=>$data["perros_servicios"],
-
-                ),
-                "disable_dates"=> ""        //self::ctrPreparaDisabledDates($fechasArray)
-
-            );
-        }
-
-        return $resultado;
-    }
-
     static public function ctrPreparaDisabledDates($valores){
 
         foreach ($valores as $key => $data){
@@ -538,9 +446,9 @@ class ControllerAds{
 
         $respuesta = ModelsAds::mdlUserPublications($tabla,$item,$valor);
 
-        $resultado2 = self::ctrPrepararMatrizUserPublicationJson($respuesta);
-
         if($respuesta){
+
+            $resultado2 = self::ctrPrepararMatrizUserPublicationJson($respuesta);
 
             echo json_encode(array(
                 "statusCode" => 200,
@@ -607,6 +515,100 @@ class ControllerAds{
                 "pending"=>ModelsAds::mdlShowReservation("reservaciones","id_anuncio",$data["id"],0),
                 "approved"=>ModelsAds::mdlShowReservation("reservaciones","id_anuncio",$data["id"],1),
                 "canceled"=>ModelsAds::mdlShowReservation("reservaciones","id_anuncio",$data["id"],2),
+
+            );
+        }
+
+        return $resultado;
+    }
+
+    static public function ctrPrepararMatrizJson($valores){
+
+        foreach ($valores as $key => $data){
+
+            //busco las fchas reservadas de cada anuncio si las tiene y creo un objeto y aqui las agrego
+
+            //$fechasArray = ModelsAds::mdlDateReservadas("reservaciones","id_anuncio",$data["id"]);
+
+
+            $resultado[$key] = array(
+                "id"=>$data["id"],
+                "idUser"=>$data["id_user"],
+                "title"=>$data["title"],
+                "price"=>$data["price"],
+                "price_offer"=>$data["price_offer"],
+                "description"=>$data["description"],
+                "half"=>$data["half"],
+                "people"=>$data["people"],
+                "offer"=>$data["offer"],
+                "discount_amount"=>$data["discount_amount"],
+                "categorias"=>explode(",",$data["id_category"]),
+                "vistas"=>explode(",",$data["id_category2"]),
+                "completeAddress" => array(
+                    "address"=>$data["address"],
+                    "country"=>$data["country"],
+                    "country_code"=>$data["country_code"],
+                    "county"=>$data["county"],
+                    "city"=>$data["city"],
+                    "municipality"=>$data["municipality"],
+                    "state"=>$data["state"],
+                    "lat"=>$data["lat"],
+                    "lng"=>$data["lng"],
+                    "address_reference"=>$data["address_reference"],
+                ),
+                "phone"=>$data["phone"],
+                "picture" => array(
+                    "picture_url"=>json_decode($data["picture_url"] , true),
+                    "picture_url_offer"=>json_decode($data["picture_url_offer"] , true),
+                    "picture_galery"=>json_decode($data["picture_galery"], true)
+                ),
+                "calificacion"=>$data["calificacion"],
+                "estado"=>$data["estado"],
+                "fecha_creacion"=>$data["fecha_creacion"],
+                "cant_visita"=>$data["vistas"],
+                "reservaciones"=>$data["reservaciones"],
+                "fin_oferta"=>$data["fin_oferta"],
+                "amenidades"=> array(
+                    "agua"=>$data["agua"],
+                    "luz"=>$data["luz"],
+                    "tocador"=>$data["tocador"],
+                    "cocinas"=>$data["cocinas"],
+                    "bbq"=>$data["bbq"],
+                    "fogata"=>$data["fogata"],
+                    "historico"=>$data["historico"],
+                    "ecologia"=>$data["ecologia"],
+                    "agricola"=>$data["agricola"],
+                    "reactivo_pasivo"=>$data["reactivo_pasivo"],
+                    "reactivo_activo"=>$data["reactivo_activo"],
+                    "recreacion_piscinas"=>$data["recreacion_piscinas"],
+                    "recreacion_acuaticas"=>$data["recreacion_acuaticas"],
+                    "recreacion_veredas"=>$data["recreacion_veredas"],
+                    "recreacion_espeleologia"=>$data["recreacion_espeleologia"],
+                    "recreacion_kayac_paddle_balsas"=>$data["recreacion_kayac_paddle_balsas"],
+                    "recreacion_cocina"=>$data["recreacion_cocina"],
+                    "recreacion_pajaros"=>$data["recreacion_pajaros"],
+                    "recreacion_alpinismo"=>$data["recreacion_alpinismo"],
+                    "recreacion_zipline"=>$data["recreacion_zipline"],
+                    "paracaidas"=>$data["paracaidas"],
+                    "recreacion_areas"=>$data["recreacion_areas"],
+                    "recreacion_animales"=>$data["recreacion_animales"],
+                    "equipos_mesas"=>$data["equipos_mesas"],
+                    "equipos_sillas"=>$data["equipos_sillas"],
+                    "equipos_estufas"=>$data["equipos_estufas"],
+                    "casetas_acampar"=>$data["casetas_acampar"],
+                    "toldos"=>$data["toldos"],
+                    "estufas_gas"=>$data["estufas_gas"],
+                    "tanques_gas"=>$data["tanques_gas"],
+                    "lena"=>$data["lena"],
+                    "carbon"=>$data["carbon"],
+                    "se_admiten_mascotas"=>$data["se_admiten_mascotas"],
+                    "perros_servicios"=>$data["perros_servicios"],
+
+                ),
+                "pending"=>ModelsAds::mdlShowReservation("reservaciones","id_anuncio",$data["id"],0),
+                "approved"=>ModelsAds::mdlShowReservation("reservaciones","id_anuncio",$data["id"],1),
+                "canceled"=>ModelsAds::mdlShowReservation("reservaciones","id_anuncio",$data["id"],2),
+                "disable_dates"=> ""        //self::ctrPreparaDisabledDates($fechasArray)
 
             );
         }
@@ -863,6 +865,46 @@ class ControllerAds{
                 "statusCode" => 400,
                 "error" => true,
                 "mensaje" =>"Error actualizando estatus del anuncio, contacte con el administrador",
+            ));
+        }
+    }
+
+    static public function ctrEstadoPublication($data){
+
+        $resultado = ModelsAds::mdlEstadoPublication("anuncios",$data);
+
+        if($resultado == "ok"){
+
+            //si es 0 lo elimino de algolia, si es 1 lo inserto en algolia
+
+            if($data["estado"] == 0){
+
+                ControllerAlgolia::ctrDeletePublications($data);
+
+            }else{
+
+                $idUltimoAnuncio = ModelsAds::mdlShowAdsId("anuncios","id",$data["id"]);
+
+                //Enviar el registro en algolia
+
+                //$algolia= ControllerAlgolia::ctrUpdateAdsAlgolia($idUltimoAnuncio);
+
+                $algolia= ControllerAlgolia::ctrCreateAdsAlgolia($idUltimoAnuncio);
+
+                echo json_encode(array(
+                    "statusCode" => 200,
+                    "error" => false,
+                    "mensaje" =>"Genial se ha actualizado la publicacion "
+                ));
+                //Enviar el registro en algolia
+            }
+
+
+        }else{
+            echo json_encode(array(
+                "statusCode" => 400,
+                "error" => true,
+                "mensaje" =>"Error actualizando estado del anuncio, contacte con el administrador",
             ));
         }
     }
@@ -1210,7 +1252,7 @@ class ControllerAds{
             echo json_encode(array(
                 "statusCode" => 200,
                 "error" => false,
-                "mensaje" =>"Anuncio eliminada"
+                "mensaje" =>"Anuncio eliminado"
             ));
 
         }else{
@@ -1296,5 +1338,128 @@ class ControllerAds{
             ));
 
         }
+    }
+
+
+    /*=============================================
+    METRICAS Y REPORTES
+    ===============================================*/
+
+    static public function ctrMetricaReservationMes($data){
+
+        $respuesta = ModelsAds::mdlMetricaReservationMes();
+
+        #Capturamos las fechas en un array
+        $arrayFechas = array();
+        $arrayFechaPago = array();
+        $totalReserv = 0;
+
+        if($respuesta){
+
+            foreach ($respuesta as $key => $value) {
+
+                array_push($arrayFechas, self::ctrConvertirFecha(date('F', strtotime($value["fecha"])),$data["idioma"]));
+
+                array_push($arrayFechaPago, $value["TotalReservaciones"]);
+
+                $totalReserv = $totalReserv +  $value["TotalReservaciones"];
+
+            }
+
+            #Evitamos repetir fecha
+            $noRepetirFechas = array_unique($arrayFechas);
+
+            echo json_encode(array(
+                "statusCode" => 200,
+                "metricReserv" => array(
+                    "labels"=>$noRepetirFechas,
+                    "data"=>$arrayFechaPago,
+                    "total" =>$totalReserv,
+                ),
+                "error" => false,
+                "mensaje" =>"Reservaciones por mes",
+            ));
+        }else{
+
+            echo json_encode(array(
+                "statusCode" => 400,
+                "adsInfo"=>"",
+                "error" => true,
+                "mensaje" =>"No se encontraron registros",
+            ));
+        }
+
+    }
+
+    static public function ctrMetricaPagosMes($data){
+
+        $respuesta = ModelsAds::mdlMetricaPagosMes();
+
+        #Capturamos las fechas en un array
+        $arrayFechas = array();
+        $arrayFechaPago = array();
+        $totalReserv = 0;
+
+        if($respuesta){
+
+            foreach ($respuesta as $key => $value) {
+
+                array_push($arrayFechas, self::ctrConvertirFecha(date('F', strtotime($value["fecha"])),$data["idioma"]));
+
+                array_push($arrayFechaPago, $value["TotalPagos"]);
+
+                $totalReserv = $totalReserv +  $value["TotalPagos"];
+
+            }
+
+            #Evitamos repetir fecha
+            $noRepetirFechas = array_unique($arrayFechas);
+
+            echo json_encode(array(
+                "statusCode" => 200,
+                "metricPay" => array(
+                    "labels"=>$noRepetirFechas,
+                    "data"=>$arrayFechaPago,
+                    "total" =>$totalReserv,
+                ),
+                "error" => false,
+                "mensaje" =>"pagos por mes",
+            ));
+        }else{
+
+            echo json_encode(array(
+                "statusCode" => 400,
+                "adsInfo"=>"",
+                "error" => true,
+                "mensaje" =>"No se encontraron registros",
+            ));
+        }
+    }
+
+    static public function ctrConvertirFecha($fecha,$idioma){
+
+//        $fecha = substr($fecha, 0, 10);
+//        $numeroDia = date('d', strtotime($fecha));
+//        $dia = date('l', strtotime($fecha));
+//        $mes = date('F', strtotime($fecha));
+//        $anio = date('Y', strtotime($fecha));
+//
+//        $dias_ES = array("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo");
+//        $dias_EN = array("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
+
+        $meses_ES = array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+        $meses_EN = array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+
+        if($idioma == "es"){
+            //$nombredia = str_replace($dias_EN, $dias_ES, $dia);
+            $nombreMes = str_replace($meses_EN, $meses_ES, $fecha);
+        }else{
+            //$nombredia = str_replace($dias_ES,$dias_EN, $dia);
+            $nombreMes = str_replace($meses_ES, $meses_EN,  $fecha);
+
+        }
+
+        return $nombreMes;
+
     }
 }

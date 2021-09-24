@@ -450,6 +450,27 @@ class ModelsAds{
         $stmt = null;
     }
 
+    static public function mdlEstadoPublication($tabla,$data){
+
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET estado = :estado WHERE id = :id");
+
+        $stmt->bindParam(":estado", $data["estado"], PDO::PARAM_INT);
+        $stmt->bindParam(":id", $data["id"], PDO::PARAM_STR);
+
+        if($stmt->execute()){
+
+            return "ok";
+
+        }else{
+
+            return "error";
+        }
+
+        $stmt->close();
+
+        $stmt = null;
+    }
+
     static public function mdlShowAdsReservation($tabla,$item,$valor){
 
         $stmt = Conexion::conectar()->prepare("SELECT  r.*, u.nombre, u.apellido, u.email from $tabla r left join usuarios u on u.id = r.id_user where r.$item = :$item ");
@@ -710,6 +731,46 @@ class ModelsAds{
         }
 
         $stmt->close();
+
+        $stmt = null;
+    }
+
+    static public function mdlMetricaReservationMes(){
+
+        //la ides es filtrar si mostrar los pagados o aprobados
+
+        $stmt = Conexion::conectar()->query("  SELECT YEAR(fecha_desde) as AnioActual,
+                                                                     MONTH(fecha_desde) as ReservacionsxMes,
+                                                                     SUM(precio) AS TotalReservaciones, fecha_desde fecha
+                                                                FROM reservaciones
+                                                            GROUP BY YEAR(fecha_desde), MONTH(fecha_desde)
+                                                            ORDER BY YEAR(fecha_desde), MONTH(fecha_desde)");
+
+        $stmt -> execute();
+
+        return $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt -> close();
+
+        $stmt = null;
+    }
+
+    static public function mdlMetricaPagosMes(){
+
+
+        $stmt = Conexion::conectar()->query("SELECT YEAR(fecha) as AnioActual,
+                                                                 MONTH(fecha) as pagosxMes,
+                                                                 SUM(precio) AS TotalPagos, 
+                                                                 fecha
+                                                            FROM pagos
+                                                        GROUP BY YEAR(fecha), MONTH(fecha)
+                                                        ORDER BY YEAR(fecha), MONTH(fecha)");
+
+        $stmt -> execute();
+
+        return $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt -> close();
 
         $stmt = null;
     }
