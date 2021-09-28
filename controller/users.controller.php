@@ -663,7 +663,7 @@ class ControllerUsers{
             //ANTES REALIZO UNA VALIDACION SI EL USUARIO EXISTE NUEVAMENTE PARA EVITAR DUPLICIDAD
             $result = self::ctrShowUsers("email",trim($data["updEmail"])) ;
 
-            if($result["id"] == $data["updId"]){
+            if(($result["id"] == $data["updId"])  || !$result ){
                 $datos = array(
                     "id" => $data["updId"],
                     "nombre" => $data["updName"],
