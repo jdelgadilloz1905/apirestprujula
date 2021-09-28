@@ -24,6 +24,12 @@ switch ($method){
 
         break;
 
+    case  "alladmin":
+        $respuesta = ControllerAds::ctrshowAllAdsAdmin($obj);
+        echo $respuesta;
+
+        break;
+
     case "changestatus": //cambiar el estado del anuncio de activo o inactivo
 
         $respuesta = "";

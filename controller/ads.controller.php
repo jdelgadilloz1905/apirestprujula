@@ -193,7 +193,7 @@ class ControllerAds{
 
             echo json_encode(array(
                 "statusCode" => 200,
-                "cantidad"  =>count($resultado),
+                //"cantidad"  =>count($resultado),
                 "adsInfo"=>$resultado,
                 "error" => false,
                 "mensaje" =>"",
@@ -213,6 +213,24 @@ class ControllerAds{
     static public function ctrShowAllAds(){
 
         $respuesta = ModelsAds::mdlShowAllAds("anuncios");
+
+
+        $resultado = self::ctrPrepararMatrizJson($respuesta);
+
+
+        echo json_encode(array(
+            "statusCode" => 200,
+            "cantidad"  =>count($resultado),
+            "adsInfo"=>$resultado,
+            "error" => false,
+            "mensaje" =>"",
+        ));
+
+    }
+
+    static public function ctrShowAllAdsAdmin(){
+
+        $respuesta = ModelsAds::mdlShowAllAdsAdmin("anuncios");
 
 
         $resultado = self::ctrPrepararMatrizJson($respuesta);
@@ -491,6 +509,41 @@ class ControllerAds{
             "userReservationCancel" =>$cancel,
             "mensaje" =>""
         ));
+    }
+
+    static public function ctrAllReservation(){
+
+
+        //$respuesta = ModelsAds::mdlAllReservation("reservaciones");
+
+        $tabla = "reservaciones";
+
+        $pending = ModelsAds::mdlShowReservationAll($tabla,0);
+        $approved = ModelsAds::mdlShowReservationAll($tabla,1);
+        $cancel = ModelsAds::mdlShowReservationAll($tabla,2);
+
+        if($pending || $approved || $cancel){
+
+            echo json_encode(array(
+                "statusCode" => 200,
+                "calificado" => 1,
+                "error" => false,
+                "userReservationPending" =>$pending,
+                "userReservationApproved" =>$approved,
+                "userReservationCancel" =>$cancel,
+                "cantTotal"  =>count($pending) + count($approved) + count($cancel),
+                "mensaje" =>" "
+            ));
+        }else{
+
+            echo json_encode(array(
+                "statusCode" => 400,
+                "calificado" => 0,
+                "error" => true,
+                "mensaje" =>"No se encontraron registros "
+            ));
+        }
+
     }
 
     static public function ctrPrepararMatrizUserPublicationJson($valores){
@@ -889,16 +942,21 @@ class ControllerAds{
 
                 //$algolia= ControllerAlgolia::ctrUpdateAdsAlgolia($idUltimoAnuncio);
 
-                $algolia= ControllerAlgolia::ctrCreateAdsAlgolia($idUltimoAnuncio);
+                ControllerAlgolia::ctrCreateAdsAlgolia($idUltimoAnuncio);
 
-                echo json_encode(array(
-                    "statusCode" => 200,
-                    "error" => false,
-                    "mensaje" =>"Genial se ha actualizado la publicacion "
-                ));
-                //Enviar el registro en algolia
             }
 
+            //busco de nuevo el anuncio
+//            $datos = array(
+//                "conId" =>$data["id"]
+//            );
+//             self::ctrShowAdsId($datos);
+
+            echo json_encode(array(
+                "statusCode" => 200,
+                "error" => false,
+                "mensaje" =>"Genial, anuncio actualizado con exito",
+            ));
 
         }else{
             echo json_encode(array(
@@ -1204,32 +1262,6 @@ class ControllerAds{
 
     }
 
-    static public function ctrAllReservation(){
-
-
-        $respuesta = ModelsAds::mdlAllReservation("reservaciones");
-
-        if($respuesta){
-
-            echo json_encode(array(
-                "statusCode" => 200,
-                "calificado" => 1,
-                "error" => false,
-                "infoReserv" => $respuesta,
-                "cantTotal"  =>count($respuesta),
-                "mensaje" =>" "
-            ));
-        }else{
-
-            echo json_encode(array(
-                "statusCode" => 400,
-                "calificado" => 0,
-                "error" => true,
-                "mensaje" =>"No se encontraron registros "
-            ));
-        }
-
-    }
 
     /*============================================
     ELIMINAR O INACTIVAR ANUNCIOS
