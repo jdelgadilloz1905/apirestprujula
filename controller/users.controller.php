@@ -663,7 +663,7 @@ class ControllerUsers{
             //ANTES REALIZO UNA VALIDACION SI EL USUARIO EXISTE NUEVAMENTE PARA EVITAR DUPLICIDAD
             $result = self::ctrShowUsers("email",trim($data["updEmail"])) ;
 
-            if($result["id"] == $data["updId"]){
+            if(($result["id"] == $data["updId"])  || !$result ){
                 $datos = array(
                     "id" => $data["updId"],
                     "nombre" => $data["updName"],
@@ -712,7 +712,7 @@ class ControllerUsers{
 
     static public function ctrSendEmailContact($data){
 
-       if (isset($data["regEmail"])) {
+        if (isset($data["regEmail"])) {
 
             if (preg_match('/^[^0-9][a-zA-Z0-9_.*-]+([.][a-zA-Z0-9_.*-]+)*[@][a-zA-Z0-9_-]+([.][a-zA-Z0-9_-]+)*[.][a-zA-Z]{2,4}$/', $data["regEmail"])
             ) {
@@ -822,7 +822,7 @@ class ControllerUsers{
 
             }
 
-       }
+        }
 
     }
 
@@ -869,8 +869,8 @@ class ControllerUsers{
             if($respuesta["email_encriptado"] == $data["updEmailEncriptado"] ){
 
                 $datos = array(
-                       "id"=>$respuesta["id"],
-                       "password"=>$passwordNuevo
+                    "id"=>$respuesta["id"],
+                    "password"=>$passwordNuevo
                 );
                 $resp = ModelUsers::mdlActualizarPassword($tabla, $datos);
 
@@ -988,7 +988,7 @@ class ControllerUsers{
 
     static public function ctrDeleteBlog($data){
 
-           $respuesta = ModelUsers::mdlDeleteRecordBlog("blog","id",$data["id"]);
+        $respuesta = ModelUsers::mdlDeleteRecordBlog("blog","id",$data["id"]);
 
         if($respuesta){
 
@@ -1013,47 +1013,99 @@ class ControllerUsers{
     EDITAR BLOG
     =============================================*/
 
-     static public function ctrEditBlog($data){
+    static public function ctrEditBlog($data){
 
-         $respuesta = ModelUsers::mdlUpdateRecordBlog("blog",$data);
+        $respuesta = ModelUsers::mdlUpdateRecordBlog("blog",$data);
 
-         if($respuesta == "ok"){
+        if($respuesta == "ok"){
 
-             echo json_encode(array(
-                 "statusCode" => 200,
-                 "error" => false,
-                 "mensaje" =>"registro editado exitosamente"
-             ));
-         }else{
+            echo json_encode(array(
+                "statusCode" => 200,
+                "error" => false,
+                "mensaje" =>"registro editado exitosamente"
+            ));
+        }else{
 
-             echo json_encode(array(
-                 "statusCode" => 400,
-                 "error" => false,
-                 "mensaje" =>"Error, consulte con el administrador del sistema"
-             ));
-         }
-     }
+            echo json_encode(array(
+                "statusCode" => 400,
+                "error" => false,
+                "mensaje" =>"Error, consulte con el administrador del sistema"
+            ));
+        }
+    }
 
-     static public function ctrCreateBlog($data){
+    static public function ctrCreateBlog($data){
 
-         $respuesta = ModelUsers::mdlCreateRecordBlog("blog",$data);
+        $respuesta = ModelUsers::mdlCreateRecordBlog("blog",$data);
 
-         if($respuesta == "ok"){
+        if($respuesta == "ok"){
 
-             echo json_encode(array(
-                 "statusCode" => 200,
-                 "error" => false,
-                 "mensaje" =>"registro creado exitosamente"
-             ));
-         }else{
+            echo json_encode(array(
+                "statusCode" => 200,
+                "error" => false,
+                "mensaje" =>"registro creado exitosamente"
+            ));
+        }else{
 
-             echo json_encode(array(
-                 "statusCode" => 400,
-                 "error" => false,
-                 "mensaje" =>"Error, consulte con el administrador del sistema"
-             ));
-         }
+            echo json_encode(array(
+                "statusCode" => 400,
+                "error" => false,
+                "mensaje" =>"Error, consulte con el administrador del sistema"
+            ));
+        }
 
-     }
+    }
+
+    static public function ctrLastRecord(){
+
+        $respuesta = ModelUsers::mdlLastRecord();
+
+        if($respuesta){
+
+            echo json_encode(array(
+                "statusCode" => 200,
+                "error" => false,
+                "blogInfo" =>$respuesta,
+                "mensaje" =>""
+            ));
+        }else{
+            echo json_encode(array(
+                "statusCode" => 400,
+                "error" => true,
+                "blogInfo" =>"",
+                "mensaje" =>"No se encontraron registros"
+            ));
+        }
+    }
+
+    /*============================================
+   MOSTRAR REGISTROS EN BLOG
+   ==============================================*/
+
+    static public function ctrBuscarRegistroBlog($data){
+
+        $tabla = "blog";
+
+        $respuesta = ModelUsers::mdlBuscarRegistroBlog($tabla,$data);
+
+        if($respuesta){
+
+            echo json_encode(array(
+                "statusCode" => 200,
+                "error" => false,
+                "blogInfo" =>$respuesta,
+                "mensaje" =>""
+            ));
+        }else{
+            echo json_encode(array(
+                "statusCode" => 400,
+                "error" => true,
+                "blogInfo" =>"",
+                "mensaje" =>"No se encontraron registros"
+            ));
+        }
+
+
+    }
 
 }

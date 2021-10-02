@@ -44,8 +44,8 @@ switch ($method){
 
         $respuesta = ControllerUsers::ctrVerifyUser($obj);
 
-       echo $respuesta;
-        
+        echo $respuesta;
+
         break;
 
     case "verifyemail":

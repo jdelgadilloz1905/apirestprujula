@@ -22,7 +22,7 @@ class Conexion{
 
 	}
 
-	static public function conectarLicencia(){
+    static public function conectarLicencia(){
 
         $link = new PDO("mysql:host=localhost;dbname=estudio5_licencias",
             "estudio5_licen",

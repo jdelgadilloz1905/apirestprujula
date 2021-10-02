@@ -97,7 +97,7 @@ class ModelsAds{
 
         $stmt = Conexion::conectar()->prepare("SELECT  a.*
                                                             from $tabla a  
-                                                          where a.estado =1 and a.$item = :$item");
+                                                          a.$item = :$item");
 
         $stmt->bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -114,7 +114,21 @@ class ModelsAds{
 
         $stmt = Conexion::conectar()->query("SELECT  a.*
                                                         from $tabla a  
-                                                        where a.estado =1 order by a.id desc  ");
+                                                        order by a.id desc  ");
+
+        $stmt -> execute();
+
+        return $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt -> close();
+
+        $stmt = null;
+    }
+
+    static public function mdlShowAllAdsAdmin($tabla){
+
+        $stmt = Conexion::conectar()->query("SELECT  a.*
+                                                        from $tabla a order by a.id desc  ");
 
         $stmt -> execute();
 
@@ -429,6 +443,30 @@ class ModelsAds{
         $stmt = null;
     }
 
+    static public function mdlShowReservationAll($tabla,$estatus){
+
+        $stmt = Conexion::conectar()->prepare("SELECT  r.*, u.nombre, u.apellido, a.title, (case when c.id IS NOT NULL then 1 else 0 end ) calificado
+                                                          from $tabla r 
+                                                            left join usuarios u 
+                                                            on u.id = r.id_user 
+                                                            left join anuncios a 
+                                                            on a.id = r.id_anuncio
+                                                            left join calificacion c
+                                                            on r.id = c.id_reservacion
+                                                            where r.estatus = :estatus order by r.id desc  ");
+
+
+        $stmt -> bindParam(":estatus", $estatus, PDO::PARAM_STR);
+
+        $stmt -> execute();
+
+        return $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt -> close();
+
+        $stmt = null;
+    }
+
     static public function mdlUpdateReservation($tabla,$data){
 
         $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET estatus = :estatus WHERE id = :id");
@@ -489,7 +527,11 @@ class ModelsAds{
 
     static public function mdlAllReservation($tabla){
 
-        $stmt = Conexion::conectar()->query("SELECT  * from $tabla order by id desc ");
+        $stmt = Conexion::conectar()->query("SELECT  r.*,u.email, u.nombre, u.apellido, u.foto 
+                                                        from $tabla r 
+                                                        left join usuarios u 
+                                                          on r.id_user = u.id 
+                                                        order by r.id desc ");
 
         $stmt -> execute();
 

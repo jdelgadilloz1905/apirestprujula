@@ -8,29 +8,23 @@ class Ruta{
     static public function ctrRutaEnvioEmailAuth(){
 
         //return "https://www.prujula.pr/";
-        return "https://prujula-develop.herokuapp.com/auth/";
-        //return "https://prujula.com/auth/";
+        //return "https://prujula-site.herokuapp.com/auth/";
+        return "https://prujula.com/auth/";
 
     }
 
     static public function ctrRutaEnvioEmailConfirm(){
 
-        return "https://prujula-develop.herokuapp.com/profile/payment/confirm-reservation/";
-        //return "https://prujula.com/profile/payment/confirm-reservation/";
-    }
-
-    static public function ctrRutaEnvioEmailCalificar(){
-
-        return "https://prujula-develop.herokuapp.com/reviews/send/";
-        //return "https://prujula.com/profile/payment/confirm-reservation/";
+        //return "https://prujula-site.herokuapp.com/profile/payment/confirm-reservation/";
+        return "https://prujula.com/profile/payment/confirm-reservation/";
     }
 
     static public function ctrRutaFront(){
 
         //return "https://www.prujula.pr/";
         //return "https://www.prujula.estudio57.net/";
-        return "https://prujula-develop.herokuapp.com/";
-        //return "https://prujula.com/";
+        //return "https://prujula-site.herokuapp.com/";
+        return "https://prujula.com/";
 
     }
 
@@ -38,14 +32,15 @@ class Ruta{
     static public function ctrRutaBackend(){
 
         //return "http://localhost/apirestprujula/";
-        return "https://www.estudio57.net/apirestprujuladesarrollo/";
+        return "https://www.estudio57.net/apirestprujula/";
 
     }
 
 
     static public function apiAlgolia(){
 
-        $client = \Algolia\AlgoliaSearch\SearchClient::create('RK5WGMMT2Y', '5faaffff77e964237ab79653cb5057ba');
+        $client = \Algolia\AlgoliaSearch\SearchClient::create('05MH8B5SSN', '9dec337c2fcc9a7915066dd1dfd4bb7a');
+        
 
         return $client;
     }
