@@ -97,7 +97,7 @@ class ModelsAds{
 
         $stmt = Conexion::conectar()->prepare("SELECT  a.*
                                                             from $tabla a  
-                                                          where a.estado =1 and a.$item = :$item");
+                                                         where  a.$item = :$item");
 
         $stmt->bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -114,7 +114,7 @@ class ModelsAds{
 
         $stmt = Conexion::conectar()->query("SELECT  a.*
                                                         from $tabla a  
-                                                        where a.estado =1 order by a.id desc  ");
+                                                        order by a.id desc  ");
 
         $stmt -> execute();
 
@@ -317,8 +317,7 @@ class ModelsAds{
         $stmt = Conexion::conectar()->prepare("SELECT a.id,a.id_user idUser,a.title,a.price,a.price_offer,a.description,a.half,a.people,a.offer,a.discount_amount, 
                                                           a.id_category, a.id_category2
                                                           FROM $tabla a  
-                                                            WHERE a.estado = 1 
-                                                            and a.id_user = $valor ORDER BY a.id DESC ");
+                                                            a.id_user = $valor ORDER BY a.id DESC ");
 
         $stmt -> execute();
 

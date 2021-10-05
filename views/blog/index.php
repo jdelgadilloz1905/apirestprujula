@@ -38,12 +38,25 @@ switch ($method){
 
         break;
 
-
-
-
     case "deleteblog":
 
         $respuesta = ControllerUsers::ctrDeleteBlog($obj);
+
+        echo $respuesta;
+
+        break;
+
+    case "lastrecords":
+
+        $respuesta = ControllerUsers::ctrLastRecord();
+
+        echo $respuesta;
+
+        break;
+
+    case "findrecords":
+
+        $respuesta = ControllerUsers::ctrBuscarRegistroBlog($obj);
 
         echo $respuesta;
 

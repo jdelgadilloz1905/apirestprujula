@@ -409,4 +409,43 @@ class ModelUsers{
         $stmt = null;
     }
 
+    /*=================================================
+    MOSTRAR LOS ULTIMOS 3 REGISTROS
+    ===================================================*/
+
+    static public function mdlLastRecord(){
+
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM blog ORDER BY id DESC lIMIT 3 ");
+
+        $stmt -> execute();
+
+        return $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+        $stmt -> close();
+
+        $stmt = null;
+    }
+
+    /*=============================================
+        BUSCAR REGISTROS BLOG
+        =============================================*/
+
+    static public function mdlBuscarRegistroBlog($tabla, $data){
+
+        $stmt = Conexion::conectar()->prepare("SELECT b.*, u.nombre name, u.apellido last_name , u.foto photo FROM $tabla b LEFT JOIN usuarios u 
+                                                              on b.id_user = u.id WHERE b.id = :id ");
+
+        $stmt -> bindParam(":id", $data["id"], PDO::PARAM_STR);
+
+        $stmt -> execute();
+
+        return $stmt -> fetch(PDO::FETCH_ASSOC);
+
+
+        $stmt -> close();
+
+        $stmt = null;
+
+    }
+
 }
