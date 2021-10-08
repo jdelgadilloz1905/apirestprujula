@@ -317,7 +317,7 @@ class ModelsAds{
         $stmt = Conexion::conectar()->prepare("SELECT a.id,a.id_user idUser,a.title,a.price,a.price_offer,a.description,a.half,a.people,a.offer,a.discount_amount, 
                                                           a.id_category, a.id_category2
                                                           FROM $tabla a  
-                                                            a.id_user = $valor ORDER BY a.id DESC ");
+                                                          WHERE  a.id_user = $valor ORDER BY a.id DESC ");
 
         $stmt -> execute();
 

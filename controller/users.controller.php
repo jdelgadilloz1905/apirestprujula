@@ -962,12 +962,32 @@ class ControllerUsers{
 
         $respuesta = ModelUsers::mdlShowBlog($tabla,$item,$valor);
 
+        foreach ( $respuesta as $key => $value){
+
+            $resultado[$key] = array(
+                "id" => $value["id"],
+                "id_user" => $value["id_user"],
+                "tags" => $value["tags"],
+                "image" => $value["image"],
+                "date_create" => $value["date_create"],
+                "name" => $value["name"],
+                "last_name" => $value["last_name"],
+                "photo" => $value["photo"],
+                "info_es" => array(
+                    "title" => $value["title"],
+                    "content" => $value["content"],
+                ),
+                "info_en" => json_decode($value["alternate_language"])
+
+            );
+        }
+
         if($respuesta){
 
             echo json_encode(array(
                 "statusCode" => 200,
                 "error" => false,
-                "blogInfo" =>$respuesta,
+                "blogInfo" =>$resultado,
                 "mensaje" =>""
             ));
         }else{

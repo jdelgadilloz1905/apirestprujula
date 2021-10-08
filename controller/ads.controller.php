@@ -908,11 +908,11 @@ class ControllerAds{
                 $mail->Send();
             }
 
-            echo json_encode(array(
-                "statusCode" => 200,
-                "error" => false,
-                "mensaje" =>"Genial se ha actualizado la publicacion "
-            ));
+                echo json_encode(array(
+                    "statusCode" => 200,
+                    "error" => false,
+                    "mensaje" =>"Genial se ha actualizado la publicacion "
+                ));
         }else{
             echo json_encode(array(
                 "statusCode" => 400,

@@ -344,19 +344,23 @@ class ModelUsers{
 
     static public function mdlCreateRecordBlog($tabla,$data){
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (title, id_user, tags, content, image) 
-                                                                    VALUES (:title, :id_user, :tags, :content, :image)");
+        $idioma_alterno = json_encode($data["info_en"]);
+
+        $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (title, id_user, tags, content, image, alternate_language) 
+                                                                    VALUES (:title, :id_user, :tags, :content, :image, :alternate_language)");
 
 
-        $stmt->bindParam(":title", $data["title"], PDO::PARAM_STR);
+        $stmt->bindParam(":title", $data["info_es"]["title"], PDO::PARAM_STR);
 
         $stmt->bindParam(":id_user", $data["id_user"], PDO::PARAM_STR);
 
         $stmt->bindParam(":tags", $data["tags"], PDO::PARAM_STR);
 
-        $stmt->bindParam(":content", $data["content"], PDO::PARAM_STR);
+        $stmt->bindParam(":content", $data["info_es"]["content"], PDO::PARAM_STR);
 
         $stmt->bindParam(":image", $data["image"], PDO::PARAM_STR);
+
+        $stmt->bindParam(":alternate_language", $idioma_alterno, PDO::PARAM_STR);
 
         if($stmt->execute()){
 
@@ -379,19 +383,23 @@ class ModelUsers{
 
     static public function mdlUpdateRecordBlog($tabla, $data){
 
-        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET title = :title, id_user = :id_user, tags = :tags, content = :content, image = :image  WHERE id = :id");
+        $idioma_alterno = json_encode($data["info_en"]);
+
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET title = :title, id_user = :id_user, tags = :tags, content = :content, image = :image, alternate_language = :alternate_language  WHERE id = :id");
 
         $stmt->bindParam(":id", $data["id"], PDO::PARAM_INT);
 
-        $stmt->bindParam(":title", $data["title"], PDO::PARAM_STR);
+        $stmt->bindParam(":title", $data["info_es"]["title"], PDO::PARAM_STR);
 
         $stmt->bindParam(":id_user", $data["id_user"], PDO::PARAM_STR);
 
         $stmt->bindParam(":tags", $data["tags"], PDO::PARAM_STR);
 
-        $stmt->bindParam(":content", $data["content"], PDO::PARAM_STR);
+        $stmt->bindParam(":content", $data["info_es"]["content"], PDO::PARAM_STR);
 
         $stmt->bindParam(":image", $data["image"], PDO::PARAM_STR);
+
+        $stmt->bindParam(":alternate_language", $idioma_alterno, PDO::PARAM_STR);
 
 
         if($stmt -> execute()){
