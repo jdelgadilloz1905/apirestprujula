@@ -423,7 +423,8 @@ class ModelUsers{
 
     static public function mdlLastRecord(){
 
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM blog ORDER BY id DESC lIMIT 3 ");
+        $stmt = Conexion::conectar()->prepare("SELECT b.*, u.nombre name, u.apellido last_name , u.foto photo FROM blog b LEFT JOIN usuarios u 
+                                                              on b.id_user = u.id ORDER BY id DESC lIMIT 3 ");
 
         $stmt -> execute();
 

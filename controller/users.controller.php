@@ -1080,12 +1080,32 @@ class ControllerUsers{
 
         $respuesta = ModelUsers::mdlLastRecord();
 
+        foreach ( $respuesta as $key => $value){
+
+            $resultado[$key] = array(
+                "id" => $value["id"],
+                "id_user" => $value["id_user"],
+                "tags" => $value["tags"],
+                "image" => $value["image"],
+                "date_create" => $value["date_create"],
+                "name" => $value["name"],
+                "last_name" => $value["last_name"],
+                "photo" => $value["photo"],
+                "info_es" => array(
+                    "title" => $value["title"],
+                    "content" => $value["content"],
+                ),
+                "info_en" => json_decode($value["alternate_language"])
+
+            );
+        }
+
         if($respuesta){
 
             echo json_encode(array(
                 "statusCode" => 200,
                 "error" => false,
-                "blogInfo" =>$respuesta,
+                "blogInfo" =>$resultado,
                 "mensaje" =>""
             ));
         }else{
@@ -1108,12 +1128,30 @@ class ControllerUsers{
 
         $respuesta = ModelUsers::mdlBuscarRegistroBlog($tabla,$data);
 
+        $resultado = array(
+            "id" => $respuesta["id"],
+            "id_user" => $respuesta["id_user"],
+            "tags" => $respuesta["tags"],
+            "image" => $respuesta["image"],
+            "date_create" => $respuesta["date_create"],
+            "name" => $respuesta["name"],
+            "last_name" => $respuesta["last_name"],
+            "photo" => $respuesta["photo"],
+            "info_es" => array(
+                "title" => $respuesta["title"],
+                "content" => $respuesta["content"],
+            ),
+            "info_en" => json_decode($respuesta["alternate_language"])
+
+        );
+
+
         if($respuesta){
 
             echo json_encode(array(
                 "statusCode" => 200,
                 "error" => false,
-                "blogInfo" =>$respuesta,
+                "blogInfo" =>$resultado,
                 "mensaje" =>""
             ));
         }else{
